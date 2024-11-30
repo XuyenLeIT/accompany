@@ -1,0 +1,181 @@
+       /* General Header Styles */
+       .header {
+        background-color: #C9E6F0;
+        padding-left: 5px;
+        
+    }
+
+    /* Logo Section */
+    .logo-container {
+
+        display: flex;
+        align-items: center;
+        justify-content: start;
+        gap: 10px; /* Khoảng cách giữa logo và tagline */
+    }
+
+    .logo-image {
+        max-width: 80px;
+        height: auto;
+        border-radius: 10px; /* Bo góc cho logo */
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Bóng đổ cho logo */
+    }
+    .logo-container .tagline {
+        font-size: 14px;
+        color: #9E9E9E;
+        margin-top: 5px;
+    }
+    .tagline {
+        font-size: 14px;
+        color: #ffecb3; /* Vàng nhạt */
+        font-weight: bold;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+    }
+    /* Main Title */
+    .header-title {
+        text-align: center;
+    }
+
+    .header-title strong {
+        color: #d9534f;
+        font-size: 18px;
+        display: block;
+    }
+
+    .header-title span {
+        color: #4CAF50;
+        font-size: 14px;
+    }
+
+    /* Hotline Section */
+    .hotline-box {
+        position: relative;
+        background-color: #4CAF50;
+        padding: 20px;
+        clip-path: polygon(50% 0, 100% 0, 100% 100%, 20% 100%);
+        color: #fff;
+        text-align: right;
+        height: 100px;
+    }
+
+    .hotline-box .hotline-title {
+        font-size: 16px;
+        font-weight: bold;
+    }
+
+    .hotline-box .hotline-number {
+        font-size: 20px;
+        font-weight: bold;
+        color: #FFD700;
+        /* Yellow color for number */
+    }
+
+    /* Navigation Bar */
+    .nav-bar {
+        background-color: #4CAF50;
+        color: #fff;
+        display: flex;
+        justify-content: space-evenly;
+        padding: 10px 0;
+    }
+
+    .nav-bar a {
+        color: #fff;
+        text-decoration: none;
+        padding: 0 15px;
+        font-size: 14px;
+        font-weight: bold;
+    }
+
+    .nav-bar a:hover {
+        text-decoration: underline;
+    }
+    .footer {
+        color: #fff;
+    }
+
+    .footer h5 {
+        font-size: 18px;
+        font-weight: bold;
+        margin-bottom: 15px;
+    }
+
+    .footer ul {
+        padding: 0;
+        list-style-type: none;
+    }
+
+    .footer ul li {
+        margin-bottom: 10px;
+    }
+
+    .footer ul li a:hover {
+        text-decoration: underline;
+    }
+
+    .footer i {
+        transition: color 0.3s ease;
+    }
+
+    .footer i:hover {
+        color: #ffecb3; /* Vàng nhạt khi hover */
+    }
+
+    .footer hr {
+        border-color: rgba(255, 255, 255, 0.3);
+    }
+ /* Button Hotline */
+    /* Button Hotline */
+    .hotline-button {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        background-color: #ff8c42; /* Cam */
+        color: #fff;
+        font-size: 16px;
+        font-weight: bold;
+        padding: 15px 20px;
+        border-radius: 50px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+        gap: 10px; /* Khoảng cách giữa icon và text */
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        z-index: 1000;
+    }
+
+    .hotline-button:hover {
+        background-color: #e67e00; /* Cam đậm khi hover */
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+        transform: scale(1.1);
+    }
+
+    /* Icon trong nút */
+    .hotline-icon {
+        font-size: 24px;
+        animation: infinity-bounce 0.8s infinite ease-in-out;
+    }
+
+    /* Animation infinity */
+    @keyframes infinity-bounce {
+        0%, 100% {
+            transform: translateY(0);
+        }
+        50% {
+            transform: translateY(-5px);
+        }
+    }
+
+    /* Responsive: Ẩn trên màn hình nhỏ hơn 576px */
+    @media (max-width: 576px) {
+        .hotline-button {
+            padding: 10px 15px;
+            font-size: 14px;
+        }
+
+        .hotline-icon {
+            font-size: 20px;
+        }
+    }
