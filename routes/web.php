@@ -33,7 +33,8 @@ Route::get('/admin/carausel/delete/{id}', [CarauselController::class, "delete"])
     ->name("admin.carausels.delete");
 
 //intro
-Route::get('/admin/intro', [AdminController::class, "homeIntro"])->name("admin.homeIntro");
+Route::get('/admin/intro', [AdminController::class, "homeIntro"])
+->name("admin.homeIntro");
 Route::post('/admin/intro', [AdminController::class, "storeHomeIntro"])
     ->name("admin.storeHomeIntro");
 Route::post('/admin/intro/{intro}', [AdminController::class, "updateIntro"])
@@ -46,7 +47,51 @@ Route::post('/admin/intro-video/{introMovie}', [AdminController::class, "updateV
     ->name("admin.updateVideoIntro");
 
 //benefit intro
-Route::post('/admin/introBenefit', [AdminController::class, "storeIntroBenefit"])->name("admin.store.benefit");
+Route::post('/admin/introBenefit', [AdminController::class, "storeIntroBenefit"])
+->name("admin.store.benefit");
 Route::get('/admin/introBenefit/{id}', [AdminController::class, "editIntroBenefit"])->name("admin.edit.benefit");
 Route::put('/admin/introBenefit/{id}', [AdminController::class, "updateIntroBenefit"])->name("admin.update.benefit");
 Route::get('/admin/introBenefit/delete/{id}', [AdminController::class, "deleteIntroBenefit"])->name("admin.delete.benefit");
+
+//cancel form
+Route::get('/admin/cancel/form/{id}', [AdminController::class, "canelForm"])
+->name("admin.form.cancel");
+
+//intro
+Route::get('/admin/panel', [AdminController::class, "panelJob"])
+->name("admin.panelJob.index");
+Route::post('/admin/panel/create', [AdminController::class, "createPanelJob"])
+->name("admin.panelJob.store");
+Route::get('/admin/panel/{id}', [AdminController::class, "editPanelJob"])
+->name("admin.panelJob.edit");
+Route::post('/admin/panel/{panelJob}', [AdminController::class, "updatePanelJob"])
+->name("admin.panelJob.storeUpdate");
+Route::get('/admin/panel/delete/{id}', [AdminController::class, "deletePanelJob"])
+->name("admin.panelJob.delete");
+
+//panel image
+Route::get('/admin/panel/detail/{id}', [AdminController::class, "detailPanelJob"])
+->name("admin.panelJob.detail");
+Route::post('/admin/panel/detail/{id}', [AdminController::class, "storePanelJobImage"])
+->name("admin.panelJob.storePanelImage");
+Route::post('/admin/panel/image/{panelJobImage}', [AdminController::class, "updatePanelJobImage"])
+->name("admin.panelJob.updatePanelImage");
+Route::get('/admin/panel/image/edit/{id}', [AdminController::class, "editPanelJobImage"])->name("admin.panelJob.editPanelJobImage");
+Route::get('/admin/panel/image/delete/{id}', [AdminController::class, "deletePanelJobImage"])->name("admin.panelJob.deletePanelJobImage");
+//outstanding
+Route::get('/admin/outstanding', [AdminController::class, "outstanding"])->name("admin.outstanding.index");
+Route::get('/admin/outstanding/{id}', [AdminController::class, "editOutstanding"])->name("admin.outstanding.edit");
+Route::post('/admin/outstanding', [AdminController::class, "storeOutstanding"])->name("admin.outstanding.create");
+Route::post('/admin/outstanding/update/{outstanding}', [AdminController::class, "updateOutstanding"])->name("admin.outstanding.update");
+
+//feedbacks
+Route::get('/admin/feedback', [AdminController::class, "feedback"])->name("admin.feedback.index");
+
+Route::get('/admin/feedback/{id}', [AdminController::class, "editFeedback"])->name("admin.feedback.edit");
+Route::post('/admin/feedback', [AdminController::class, "storeFeedback"])->name("admin.feedback.create");
+Route::post('/admin/feedback/update/{feedback}', [AdminController::class, "updateFeedback"])->name("admin.feedback.update");
+Route::get('/admin/feedback/delete/{id}', [AdminController::class, "deleteFeedback"])->name("admin.feedback.delete");
+//TVGS
+Route::get('/admin/tvgs', [AdminController::class, "viewTvsg"])->name("admin.tvgs.index");
+Route::post('/admin/tvgs/create', [AdminController::class, "createIntroTVSG"])->name("admin.tvgs.create");
+Route::post('/admin/tvgs/update/{introTVSG}', [AdminController::class, "updateIntroTVSG"])->name("admin.tvgs.update");

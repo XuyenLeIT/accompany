@@ -10,9 +10,11 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css"
         integrity="sha512-5Hs3dF2AEPkpNAR7UiOHba+lRSJNeM2ECkwxUIxC1Q/FLycGTbNapWXB4tP889k5T5Ju8fs4b1P5z/iB4nMfSQ=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-        <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-   <style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
+        integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <style>
         body {
             overflow-x: hidden;
         }
@@ -79,15 +81,31 @@
     <!-- Sidebar -->
     <div class="sidebar" id="sidebar">
         <h4 class="text-center py-3">Admin Panel</h4>
-        <ul>
-            <li><a href="#">Dashboard</a></li>
-            <li><a href="{{ route('admin.carausels.index') }}">Carausel</a></li>
-            <li><a href="{{ route('admin.introVideo') }}">Video Intro</a></li>
-            <li><a href="{{ route('admin.homeIntro') }}">Intro Home</a></li>
-            
-            <li><a href="#">Reports</a></li>
-            <li><a href="#">Logout</a></li>
-        </ul>
+        <div class="dropdown mb-2">
+            <button type="button" class="btn btn-primary dropdown-toggle w-100 p-2" data-bs-toggle="dropdown">
+                Home Page
+            </button>
+            <ul class="dropdown-menu bg-info w-100">
+                <li><a class="dropdown-item" href="#">Dashboard</a></li>
+                <li><a class="dropdown-item" href="{{ route('admin.carausels.index') }}">Carausel</a></li>
+                <li><a class="dropdown-item" href="{{ route('admin.introVideo') }}">Video Intro</a></li>
+                <li><a class="dropdown-item" href="{{ route('admin.homeIntro') }}">Intro Home</a></li>
+                <li><a class="dropdown-item" href="{{ route('admin.panelJob.index') }}">Panel Job</a></li>
+                <li><a class="dropdown-item" href="{{ route('admin.outstanding.index') }}">AC Outstanding</a></li>
+                <li><a class="dropdown-item" href="{{ route('admin.feedback.index') }}">Feedback</a></li>
+            </ul>
+        </div>
+        <div class="dropdown mb-2">
+            <button type="button" class="btn btn-primary dropdown-toggle w-100 p-2" data-bs-toggle="dropdown">
+                TƯ VẤN GIÁM SÁT
+            </button>
+            <ul class="dropdown-menu bg-info w-100">
+                <li><a class="dropdown-item" href="{{ route('admin.tvgs.index') }}">TVGS</a></li>
+            </ul>
+        </div>
+
+
+        
     </div>
 
     <!-- Toggle Button -->

@@ -2,11 +2,11 @@
 @section('title', 'Home Page')
 <style>
     /* carausels */
-        .carousel-flick {
+    .carousel-flick {
         background: #EEE;
-      }
-      
-      .carousel-flick-cell {
+    }
+
+    .carousel-flick-cell {
         width: 100%;
         height: 300px;
         margin-right: 10px;
@@ -14,23 +14,25 @@
         border-radius: 5px;
         counter-increment: gallery-cell;
         padding: 10px;
-      }
-      
-      /* cell number */
-      .carousel-cell-flick:before {
+    }
+
+    /* cell number */
+    .carousel-cell-flick:before {
         display: block;
         text-align: center;
         content: counter(gallery-cell);
         line-height: 200px;
         font-size: 80px;
         color: white;
-      }
-      .image-caraulsel{
+    }
+
+    .image-caraulsel {
         width: 100%;
         object-fit: cover;
         height: 100%;
 
-      }
+    }
+
     /* General Styling */
     .home-intro-content {
         background: linear-gradient(145deg, #f5f5f5, #ffffff);
@@ -400,14 +402,13 @@
 
     <div class="container-fluid">
         <div class="row">
-            <div class="carousel-flick" data-flickity>
-                @if ($carausels)
+            @if ($carausels && $carausels->count() > 0)
+                <div class="carousel-flick" data-flickity>
                     @foreach ($carausels as $item)
-                    <div class="carousel-flick-cell"><img src="{{$item->image}}" class="image-caraulsel"/></div>
+                        <div class="carousel-flick-cell"><img src="{{ $item->image }}" class="image-caraulsel" /></div>
                     @endforeach
-                @endif
-             
-              </div>
+                </div>
+            @endif
         </div>
         <div class="row p-4">
             @if ($homeIntro)
@@ -435,209 +436,144 @@
                 </div>
                 <div class="col-md-5">
                     <div class="image-container">
-                        <img src="{{$homeIntro->image}}" alt="Giới Thiệu"
-                            class="home-intro-image">
+                        <img src="{{ $homeIntro->image }}" alt="Giới Thiệu" class="home-intro-image">
                     </div>
                 </div>
             @endif
         </div>
 
         <div class="row p-4">
-            <!-- Video Section -->
-            <div class="col-lg-7">
-                <div class="video-container">
-                    <iframe width="100%" height="400"
-                        src="https://www.youtube.com/embed/nUkE0nHEb34?si=5wmmZ069G2CP1vMv" title="YouTube video player"
-                        frameborder="0"
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                        allowfullscreen>
-                    </iframe>
+            @if ($introVideo)
+                <!-- Video Section -->
+                <div class="col-lg-7">
+                    <div class="video-container">
+                        <iframe width="100%" height="400" src="{{ $introVideo->urlVideo }}" title="YouTube video player"
+                            frameborder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowfullscreen>
+                        </iframe>
+                    </div>
                 </div>
-            </div>
 
-            <!-- Description Section -->
-            <div class="col-lg-5">
-                <div class="description-container">
-                    <h2 class="description-title">GIÁ TRỊ ĐẾN TỪ TÂM</h2>
-                    <p class="description-text">
-                        Công ty chúng tôi tự hào mang lại những giải pháp giám sát xây dựng tối ưu nhất, đảm bảo chất lượng
-                        và sự hài lòng của khách hàng.
-                        <span class="highlight">Chúng tôi sinh ra vì hạnh phúc của chính bạn.</span> Với đội ngũ chuyên
-                        nghiệp, giàu kinh nghiệm, chúng tôi cam kết tạo nên những công trình không chỉ bền vững mà còn mang
-                        giá trị lâu dài.
-                    </p>
+                <!-- Description Section -->
+                <div class="col-lg-5">
+                    <div class="description-container">
+                        <h2 class="description-title">{{ $introVideo->title }}</h2>
+                        <p class="description-text">
+                            {{ $introVideo->description }}
+                        </p>
+                    </div>
                 </div>
-            </div>
+            @endif
+
         </div>
-        <div class="item-work">
-            <div class="row p-1">
-                <div class="col-md-9">
-                    <div class="row">
-                        <div class="col-md-4">
-                            <img class="img-acceptance"
-                                src="https://hoangphuanh.com/wp-content/uploads/2020/05/anh02-cong-trinh-dang-thi-cong-phan-san.jpg" />
-                        </div>
-                        <div class="col-md-4">
-                            <img class="img-acceptance"
-                                src="https://vnteco.com/wp-content/uploads/2016/05/ket-cau-mong-1.jpg" />
-                        </div>
-                        <div class="col-md-4">
-                            <img class="img-acceptance"
-                                src="https://hoangphuanh.com/wp-content/uploads/2020/05/anh02-cong-trinh-dang-thi-cong-phan-san.jpg" />
-                        </div>
-                        <div class="col-md-4">
-                            <img class="img-acceptance"
-                                src="https://hoangphuanh.com/wp-content/uploads/2020/05/anh02-cong-trinh-dang-thi-cong-phan-san.jpg" />
-                        </div>
+        {{-- @dd($panelJob) --}}
+        @if ($panelJobs && $panelJobs->count() > 0)
+            @foreach ($panelJobs as $item)
+                <div class="item-work">
+                    <div class="row p-1">
+                        @if ($item->type && $item->type == 1)
+                            <div class="col-md-9">
+                                <div class="row">
+                                    @if ($item->panelJobImages->count() > 0)
+                                        @foreach ($item->panelJobImages as $ig)
+                                            <div class="col-md-4">
+                                                <img class="img-acceptance" src="{{ $ig->image }}" />
+                                            </div>
+                                        @endforeach
+                                    @else
+                                        <p>No Image</p>
+                                    @endif
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <h4 class="title-acceptance">{{ $item->title }}</h4>
+                                <p class="content-acceptance">{{ $item->description }}</p>
+                            </div>
+                        @endif
+                        @if ($item->type && $item->type == 2)
+                            <div class="col-md-3">
+                                <h4 class="title-acceptance">{{ $item->title }}</h4>
+                                <p class="content-acceptance">{{ $item->description }}</p>
+                            </div>
+                            <div class="col-md-9">
+                                <div class="row">
+                                    @if ($item->panelJobImages->count() > 0)
+                                        @foreach ($item->panelJobImages as $ig)
+                                            <div class="col-md-4">
+                                                <img class="img-acceptance" src="{{ $ig->image }}" />
+                                            </div>
+                                        @endforeach
+                                    @else
+                                        <p>No Image</p>
+                                    @endif
+                                </div>
+                            </div>
+                        @endif
                     </div>
 
                 </div>
-                <div class="col-md-3">
-                    <h4 class="title-acceptance">GIÁM SÁT-NGHIỆM THU THÉP</h4>
-                    <p class="content-acceptance">Tất cả công trình thi công do SBS HOUSE thực hiện đều đảm bảo những giải
-                        pháp
-                        mới và tối ưu nhất nhằm
-                        mang đến một sản phẩm kiên cố, bền vững. Mặc dù thi công nhà phố nhưng từ hạng mục lớn nhỏ đều được
-                        áp
-                        dụng kỹ thuật thi công nhà cao tầng Coteccons. Hơn thế nữa, các công trình được thiết kế - thi công
-                        trọn
-                        gói sẽ giống với bản vẽ thiết kế ít nhất 95%.</p>
-                </div>
-            </div>
-        </div>
-        <div class="item-work">
-            <div class="row p-5">
-                <div class="col-md-3">
-                    <h4 class="title-acceptance">GIÁM SÁT-NGHIỆM THU BÊ TÔNG</h4>
-                    <p class="content-acceptance">Tất cả công trình thi công do SBS HOUSE thực hiện đều đảm bảo những giải
-                        pháp mới và tối ưu nhất nhằm
-                        mang đến một sản phẩm kiên cố, bền vững. Mặc dù thi công nhà phố nhưng từ hạng mục lớn nhỏ đều được
-                        áp
-                        dụng kỹ thuật thi công nhà cao tầng Coteccons. Hơn thế nữa, các công trình được thiết kế - thi công
-                        trọn
-                        gói sẽ giống với bản vẽ thiết kế ít nhất 95%.</p>
-                </div>
-                <div class="col-md-9">
-                    <div class="row">
-                        <div class="col-md-4">
-                            <img class="img-acceptance"
-                                src="https://naphoga.info/upload/images/Tieu%20chuan%20nghiem%20thu%20be%20tong%20cot%20thep.jpg" />
-                        </div>
-                        <div class="col-md-4">
-                            <img class="img-acceptance"
-                                src="https://3adesign.vn/wp-content/uploads/nghiem-thu-cong-trinh-green-villa-8.jpg" />
-                        </div>
-                        <div class="col-md-4">
-                            <img class="img-acceptance"
-                                src="https://luatduonggia.vn/wp-content/uploads/2021/04/Mau-bien-ban-nghiem-thu-be-tong-cot-thep.jpg" />
-                        </div>
-                        <div class="col-md-4">
-                            <img class="img-acceptance"
-                                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRaE4ALksjiutvDmYpKL2_OPr1dB4MXy4vv1woeUbXmX0RbDHodnb89Jmmt1J8378JhRlY&usqp=CAU" />
-                        </div>
-                    </div>
+            @endforeach
 
-                </div>
-
-            </div>
-        </div>
+        @endif
         <div class="row">
             <h3 class="text-center fancy-title">SỰ KHÁC BIỆT CỦA A&C</h3>
-            <div class="col-md-4">
-                <div class="card">
-                    <img src="https://img.meta.com.vn/Data/image/2022/06/28/may-thuy-binh-la-gi-cong-dung-va-cau-tao-cua-may-thuy-binh-6.jpg"
-                        alt="Card Image">
-                    <div class="overlay">
-                        <h2>Card Title</h2>
+            @if ($outstandings && $outstandings->count() > 0)
+                @foreach ($outstandings as $item)
+                    <div class="col-md-4">
+                        <div class="card">
+                            <img src="{{ $item->image }}" alt="Card Image">
+                            <div class="overlay">
+                                <h2>{{ $item->title }}</h2>
+                            </div>
+                        </div>
                     </div>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="card">
-                    <img src="https://bizweb.dktcdn.net/thumb/1024x1024/100/464/139/products/may-do-do-am-dat-cat-than-da-dm300l.jpg?v=1677572440617"
-                        alt="Card Image">
-                    <div class="overlay">
-                        <h2>Card Title</h2>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="card">
-                    <img src="https://img.meta.com.vn/Data/image/2022/06/28/may-thuy-binh-la-gi-cong-dung-va-cau-tao-cua-may-thuy-binh-6.jpg"
-                        alt="Card Image">
-                    <div class="overlay">
-                        <h2>Card Title</h2>
-                    </div>
-                </div>
-            </div>
+                @endforeach
+
+            @endif
         </div>
         <div class="container home-feedback">
             <h2 class="text-center mb-4">Cảm Nhận Khách Hàng</h2>
-            <div id="testimonialCarousel" class="carousel slide" data-bs-ride="carousel">
-                <!-- Indicators -->
-                <div class="carousel-indicators">
-                    <button type="button" data-bs-target="#testimonialCarousel" data-bs-slide-to="0" class="active"
-                        aria-current="true" aria-label="Slide 1"></button>
-                    <button type="button" data-bs-target="#testimonialCarousel" data-bs-slide-to="1"
-                        aria-label="Slide 2"></button>
-                    <button type="button" data-bs-target="#testimonialCarousel" data-bs-slide-to="2"
-                        aria-label="Slide 3"></button>
-                </div>
+            @if ($feedbacks && $feedbacks->count() > 0)
+                <div id="testimonialCarousel" class="carousel slide" data-bs-ride="carousel">
+                    <!-- Indicators -->
+                    <div class="carousel-indicators">
+                        @foreach ($feedbacks as $key => $item)
+                        <button type="button" data-bs-target="#testimonialCarousel" data-bs-slide-to="{{$key}}" class="{{$key==0?'active':''}}"
+                        aria-current="true" aria-label="Slide-{{$key}}"></button>
+                        @endforeach
+                    </div>
 
-                <!-- Slides -->
-                <div class="carousel-inner">
-                    <!-- Slide 1 -->
-                    <div class="carousel-item active">
-                        <div class="testimonial-card mx-auto">
-                            <img src="https://via.placeholder.com/80" alt="Customer Image">
-                            <h5 class="testimonial-name">Nguyễn Văn A</h5>
-                            <p class="testimonial-title">Chủ Dự Án</p>
-                            <p class="testimonial-content">
-                                "Dịch vụ tư vấn giám sát của công ty thật tuyệt vời. Công trình của tôi hoàn thành đúng tiến
-                                độ và đạt chất lượng vượt mong đợi!"
-                            </p>
+                    <!-- Slides -->
+                    <div class="carousel-inner">
+                        <!-- Slide 1 -->
+                        @foreach ($feedbacks as $key => $item)
+                        <div class="carousel-item {{$key==0?'active':''}}">
+                            <div class="testimonial-card mx-auto">
+                                <img src="{{$item->image}}" alt="Customer Image">
+                                <h5 class="testimonial-name">{{$item->name}}</h5>
+                                <p class="testimonial-title">Chủ Dự Án</p>
+                                <p class="testimonial-content">
+                                    "{{$item->description}}"
+                                </p>
+                            </div>
                         </div>
+                        @endforeach
                     </div>
-                    <!-- Slide 2 -->
-                    <div class="carousel-item">
-                        <div class="testimonial-card mx-auto">
-                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQVQ_uINv8HoTirutteQ7grrQ8qTkE8wxF6VljQaSrgtFiNykezCX9jHZbSGj2zJRumTCH1EYP3gS756aYxNMSsjA"
-                                alt="Customer Image">
-                            <h5 class="testimonial-name">Trần Thị B</h5>
-                            <p class="testimonial-title">Nhà Đầu Tư</p>
-                            <p class="testimonial-content">
-                                "Tôi rất hài lòng với sự chuyên nghiệp của đội ngũ kỹ sư. Họ luôn lắng nghe và đưa ra giải
-                                pháp phù hợp nhất cho dự án của tôi."
-                            </p>
-                        </div>
-                    </div>
-                    <!-- Slide 3 -->
-                    <div class="carousel-item">
-                        <div class="testimonial-card mx-auto">
-                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQVQ_uINv8HoTirutteQ7grrQ8qTkE8wxF6VljQaSrgtFiNykezCX9jHZbSGj2zJRumTCH1EYP3gS756aYxNMSsjA"
-                                alt="Customer Image">
-                            <h5 class="testimonial-name">Lê Hoàng C</h5>
-                            <p class="testimonial-title">Khách Hàng</p>
-                            <p class="testimonial-content">
-                                "Đội ngũ tận tâm, trách nhiệm và luôn đảm bảo quyền lợi cho khách hàng. Đây là sự lựa chọn
-                                tôi tin tưởng!"
-                            </p>
-                        </div>
-                    </div>
+                    <!-- Controls -->
+                    <button class="carousel-control-prev" type="button" data-bs-target="#testimonialCarousel"
+                        data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#testimonialCarousel"
+                        data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                    </button>
                 </div>
+            @endif
 
-                <!-- Controls -->
-                <button class="carousel-control-prev" type="button" data-bs-target="#testimonialCarousel"
-                    data-bs-slide="prev">
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Previous</span>
-                </button>
-                <button class="carousel-control-next" type="button" data-bs-target="#testimonialCarousel"
-                    data-bs-slide="next">
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Next</span>
-                </button>
-            </div>
         </div>
     </div>
     <script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
@@ -648,9 +584,9 @@
             cellAlign: 'left',
             contain: true,
             wrapAround: true, // Cho phép lặp lại carousel
-            autoPlay: 2000,  // Tự động chuyển slide sau 3 giây
+            autoPlay: 2000, // Tự động chuyển slide sau 3 giây
             prevNextButtons: true, // Hiển thị nút điều hướng
-            pageDots: false    // Hiển thị điểm chỉ báo
+            pageDots: false // Hiển thị điểm chỉ báo
         });
     </script>
 @endsection
