@@ -295,16 +295,19 @@
         <div class="row mt-2">
             <!-- Main Content: col-9 -->
             <div class="col-lg-9">
+                @if ($introtvgs)
                 <h3 class="mb-4 title-page-content">Tư Vấn Giám Sát Xây Dựng</h3>
-                <p class="text-justify fs-5 text-content">
-                    Tư vấn giám sát xây dựng là một yếu tố quan trọng trong bất kỳ dự án xây dựng nào. Vai trò của tư vấn
-                    giám sát là đảm bảo rằng tất cả các hoạt động xây dựng được thực hiện đúng theo kế hoạch, tiêu chuẩn kỹ
-                    thuật, và quy định pháp luật. Điều này không chỉ giúp đảm bảo chất lượng công trình mà còn giảm thiểu
-                    rủi ro, tiết kiệm chi phí và thời gian cho chủ đầu tư.
+                <p class="text-justify fs-5 text-content">{{$introtvgs->description}}
                 </p>
+                @endif
+               
 
                 <h3 class="mt-5 mb-3 section-title">Các Bài Viết Nổi Bật</h3>
                 <div class="row">
+                    @php
+                    $slug = Str::slug("Mẹo Giám Sát Hiệu Quả");
+                    $id = 1;
+                    @endphp
                     <!-- Article Card 1 -->
                     <div class="col-md-4 mb-4">
                         <div class="card article-card h-100">
@@ -313,7 +316,8 @@
                                 <h5 class="card-title">Mẹo Giám Sát Hiệu Quả</h5>
                                 <p class="card-text">Các mẹo giám sát công trình giúp tối ưu hóa tiến độ và chất lượng công
                                     việc.</p>
-                                <a href="#" class="btn btn-primary custom-btn">Xem Thêm</a>
+                                    <a href="#" class="btn btn-primary custom-btn">Xem Thêm</a>
+                                {{-- <a href="{{ route('client.newsDetail', [$slug, 1]) }}" class="btn btn-primary custom-btn">Xem Thêm</a> --}}
                             </div>
                         </div>
                     </div>
@@ -354,7 +358,7 @@
                                     <h5 class="card-title">Hội Thảo Chuyên Đề</h5>
                                     <p class="card-text">Công ty tổ chức hội thảo chuyên đề về các xu hướng xây dựng hiện
                                         đại.</p>
-                                    <a href="#" class="btn btn-outline-primary">Xem Chi Tiết</a>
+                                    <a href="{{route('client.newsDetail',1)}}" class="btn btn-outline-primary">Xem Chi Tiết</a>
                                 </div>
                             </div>
                         </div>

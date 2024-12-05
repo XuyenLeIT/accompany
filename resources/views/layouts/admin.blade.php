@@ -14,6 +14,10 @@
         integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <!-- include summernote editor css/js -->
+    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
     <style>
         body {
             overflow-x: hidden;
@@ -103,9 +107,7 @@
                 <li><a class="dropdown-item" href="{{ route('admin.tvgs.index') }}">TVGS</a></li>
             </ul>
         </div>
-
-
-        
+        <a class="btn btn-primary w-100" href="{{ route('admin.post.create') }}">POST NEWS</a>
     </div>
 
     <!-- Toggle Button -->

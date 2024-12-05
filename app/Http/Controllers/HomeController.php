@@ -6,6 +6,7 @@ use App\Models\Carausel;
 use App\Models\Feedback;
 use App\Models\IntroBenefit;
 use App\Models\IntroHome;
+use App\Models\IntroTvgs;
 use App\Models\IntroVideo;
 use App\Models\Outstanding;
 use App\Models\PanelJob;
@@ -24,6 +25,7 @@ class HomeController extends Controller
     $panelJobs = PanelJob::all();
     $outstandings = Outstanding::all();
     $feedbacks = Feedback::all();
+
     return view("client.home",compact("homeIntro",
     "features_chunks","carausels","introVideo",
     "panelJobs","outstandings","feedbacks"));

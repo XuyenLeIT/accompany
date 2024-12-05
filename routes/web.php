@@ -5,6 +5,7 @@ use App\Http\Controllers\CarauselController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\NewController;
+use App\Http\Controllers\PostController;
 use App\Http\Controllers\PriceController;
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\TVGSController;
@@ -17,8 +18,8 @@ Route::get('/tu-van-giam-sat', [TVGSController::class, "tvgs"])->name("client.tv
 Route::get('/bao-gia-tu-van-giam-sat', [PriceController::class, "price"])->name("client.price");
 Route::get('/du-an', [ProjectController::class, "project"])->name("client.project");
 Route::get('/lien-he', [ContactController::class, "contact"])->name("client.contact");
-Route::get('/tin-tuc', [NewController::class, "news"])->name("client.news");
-Route::get('/detail', [NewController::class, "newsDetail"])->name("client.newsDetail");
+Route::get('/tin-tuc', [PostController::class, "news"])->name("client.news");
+Route::get('/detail/test', [NewController::class, "newsDetail"])->name("client.newsDetail");
 // admin
 Route::get('/admin/dashboard', [AdminController::class, "admin"])->name("admin.dashboard");
 //carausel
@@ -95,3 +96,9 @@ Route::get('/admin/feedback/delete/{id}', [AdminController::class, "deleteFeedba
 Route::get('/admin/tvgs', [AdminController::class, "viewTvsg"])->name("admin.tvgs.index");
 Route::post('/admin/tvgs/create', [AdminController::class, "createIntroTVSG"])->name("admin.tvgs.create");
 Route::post('/admin/tvgs/update/{introTVSG}', [AdminController::class, "updateIntroTVSG"])->name("admin.tvgs.update");
+//POST
+//TVGS
+Route::get('/admin/post', [PostController::class, "create"])->name("admin.post.create");
+Route::post('/admin/post', [PostController::class, "store"])->name("admin.post.store");
+Route::get('/admin/post/{id}', [PostController::class, "edit"])->name("admin.post.edit");
+Route::post('/admin/post/{news}', [PostController::class, "updatePost"])->name("admin.post.updatePost");

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\Models\Feedback;
 use App\Models\IntroTvgs;
+use App\Models\News;
 use App\Models\Outstanding;
 use App\Models\PanelJobImage;
 use Session;
@@ -480,7 +481,8 @@ class AdminController extends Controller
     public function viewTvsg()
     {
         $introTVSG = IntroTvgs::first();
-        return view("admin.tvgs.index",compact("introTVSG",));
+        $newsTVSG = News::where('type', 'TVGS')->get();
+        return view("admin.tvgs.index",compact("introTVSG","newsTVSG"));
     }
     public function createIntroTVSG(Request $request)
     {
@@ -504,5 +506,7 @@ class AdminController extends Controller
         return redirect()->back()->with('success', 'intro updated successfully.');
 
     }
+
+    
 }
 

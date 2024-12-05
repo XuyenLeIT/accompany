@@ -11,6 +11,7 @@
     }
 </style>
 @section('content')
+{{-- @dd($newsTVSG) --}}
     <div class="container">
         <h1 class="text-center bg-primary">TƯ VẤN GIÁM SÁT</h1>
         <div class="row">
@@ -168,6 +169,41 @@
                 @endif
 
             </div> --}}
+        </div>
+        <div class="row">
+            <h4 class="text-center">NEWS LIST</h4>
+            <a class="btn btn-primary mt-2 w-25" href="{{ route('admin.carausels.create') }}">Tạo thêm tin tức</a>
+            <table class="table knowtable">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Title</th>
+                        <th>Image</th>
+                        <th>Status</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach ($newsTVSG as $item)
+                        <tr>
+                            <td>{{ $item->id }}</td>
+                            <td>{{ $item->title }}</td>
+                            <td>
+                                @if ($item->image)
+                                    <img src="{{ asset($item->image) }}" alt="{{ $item->name }}" width="100">
+                                @endif
+                            </td>
+                            <td>
+                                {{ $item->status }}
+                            </td>
+                            <td>
+                            <a class="btn btn-warning" href="{{route("admin.post.edit",$item->id)}}"><i class="fa-solid fa-pen-to-square"></i></a>
+                            <a class="btn btn-danger" href="{{route("admin.carausels.delete",$item->id)}}"><i class="fa-solid fa-trash"></i></a>
+                            </td>
+                        </tr>
+                    @endforeach
+                </tbody>
+            </table>
         </div>
     </div>
     <script>
