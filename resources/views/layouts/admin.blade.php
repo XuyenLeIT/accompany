@@ -107,7 +107,8 @@
                 <li><a class="dropdown-item" href="{{ route('admin.tvgs.index') }}">TVGS</a></li>
             </ul>
         </div>
-        <a class="btn btn-primary w-100" href="{{ route('admin.post.create') }}">POST NEWS</a>
+        <a class="btn btn-primary w-100 mb-2" href="{{ route('admin.post.create') }}">POST NEWS</a>
+        <a class="btn btn-primary w-100 mb-2" href="{{ route('admin.ads.create') }}">ADS</a>
     </div>
 
     <!-- Toggle Button -->

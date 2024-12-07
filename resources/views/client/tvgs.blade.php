@@ -172,6 +172,7 @@
 
     /* Activity Card Styling */
     .activity-card {
+        height: 200px;
         border: none;
         border-radius: 10px;
         overflow: hidden;
@@ -182,6 +183,13 @@
     .activity-card:hover {
         transform: translateY(-10px);
         box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+    }
+
+    .card-img-tvgs {
+        height: 150px;
+        object-fit: cover;
+        transition: transform 0.4s ease, filter 0.4s ease;
+        filter: brightness(0.9);
     }
 
     .activity-card .card-img-top {
@@ -222,8 +230,10 @@
     .quote-section {
         margin: 30px auto;
         padding: 20px;
-        background-color: #e9f7e7; /* Xanh lá cây nhạt */
-        border-left: 5px solid #ff8c42; /* Viền màu cam */
+        background-color: #e9f7e7;
+        /* Xanh lá cây nhạt */
+        border-left: 5px solid #ff8c42;
+        /* Viền màu cam */
         border-radius: 8px;
         max-width: 800px;
         text-align: center;
@@ -233,14 +243,16 @@
     .quote-text {
         font-style: italic;
         font-size: 20px;
-        color: #2d6a4f; /* Xanh lá cây đậm */
+        color: #2d6a4f;
+        /* Xanh lá cây đậm */
         margin: 0 0 10px;
         line-height: 1.6;
     }
 
     .quote-author {
         font-size: 16px;
-        color: #0066cc; /* Xanh dương đậm */
+        color: #0066cc;
+        /* Xanh dương đậm */
         font-weight: bold;
         margin: 0;
     }
@@ -284,6 +296,24 @@
         text-transform: uppercase;
         margin: 10px 0 0;
     }
+
+    .text-title {
+        overflow: hidden;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        /* number of lines to show */
+        line-clamp: 2;
+        -webkit-box-orient: vertical;
+    }
+
+    .text-description {
+        overflow: hidden;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        /* number of lines to show */
+        line-clamp: 2;
+        -webkit-box-orient: vertical;
+    }
 </style>
 @section('content')
     <div class="container-fluid mt-1">
@@ -296,83 +326,64 @@
             <!-- Main Content: col-9 -->
             <div class="col-lg-9">
                 @if ($introtvgs)
-                <h3 class="mb-4 title-page-content">Tư Vấn Giám Sát Xây Dựng</h3>
-                <p class="text-justify fs-5 text-content">{{$introtvgs->description}}
-                </p>
+                    <h3 class="mb-4 title-page-content">Tư Vấn Giám Sát Xây Dựng</h3>
+                    <p class="text-justify fs-5 text-content">{{ $introtvgs->description }}
+                    </p>
                 @endif
-               
+
 
                 <h3 class="mt-5 mb-3 section-title">Các Bài Viết Nổi Bật</h3>
+                {{-- @dd($newsTVSG) --}}
                 <div class="row">
                     @php
-                    $slug = Str::slug("Mẹo Giám Sát Hiệu Quả");
-                    $id = 1;
+                        function slugText($title,$id)
+                        {
+                            $value = $title."-".$id;
+                            $slug = Str::slug($value);
+                            return $slug;
+                        }
+                        function cleanText($input)
+                        {
+                            $decodedText = html_entity_decode($input, ENT_QUOTES, 'UTF-8');
+                            $plainText = strip_tags($decodedText);
+                            return preg_replace('/[^\p{L}\p{N}\s]/u', '', $plainText);
+                        }
                     @endphp
                     <!-- Article Card 1 -->
-                    <div class="col-md-4 mb-4">
-                        <div class="card article-card h-100">
-                            <img src="https://via.placeholder.com/300x200" class="card-img-top" alt="Mẹo Giám Sát Hiệu Quả">
-                            <div class="card-body">
-                                <h5 class="card-title">Mẹo Giám Sát Hiệu Quả</h5>
-                                <p class="card-text">Các mẹo giám sát công trình giúp tối ưu hóa tiến độ và chất lượng công
-                                    việc.</p>
-                                    <a href="#" class="btn btn-primary custom-btn">Xem Thêm</a>
-                                {{-- <a href="{{ route('client.newsDetail', [$slug, 1]) }}" class="btn btn-primary custom-btn">Xem Thêm</a> --}}
+                    @foreach ($newsTVSG as $item)
+                        <div class="col-md-4 mb-4">
+                            <div class="card article-card h-100">
+                                <img src="{{ $item->image }}" class="card-img-tvgs" alt="Mẹo Giám Sát Hiệu Quả">
+                                <div class="card-body">
+                                    <h5 class="card-title text-title">{{ $item->title }}</h5>
+                                    <p class="card-text text-description">{{ cleanText($item->description) }}</p>
+                                    <a href="{{ route('client.newsDetail', [slugText($item->title,$item->id)]) }}"
+                                        class="btn btn-primary custom-btn">Xem Thêm</a>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <!-- Article Card 1 -->
-                    <div class="col-md-4 mb-4">
-                        <div class="card article-card h-100">
-                            <img src="https://via.placeholder.com/300x200" class="card-img-top" alt="Mẹo Giám Sát Hiệu Quả">
-                            <div class="card-body">
-                                <h5 class="card-title">Mẹo Giám Sát Hiệu Quả</h5>
-                                <p class="card-text">Các mẹo giám sát công trình giúp tối ưu hóa tiến độ và chất lượng công
-                                    việc.</p>
-                                <a href="#" class="btn btn-primary custom-btn">Xem Thêm</a>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Article Card 1 -->
-                    <div class="col-md-4 mb-4">
-                        <div class="card article-card h-100">
-                            <img src="https://via.placeholder.com/300x200" class="card-img-top" alt="Mẹo Giám Sát Hiệu Quả">
-                            <div class="card-body">
-                                <h5 class="card-title">Mẹo Giám Sát Hiệu Quả</h5>
-                                <p class="card-text">Các mẹo giám sát công trình giúp tối ưu hóa tiến độ và chất lượng công
-                                    việc.</p>
-                                <a href="#" class="btn btn-primary custom-btn">Xem Thêm</a>
-                            </div>
-                        </div>
-                    </div>
+                    @endforeach
                 </div>
                 <div class="row">
                     <!-- Các Hoạt Động Ấn Tượng -->
                     <h3 class="mt-5 mb-3 section-title">Hoạt Động Ấn Tượng</h3>
                     <div class="row">
-                        <div class="col-md-6 mb-4">
-                            <div class="card activity-card h-100">
-                                <img src="https://via.placeholder.com/500x300" class="card-img-top"
-                                    alt="Hội Thảo Chuyên Đề">
-                                <div class="card-body">
-                                    <h5 class="card-title">Hội Thảo Chuyên Đề</h5>
-                                    <p class="card-text">Công ty tổ chức hội thảo chuyên đề về các xu hướng xây dựng hiện
-                                        đại.</p>
-                                    <a href="{{route('client.newsDetail',1)}}" class="btn btn-outline-primary">Xem Chi Tiết</a>
+                        @if ($newsStandountTVSG)
+                            @foreach ($newsStandountTVSG as $item)
+                            <div class="col-md-6 mb-4">
+                                <div class="card activity-card h-100">
+                                    <img src="{{$item->image}}" class="card-img-top"
+                                        alt="Hội Thảo Chuyên Đề">
+                                    <div class="card-body">
+                                        <h5 class="card-title text-title">{{$item->title}}</h5>
+                                        <p class="card-text text-description">{{ cleanText($item->description) }}</p>
+                                        <a href="{{ route('client.newsDetail', [slugText($item->title,$item->id)]) }}"
+                                            class="btn btn-outline-primary">Xem Thêm</a>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="col-md-6 mb-4">
-                            <div class="card activity-card h-100">
-                                <img src="https://via.placeholder.com/500x300" class="card-img-top"
-                                    alt="Hoạt Động Xây Dựng">
-                                <div class="card-body">
-                                    <h5 class="card-title">Hoạt Động Xây Dựng</h5>
-                                    <p class="card-text">Tham gia xây dựng các công trình tiêu biểu trong khu vực.</p>
-                                    <a href="#" class="btn btn-outline-primary">Xem Chi Tiết</a>
-                                </div>
-                            </div>
-                        </div>
+                            @endforeach
+                        @endif
                     </div>
                 </div>
                 <!-- Quote Section -->
@@ -388,31 +399,30 @@
             <div class="col-lg-3">
                 <div style="top: 20px;">
                     <h4 class="mb-3 section-title">Quảng Cáo</h4>
+                    @if ($specialAds)
                     <div class="card banner-card">
                         <div class="banner-overlay">
                             <div class="banner-content">
-                                <h3 class="banner-title">Giảm Giá Đặc Biệt</h3>
-                                <p class="banner-discount">Lên đến <span>-50%</span></p>
-                                <a href="#" class="btn btn-primary custom-btn">Xem Ngay</a>
+                                <h3 class="banner-title">{{$specialAds->title}}</h3>
+                                <p class="banner-discount">{{$specialAds->sortDes}}</p>
+                                <a href="{{ route('client.price') }}" class="btn btn-primary custom-btn">Xem Ngay</a>
                             </div>
                         </div>
-                        <img src="https://via.placeholder.com/300x400" class="card-img banner-img" alt="Quảng Cáo">
+                        <img src="{{$specialAds->image}}" class="card-img banner-img" alt="Quảng Cáo">
                     </div>
+                    @endif
+                 
                 </div>
                 <!-- Additional Image Cards -->
                 <div class="sidebar-images">
-                    <div class="sidebar-card mb-3">
-                        <img src="https://via.placeholder.com/300x200" class="img-fluid rounded" alt="Sản phẩm nổi bật">
-                        <h5 class="sidebar-title mt-2">Sản phẩm nổi bật</h5>
-                    </div>
-                    <div class="sidebar-card mb-3">
-                        <img src="https://via.placeholder.com/300x200" class="img-fluid rounded" alt="Ưu đãi tháng 12">
-                        <h5 class="sidebar-title mt-2">Ưu đãi tháng 12</h5>
-                    </div>
-                    <div class="sidebar-card mb-3">
-                        <img src="https://via.placeholder.com/300x200" class="img-fluid rounded" alt="Dự án nổi bật">
-                        <h5 class="sidebar-title mt-2">Dự án nổi bật</h5>
-                    </div>
+                    @if ($ads)
+                        @foreach ($ads as $item)
+                        <div class="sidebar-card mb-3">
+                            <img src="{{$item->image}}" class="img-fluid rounded" alt="Sản phẩm nổi bật">
+                            <h5 class="sidebar-title mt-2">{{$item->title}}</h5>
+                        </div>
+                        @endforeach
+                    @endif
                 </div>
             </div>
         </div>

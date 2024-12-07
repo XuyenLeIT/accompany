@@ -478,35 +478,7 @@ class AdminController extends Controller
         }
         return redirect()->back()->with('success', 'feedback deleted successfully.');
     }
-    public function viewTvsg()
-    {
-        $introTVSG = IntroTvgs::first();
-        $newsTVSG = News::where('type', 'TVGS')->get();
-        return view("admin.tvgs.index",compact("introTVSG","newsTVSG"));
-    }
-    public function createIntroTVSG(Request $request)
-    {
-        $request->validate([
-            "description" => 'required',
-        ]);
-        IntroTvgs::create([
-            "description"=>$request->description,
-        ]);
-        return redirect()->back()->with('success', 'intro created successfully.');
-
-    }
-    public function updateIntroTVSG(Request $request,IntroTvgs $introTVSG)
-    {
-        $request->validate([
-            "description" => 'required',
-        ]);
-        $introTVSG->update([
-            "description"=>$request->description,
-        ]);
-        return redirect()->back()->with('success', 'intro updated successfully.');
-
-    }
-
+   
     
 }
 

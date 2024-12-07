@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Ads;
 use App\Models\News;
+use App\Models\SpecialAds;
 use Illuminate\Http\Request;
 use DOMDocument;
 use Illuminate\Support\Facades\File;
@@ -197,6 +199,186 @@ class PostController extends Controller
         }
 
         return $html;
+    }
+
+    public function deletePost($id)
+    {
+        // Tìm đối tượng Knowledge theo ID hoặc hiển thị lỗi 404 nếu không tìm thấy
+        $news = News::find($id);
+        $imagePath = public_path($news->image);
+        if (File::exists($imagePath)) {
+            File::delete($imagePath);
+        }
+        // Xóa các hình ảnh liên quan từ mô tả
+        $dom = new DOMDocument('1.0', 'UTF-8');
+        libxml_use_internal_errors(true); // Bỏ qua các cảnh báo từ HTML không hợp lệ
+        $dom->loadHTML(mb_convert_encoding($news->description, 'HTML-ENTITIES', 'UTF-8'), LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);
+        libxml_clear_errors();
+        $images = $dom->getElementsByTagName('img');
+        foreach ($images as $img) {
+            $src = $img->getAttribute('src');
+            // Xử lý URL của hình ảnh
+            $parsedUrl = parse_url($src, PHP_URL_PATH);
+            $imagePath = public_path(ltrim($parsedUrl, '/')); // Đường dẫn file từ public
+
+            // Xóa tệp hình ảnh nếu tồn tại
+            if (file_exists($imagePath)) {
+                unlink($imagePath); // Xóa file
+            }
+        }
+        // Xóa bài viết khỏi cơ sở dữ liệu
+        $news->delete();
+        // Chuyển hướng về trang trước đó với thông báo thành công
+        return redirect()->back()->with('success', 'Post deleted successfully!');
+    }
+    
+    public function createAds()
+    {
+        return view("admin.post.create_ads");
+    }
+    public function storeAds(Request $request)
+    {
+        $request->validate([
+            'image' => 'required|image|mimes:jpeg,png,webp,jpg,gif|max:2048',
+            "title"=>"required",
+            "type"=>"required"
+        ]);
+        $filename = "";
+        try {
+            if ($request->hasFile('image')) {
+                $filename = uniqid() . '.' . $request->image->getClientOriginalName();
+                $request->image->move(public_path("adsImages"), $filename);
+                Ads::create([
+                    'image' => '/adsImages/' . $filename,
+                    'title' => $request->title,
+                    'type' => $request->type,
+                ]);
+            }
+            return redirect()->back()->with('info', 'create ads successfully.');
+        } catch (\Throwable $th) {
+            $existingImagePath = public_path('/adsImages/' . $filename);
+            if (File::exists($existingImagePath)) {
+                File::delete($existingImagePath);
+            }
+            return redirect()->back()->with('info', 'Opp error serve.'.$th);
+        }
+    }
+    public function editAds($id)
+    {
+        $ads = Ads::find($id);
+        return view("admin.post.edit_ads",compact('ads'));
+    }
+    public function updateAds(Request $request, Ads $ads)
+    {
+        $request->validate([
+            'image' => 'image|mimes:jpeg,png,jpg,gif,webp|max:2048',
+             "title"=>"required",
+            "type"=>"required"
+        ]);
+        try {
+            // Kiểm tra xem checkbox có được chọn hay không
+            $filename = "";
+            if ($request->hasFile('image')) {
+                $existingImagePath = public_path($ads->image);
+                if (File::exists($existingImagePath)) {
+                    File::delete($existingImagePath);
+                }
+                $filename = uniqid() . '.' . $request->image->getClientOriginalName();
+                $request->image->move(public_path("adsImages"), $filename);
+                $image = '/adsImages/' . $filename;
+            } else {
+                $image = $request->imageExisting;
+            }
+            $ads->update([
+                'image' => $image,
+                'title' => $request->title,
+                'type' => $request->type,
+            ]);
+            return redirect()->back()->with('info', 'update ads successfully.');
+        } catch (\Throwable $th) {
+            $existingImagePath = public_path('/adsImages/' . $filename);
+            if (File::exists($existingImagePath)) {
+                File::delete($existingImagePath);
+            }
+            return redirect()->back()->with('info', 'Opp error serve.'.$th);
+        }
+    }
+    public function deleteAds($id)
+    {
+        $ads = Ads::find($id);
+        if ($ads != null) {
+            $imagePath = public_path($ads->image);
+            if (File::exists($imagePath)) {
+                File::delete($imagePath);
+            }
+            $ads->delete();
+
+        }
+        return redirect()->back()->with('info', 'upddeleteate ads successfully.');
+    }
+
+    //special ads
+    public function storeSpecAds(Request $request)
+    {
+        $request->validate([
+            'image' => 'required|image|mimes:jpeg,png,webp,jpg,gif|max:2048',
+            "title"=>"required",
+            "sortDes"=>"required"
+        ]);
+        $filename = "";
+        try {
+            if ($request->hasFile('image')) {
+                $filename = uniqid() . '.' . $request->image->getClientOriginalName();
+                $request->image->move(public_path("adsImages"), $filename);
+                SpecialAds::create([
+                    'image' => '/adsImages/' . $filename,
+                    'title' => $request->title,
+                    'sortDes' => $request->sortDes,
+                ]);
+            }
+            return redirect()->back()->with('info', 'create ads successfully.');
+        } catch (\Throwable $th) {
+            $existingImagePath = public_path('/adsImages/' . $filename);
+            if (File::exists($existingImagePath)) {
+                File::delete($existingImagePath);
+            }
+            return redirect()->back()->with('info', 'Opp error serve.'.$th);
+        }
+    }
+    public function updateSpecAds(Request $request, SpecialAds $specialAds)
+    {
+        $request->validate([
+            'image' => 'image|mimes:jpeg,png,jpg,gif,webp|max:2048',
+             "title"=>"required",
+            "sortDes"=>"required"
+        ]);
+        try {
+            // Kiểm tra xem checkbox có được chọn hay không
+            $filename = "";
+            if ($request->hasFile('image')) {
+                $existingImagePath = public_path($specialAds->image);
+                if (File::exists($existingImagePath)) {
+                    File::delete($existingImagePath);
+                }
+                $filename = uniqid() . '.' . $request->image->getClientOriginalName();
+                $request->image->move(public_path("adsImages"), $filename);
+                $image = '/adsImages/' . $filename;
+            } else {
+                $image = $request->imageExisting;
+            }
+            $specialAds->update([
+                'image' => $image,
+                'title' => $request->title,
+                'sortDes' => $request->sortDes,
+            ]);
+            return redirect()->back()->with('infoSpecial', 'update ads successfully.');
+        } catch (\Throwable $th) {
+            $existingImagePath = public_path('/adsImages/' . $filename);
+            if (File::exists($existingImagePath)) {
+                File::delete($existingImagePath);
+            }
+            return redirect()->back()->with('infoSpecial', 'Opp error serve.');
+        }
     }
 
 }

@@ -19,7 +19,7 @@ Route::get('/bao-gia-tu-van-giam-sat', [PriceController::class, "price"])->name(
 Route::get('/du-an', [ProjectController::class, "project"])->name("client.project");
 Route::get('/lien-he', [ContactController::class, "contact"])->name("client.contact");
 Route::get('/tin-tuc', [PostController::class, "news"])->name("client.news");
-Route::get('/detail/test', [NewController::class, "newsDetail"])->name("client.newsDetail");
+Route::get('/tin-tuc/{slug}', [TVGSController::class, "newsDetail"])->name("client.newsDetail");
 // admin
 Route::get('/admin/dashboard', [AdminController::class, "admin"])->name("admin.dashboard");
 //carausel
@@ -93,12 +93,24 @@ Route::post('/admin/feedback', [AdminController::class, "storeFeedback"])->name(
 Route::post('/admin/feedback/update/{feedback}', [AdminController::class, "updateFeedback"])->name("admin.feedback.update");
 Route::get('/admin/feedback/delete/{id}', [AdminController::class, "deleteFeedback"])->name("admin.feedback.delete");
 //TVGS
-Route::get('/admin/tvgs', [AdminController::class, "viewTvsg"])->name("admin.tvgs.index");
-Route::post('/admin/tvgs/create', [AdminController::class, "createIntroTVSG"])->name("admin.tvgs.create");
-Route::post('/admin/tvgs/update/{introTVSG}', [AdminController::class, "updateIntroTVSG"])->name("admin.tvgs.update");
+Route::get('/admin/tvgs', [TVGSController::class, "viewTvsg"])->name("admin.tvgs.index");
+Route::post('/admin/tvgs/create', [TVGSController::class, "createIntroTVSG"])->name("admin.tvgs.create");
+Route::post('/admin/tvgs/update/{introTVSG}', [TVGSController::class, "updateIntroTVSG"])->name("admin.tvgs.update");
 //POST
 //TVGS
 Route::get('/admin/post', [PostController::class, "create"])->name("admin.post.create");
 Route::post('/admin/post', [PostController::class, "store"])->name("admin.post.store");
 Route::get('/admin/post/{id}', [PostController::class, "edit"])->name("admin.post.edit");
 Route::post('/admin/post/{news}', [PostController::class, "updatePost"])->name("admin.post.updatePost");
+Route::get('/admin/post/delete/{id}', [PostController::class, "deletePost"])->name("admin.post.delete");
+
+//POST ADS
+Route::get('/admin/ads', [PostController::class, "createAds"])->name("admin.ads.create");
+Route::post('/admin/ads', [PostController::class, "storeAds"])->name("admin.ads.store");
+Route::get('/admin/ads/{id}', [PostController::class, "editAds"])->name("admin.ads.edit");
+Route::post('/admin/ads/{ads}', [PostController::class, "updateAds"])->name("admin.ads.update");
+Route::get('/admin/ads/delete/{id}', [PostController::class, "deleteAds"])->name("admin.ads.delete");
+
+//POST SPECIAL ADS
+Route::get('/admin/specads/{id}', [PostController::class, "editSpecAds"])->name("admin.specads.edit");
+Route::post('/admin/specads/{specialAds}', [PostController::class, "updateSpecAds"])->name("admin.specads.update");
