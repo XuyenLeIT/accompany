@@ -204,53 +204,20 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>1</td>
-                                <td>Gói tiêu chuẩn</td>
-                                <td>3 buổi / tuần</td>
-                                <td>3 - 4 (h)</td>
-                                <td>6 triệu</td>
-                                <td>Nhà phố <br> 8 triệu Biệt Thự</td>
-                            </tr>
-                            <tr>
-                                <td>2</td>
-                                <td>TVGS bán thời gian 1</td>
-                                <td>4 buổi / tuần</td>
-                                <td>3 - 4 (h)</td>
-                                <td>8 triệu</td>
-                                <td>Nhà phố <br> 10 triệu Biệt Thự</td>
-                            </tr>
-                            <tr>
-                                <td>3</td>
-                                <td>TVGS bán thời gian 2</td>
-                                <td>5 buổi / tuần</td>
-                                <td>3 - 4 (h)</td>
-                                <td>10 triệu</td>
-                                <td>Nhà phố <br> 12 triệu Biệt Thự</td>
-                            </tr>
-                            <tr>
-                                <td>4</td>
-                                <td>TVGS bán thời gian 3</td>
-                                <td>6 buổi / tuần</td>
-                                <td>3 - 4 (h)</td>
-                                <td>12 triệu</td>
-                                <td>Nhà phố <br> 14 triệu Biệt Thự</td>
-                            </tr>
-                            <tr>
-                                <td>5</td>
-                                <td>TVGS nguyên ngày</td>
-                                <td>Thứ 2 -> Thứ 7</td>
-                                <td>7 - 8 (h)</td>
-                                <td>20 triệu</td>
-                                <td>Biệt Thự</td>
-                            </tr>
+                            @foreach ($list as $key => $item)
+                                <tr>
+                                    <td>{{$key + 1}}</td>
+                                    <td>{{$item->package}}</td>
+                                    <td>{{$item->timew}}</td>
+                                    <td>{{$item->timed}}</td>
+                                    <td>{{intval($item->cost)}} triệu</td>
+                                    <td>{{$item->note}}</td>
+              
+                                </tr>
+                            @endforeach
                         </tbody>
                     </table>
-                    <p class="highlight">Nhà Xưởng, Văn Phòng, Cao Ốc: Báo giá theo quy mô công trình</p>
-                    <p class="note">
-                        Ghi chú: Chi phí tăng ca đêm, Chủ Nhật, Ngày lễ: <span>400.000 VNĐ / Buổi</span> <br>
-                        Giám sát ép cọc nguyên ngày sẽ được tính thêm <span>400.000 VNĐ / Ngày</span>
-                    </p>
+                   <p>{!! $notePrice->desNote!!}</p>
                     <button class="btn btn-primary">Tải báo giá</button>
                 </div>
                 <!-- Bài viết quy trình -->
@@ -264,7 +231,7 @@
                         <li>Cách tối ưu chi phí trong giám sát xây dựng</li>
                     </ul>
                 </div>
-     
+
             </div>
             <!-- Banner quảng cáo -->
             <div class="col-lg-3 col-md-4">
@@ -305,10 +272,10 @@
                         <p class="step-desc">Gửi khách hàng báo giá theo đúng gói thiết kế và quy trình làm việc cụ thể.
                         </p>
                     </div>
-                         <!-- Icon mũi tên -->
-                         <div class="col-lg-1 d-none d-lg-flex arrow-container">
-                            <i class="fa-solid fa-arrow-right"></i>
-                        </div>
+                    <!-- Icon mũi tên -->
+                    <div class="col-lg-1 d-none d-lg-flex arrow-container">
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </div>
                     <!-- Step 3 -->
                     <div class="col-lg-2 col-md-6 step-item">
                         <div class="step-icon">
@@ -317,10 +284,10 @@
                         <h5 class="step-title">Ký Hợp Đồng</h5>
                         <p class="step-desc">Thực hiện các thủ tục hành chính và bắt đầu triển khai các công việc.</p>
                     </div>
-                         <!-- Icon mũi tên -->
-                         <div class="col-lg-1 d-none d-lg-flex arrow-container">
-                            <i class="fa-solid fa-arrow-right"></i>
-                        </div>
+                    <!-- Icon mũi tên -->
+                    <div class="col-lg-1 d-none d-lg-flex arrow-container">
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </div>
                     <!-- Step 4 -->
                     <div class="col-lg-2 col-md-6 step-item">
                         <div class="step-icon">

@@ -113,4 +113,25 @@ Route::get('/admin/ads/delete/{id}', [PostController::class, "deleteAds"])->name
 
 //POST SPECIAL ADS
 Route::get('/admin/specads/{id}', [PostController::class, "editSpecAds"])->name("admin.specads.edit");
-Route::post('/admin/specads/{specialAds}', [PostController::class, "updateSpecAds"])->name("admin.specads.update");
+Route::post('/admin/specads/{specialAds}', [PostController::class, "updateSpecAds"])
+->name("admin.specads.update");
+//Price
+Route::get('/admin/price', [PriceController::class, "index"])->name("admin.price.index");
+Route::get('/admin/price/create', [PriceController::class, "createPrice"])
+->name("admin.price.create");
+Route::post('/admin/price/create', [PriceController::class, "storePrice"])
+->name("admin.price.store");
+Route::get('/admin/price/edit/{id}', [PriceController::class, "editPrice"])
+->name("admin.price.edit");
+Route::post('/admin/price/edit/{price}', [PriceController::class, "updatePrice"])
+->name("admin.price.update");
+Route::get('/admin/price/delete/{id}', [PriceController::class, "deletePrice"])
+->name("admin.price.delete");
+Route::post('/admin/price/desnote', [PriceController::class, "storeDesNote"])
+->name("admin.price.storeDesnote");
+Route::post('admin/price/desnote/edit/{notePrice}', [PriceController::class, 'updateDesnote'])
+    ->name('admin.price.updateDesnote');
+//process
+Route::get('/admin/process', [TVGSController::class, "process"])->name("admin.process.index");
+Route::post('/admin/process', [TVGSController::class, "storeProcess"])->name("admin.process.store");
+Route::post('/admin/process/update-order', [TVGSController::class, 'updateOrder'])->name('admin.process.updateOrder');
