@@ -41,7 +41,8 @@
                     <option value="TVGS" @selected(old('type',$ads->type)=="TVGS")>TƯ VẤN GIÁM SÁT</option>
                     <option value="NEWS" @selected(old('type',$ads->type)=="NEWS")>TIN TỨC</option>
                     <option value="DETAILNEWS" @selected(old('type',$ads->type)=="DETAILNEWS")>DETAIL NEWS</option>
-                  </select>
+                    <option value="PRICE" @selected(old('type',$ads->type)=="PRICE")>PRICE ADS</option> 
+                </select>
                 @error('type')
                     <p class="text-danger">{{ $message }}</p>
                 @enderror

@@ -11,16 +11,8 @@ use Illuminate\Support\Facades\File;
 
 class PostController extends Controller
 {
-    //client
-    public function news()
-    {
-
-        return view("client.news");
-    }
-
    
-
-    //post news
+    //post news admin
     public function create()
     {
         return view("admin.post.create");

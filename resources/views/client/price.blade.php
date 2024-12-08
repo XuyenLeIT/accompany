@@ -117,73 +117,82 @@
         /* Nền xanh lá nhạt khi hover */
     }
 
-    .process-section {
-        background-color: gray;
-        /* Màu nền tối */
-        padding: 20px 0;
+    /* Cấu trúc chính cho section */
+.process-section {
+    padding: 40px 0;
+    background-color: #e9f7e7;
+    border-radius: 10px;
+}
+
+/* Các bước quy trình */
+.step-item {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.step-icon {
+    font-size: 40px;
+    color: #007bff; /* Màu của biểu tượng */
+    margin-bottom: 15px;
+}
+
+.step-title {
+    font-size: 18px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.step-desc {
+    font-size: 14px;
+    color: #555;
+}
+
+/* Mũi tên giữa các bước */
+.arrow-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 20px;
+    color: #007bff;
+}
+
+/* Chỉ hiển thị mũi tên ở các màn hình lớn (desktop) */
+.d-none.d-lg-flex {
+    display: none;
+}
+
+@media (min-width: 992px) {
+    .d-none.d-lg-flex {
         display: flex;
-        justify-content: space-evenly;
-        width: 100%;
     }
+}
 
-    .step-item {
-        color: #fff;
-        /* Màu chữ trắng */
-        margin-bottom: 30px;
-    }
+/* Cải thiện spacing cho các cột */
+.row.text-center.align-items-center {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
 
-    .step-icon {
-        font-size: 48px;
-        color: #f0c808;
-        /* Màu vàng nhấn mạnh */
-        margin-bottom: 15px;
-    }
+/* Các cột (số bước) sẽ có độ rộng thích ứng */
+.col-lg-2, .col-md-6 {
+    margin-bottom: 20px;
+}
 
-    .step-title {
-        font-size: 18px;
-        font-weight: bold;
-        color: #f0c808;
-        /* Màu vàng */
-        text-transform: uppercase;
-        margin-bottom: 10px;
-    }
+/* Cải thiện kiểu hiển thị mũi tên và các bước */
+.step-item h5 {
+    font-size: 18px;
+    font-weight: bold;
+    margin-top: 10px;
+}
 
-    .step-desc {
-        font-size: 14px;
-        line-height: 1.6;
-        color: #ccc;
-        /* Màu chữ xám nhạt */
-    }
+.step-item p {
+    font-size: 14px;
+    color: #555;
+    margin-top: 10px;
+}
 
-    /* Mũi tên giữa các bước */
-    .arrow-container {
-        justify-content: center;
-        align-items: center;
-    }
-
-    .arrow-container i {
-        font-size: 32px;
-        color: #f0c808;
-        /* Màu vàng */
-    }
-
-    @media (max-width: 768px) {
-        .step-icon {
-            font-size: 36px;
-        }
-
-        .step-title {
-            font-size: 16px;
-        }
-
-        .step-desc {
-            font-size: 13px;
-        }
-
-        .arrow-container i {
-            font-size: 24px;
-        }
-    }
 </style>
 @section('content')
     <div class="container my-4">
@@ -224,11 +233,12 @@
                 <div class="articles-section">
                     <h3>Quy Trình Giám Sát Xây Dựng Từ Ép Cọc Đến Hoàn Thiện</h3>
                     <ul>
-                        <li>Quy trình giám sát giai đoạn ép cọc và nền móng</li>
-                        <li>Giám sát xây thô: Những điều cần lưu ý</li>
-                        <li>Quy trình giám sát phần hoàn thiện công trình</li>
-                        <li>Kiểm tra và nghiệm thu công trình trước khi bàn giao</li>
-                        <li>Cách tối ưu chi phí trong giám sát xây dựng</li>
+                        @if ($processes && $processes->count() > 0)
+                        @foreach ($processes as $item)
+                        <li>{{$item->title}}</li>
+                        @endforeach
+                      
+                        @endif
                     </ul>
                 </div>
 
@@ -238,17 +248,17 @@
                 <div class="sidebar">
                     <h4 class="text-center">Quảng Cáo</h4>
                     <div class="mt-3">
-                        <img src="https://via.placeholder.com/250x200?text=Ad+1" class="img-fluid rounded mb-3"
+                        @if ($priceAds && $priceAds->count() > 0)
+                            @foreach ($priceAds as $item)
+                            <img src="{{$item->image}}" class="img-fluid rounded mb-3"
                             alt="Ad 1">
-                        <img src="https://via.placeholder.com/250x200?text=Ad+2" class="img-fluid rounded mb-3"
-                            alt="Ad 2">
-                        <img src="https://via.placeholder.com/250x200?text=Ad+3" class="img-fluid rounded mb-3"
-                            alt="Ad 3">
+                            @endforeach
+                        @endif
                     </div>
                 </div>
             </div>
         </div>
-        <div class="row">
+        <div class="row mt-3">
             <div class="process-section">
                 <div class="row text-center align-items-center">
                     <!-- Step 1 -->

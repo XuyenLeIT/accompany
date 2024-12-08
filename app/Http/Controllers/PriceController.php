@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Ads;
+use App\Models\News;
 use App\Models\NotePrice;
 use App\Models\Price;
+use App\Models\ProcessSup;
 use Illuminate\Http\Request;
 
 class PriceController extends Controller
@@ -12,7 +15,9 @@ class PriceController extends Controller
   {
     $list = Price::all();
     $notePrice = NotePrice::first();
-    return view("client.price", compact("list","notePrice"));
+    $processes = ProcessSup::orderBy('order', 'asc')->get();
+    $priceAds = Ads::where('type', 'PRICE')->get();
+    return view("client.price", compact("list","notePrice","processes","priceAds"));
   }
   //admin
   public function index()

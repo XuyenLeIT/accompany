@@ -8,6 +8,7 @@ use App\Models\News;
 use App\Models\ProcessSup;
 use App\Models\SpecialAds;
 use Illuminate\Http\Request;
+use Session;
 
 class TVGSController extends Controller
 {
@@ -16,14 +17,13 @@ class TVGSController extends Controller
         $introtvgs = IntroTvgs::first();
         $newsTVSG = News::where('type', 'TVGS')->get();
         $newsStandountTVSG = News::where('type', 'TVGSAT')->get();
-        $ads = Ads::all();
         $specialAds = SpecialAds::first();
+       
         return view("client.tvgs", compact(
             "introtvgs",
             "newsTVSG",
             "newsStandountTVSG",
-            "ads",
-            "specialAds"
+            "specialAds",
         ));
     }
     public function newsDetail($slug)
@@ -71,6 +71,7 @@ class TVGSController extends Controller
 
     public function process()
     {
+        $isUpdateProcess = Session::get('isUpdateProcess', null);
         $processes = ProcessSup::orderBy('order', 'asc')->get();
         return view("admin.process.index", compact('processes'));
     }
@@ -97,5 +98,17 @@ class TVGSController extends Controller
         }
 
         return response()->json(['success' => true]);
+    }
+    // Cập nhật item
+    public function updateProcess(Request $request, $id)
+    {
+        $request->validate([
+            'title' => 'required|string'
+        ]);
+
+        $item = ProcessSup::findOrFail($id);
+        $item->title = $request->title;
+        $item->save();
+        return redirect()->back()->with('success', 'process item update successfully.');
     }
 }

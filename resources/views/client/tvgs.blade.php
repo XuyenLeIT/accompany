@@ -415,8 +415,8 @@
                 </div>
                 <!-- Additional Image Cards -->
                 <div class="sidebar-images">
-                    @if ($ads)
-                        @foreach ($ads as $item)
+                    @if ($newsStandountTVSG)
+                        @foreach ($newsStandountTVSG as $item)
                         <div class="sidebar-card mb-3">
                             <img src="{{$item->image}}" class="img-fluid rounded" alt="Sản phẩm nổi bật">
                             <h5 class="sidebar-title mt-2">{{$item->title}}</h5>

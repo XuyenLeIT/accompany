@@ -35,6 +35,7 @@
                     <option value="TVGS" @selected(old('type')=="TVGS")>TƯ VẤN GIÁM SÁT</option>
                     <option value="NEWS" @selected(old('type')=="NEWS")>TIN TỨC</option>
                     <option value="DETAILNEWS" @selected(old('type')=="DETAILNEWS")>DETAIL NEWS</option>
+                    <option value="PRICE" @selected(old('type')=="PRICE")>PRICE ADS</option>
                   </select>
                 @error('type')
                     <p class="text-danger">{{ $message }}</p>

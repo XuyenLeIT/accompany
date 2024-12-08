@@ -1,7 +1,7 @@
 @extends('layouts.client')
 @section('title', 'Home Page')
 <style>
-   .title-card {
+    .title-card {
         height: 80px;
         /* Adjust height */
         display: flex;
@@ -60,6 +60,24 @@
         margin-bottom: 15px;
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     }
+
+    .text-title {
+        overflow: hidden;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        /* number of lines to show */
+        line-clamp: 2;
+        -webkit-box-orient: vertical;
+    }
+
+    .text-description {
+        overflow: hidden;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        /* number of lines to show */
+        line-clamp: 2;
+        -webkit-box-orient: vertical;
+    }
 </style>
 @section('content')
     <div class="container">
@@ -70,61 +88,48 @@
         <div class="row">
             <!-- Col-9: Bài viết chính -->
             <div class="col-lg-9">
+                @php
+                    function slugText($title, $id)
+                    {
+                        $value = $title . '-' . $id;
+                        $slug = Str::slug($value);
+                        return $slug;
+                    }
+                    function cleanText($input)
+                    {
+                        $decodedText = html_entity_decode($input, ENT_QUOTES, 'UTF-8');
+                        $plainText = strip_tags($decodedText);
+                        return preg_replace('/[^\p{L}\p{N}\s]/u', '', $plainText);
+                    }
+                @endphp
                 <div class="row">
-                    <!-- Card 1 -->
-                    <div class="col-md-4">
-                        <div class="card">
-                            <img src="https://via.placeholder.com/400x200?text=Bài+Viết+1" alt="Bài viết 1">
-                            <div class="card-body">
-                                <h5 class="card-title">Bài Viết Tiêu Biểu</h5>
-                                <p class="card-text">Một bài viết hấp dẫn về các chủ đề nóng hổi trong lĩnh vực kiến trúc.
-                                </p>
-                                <button class="btn btn-primary btn-sm">Đọc Thêm</button>
+                    @if ($news && $news->count() > 0)
+                        @foreach ($news as $item)
+                            <div class="col-md-4">
+                                <div class="card">
+                                    <img src="{{ $item->image }}" alt="Bài viết 1">
+                                    <div class="card-body">
+                                        <h5 class="card-title text-title">{{ $item->title }}</h5>
+                                        <p class="card-text text-description">{{ cleanText($item->description) }}</p>
+                                        <a href="{{ route('client.newsDetail', [slugText($item->title, $item->id)]) }}"
+                                            class="btn btn-primary btn-sm">Đọc Thêm</a>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                    </div>
-                    <!-- Card 2 -->
-                    <div class="col-md-4">
-                        <div class="card">
-                            <img src="https://via.placeholder.com/400x200?text=Bài+Viết+2" alt="Bài viết 2">
-                            <div class="card-body">
-                                <h5 class="card-title">Xu Hướng Mới Trong Thiết Kế</h5>
-                                <p class="card-text">Tìm hiểu các xu hướng thiết kế nổi bật năm 2024.</p>
-                                <button class="btn btn-primary btn-sm">Đọc Thêm</button>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Card 3 -->
-                    <div class="col-md-4">
-                        <div class="card">
-                            <img src="https://via.placeholder.com/400x200?text=Bài+Viết+3" alt="Bài viết 3">
-                            <div class="card-body">
-                                <h5 class="card-title">Công Nghệ Xây Dựng Tương Lai</h5>
-                                <p class="card-text">Công nghệ đang thay đổi cách chúng ta xây dựng các công trình.</p>
-                                <button class="btn btn-primary btn-sm">Đọc Thêm</button>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Card 4 -->
-                    <div class="col-md-4">
-                        <div class="card">
-                            <img src="https://via.placeholder.com/400x200?text=Bài+Viết+4" alt="Bài viết 4">
-                            <div class="card-body">
-                                <h5 class="card-title">Phỏng Vấn Chuyên Gia</h5>
-                                <p class="card-text">Những chia sẻ từ chuyên gia hàng đầu trong ngành.</p>
-                                <button class="btn btn-primary btn-sm">Đọc Thêm</button>
-                            </div>
-                        </div>
-                    </div>
+                        @endforeach
+                    @endif
                 </div>
             </div>
 
             <!-- Col-2: Quảng cáo -->
             <div class="col-lg-3">
                 <div class="advertisement">
-                    <img src="https://via.placeholder.com/200x400?text=Ad+1" alt="Quảng cáo 1">
-                    <img src="https://via.placeholder.com/200x400?text=Ad+2" alt="Quảng cáo 2">
-                    <img src="https://via.placeholder.com/200x400?text=Ad+3" alt="Quảng cáo 3">
+                    @if ($adsNews && $adsNews->count() > 0)
+                    @foreach ($adsNews as $item)
+                    <img src="{{$item->image}}" alt="Quảng cáo 1">
+                    @endforeach
+             
+                    @endif
                 </div>
             </div>
         </div>

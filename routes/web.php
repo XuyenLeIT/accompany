@@ -18,7 +18,7 @@ Route::get('/tu-van-giam-sat', [TVGSController::class, "tvgs"])->name("client.tv
 Route::get('/bao-gia-tu-van-giam-sat', [PriceController::class, "price"])->name("client.price");
 Route::get('/du-an', [ProjectController::class, "project"])->name("client.project");
 Route::get('/lien-he', [ContactController::class, "contact"])->name("client.contact");
-Route::get('/tin-tuc', [PostController::class, "news"])->name("client.news");
+Route::get('/tin-tuc', [NewController::class, "news"])->name("client.news");
 Route::get('/tin-tuc/{slug}', [TVGSController::class, "newsDetail"])->name("client.newsDetail");
 // admin
 Route::get('/admin/dashboard', [AdminController::class, "admin"])->name("admin.dashboard");
@@ -135,3 +135,4 @@ Route::post('admin/price/desnote/edit/{notePrice}', [PriceController::class, 'up
 Route::get('/admin/process', [TVGSController::class, "process"])->name("admin.process.index");
 Route::post('/admin/process', [TVGSController::class, "storeProcess"])->name("admin.process.store");
 Route::post('/admin/process/update-order', [TVGSController::class, 'updateOrder'])->name('admin.process.updateOrder');
+Route::post('/admin/process/update-process/{id}', [TVGSController::class, 'updateProcess'])->name('admin.process.updateProcess');

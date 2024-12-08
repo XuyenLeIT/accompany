@@ -32,39 +32,66 @@
     <div class="container p-5">
         <h1 class="text-center bg-primary">QUY TRÌNH TƯ VẤN GIÁM SÁT</h1>
         <div class="row">
-            <div class="col-md-8">
+            <div class="col-md-6">
                 <h4 class="text-center">DANH SÁCH TỪNG HẠNG MỤC</h4>
                 <a class="btn btn-primary mt-2 w-25" href="{{ route('admin.post.create') }}">Tạo thêm quy trình</a>
-                @if ($processes)
+                @if ($processes && $processes->count() > 0)
                     <ul id="sortable-list" class="list-group">
-                        @foreach ($processes as $item)
+                        @foreach ($processes as $proc)
                             <li class="list-group-item d-flex justify-content-between align-items-center"
-                                data-id="{{ $item->id }}">
-                                <span>{{ $item->title }}</span>
-                                <span class="badge bg-primary order-badge">Order {{ $item->order }}</span>
+                                data-id="{{ $proc->id }}"
+                                onclick="selectItem({{ $proc->id }}, {{ json_encode($proc->title) }})">
+                                <span>{{ $proc->title }}</span>
+                                <span class="badge bg-primary order-badge">Order {{ $proc->order }}</span>
                             </li>
                         @endforeach
                     </ul>
-                    {{-- <button id="save-order" class="btn btn-primary mt-3">Cập nhật thứ tự</button> --}}
+                @else
+                    <p>Không có quy trình nào.</p>
                 @endif
             </div>
-            <div class="col-md-4">
+            <div class="col-md-6">
                 <form method="POST" action="{{ route('admin.process.store') }}">
                     @csrf
                     <div class="mb-3 mt-3">
                         <label for="title" class="form-label">Title:</label>
-                        <input type="text" name="title" placeholder="nhập title" value="{{ old('title') }}"
-                            class="form-control">
+                        <input type="text" id="itemTitle" name="title" placeholder="nhập title"
+                            value="{{ old('title') }}" class="form-control">
                         @error('title')
                             <p class="text-danger">{{ $message }}</p>
                         @enderror
                     </div>
-                    <button type="submit" class="btn btn-primary">Create</button>
+                    <button type="submit" class="btn btn-primary btnSubmitProcess">
+                        Tạo mới
+                    </button>
+                    <button type="reset" class="btn btn-warning btnCancelProcess">Cancel </button>
                 </form>
+
+                </button>
             </div>
         </div>
 
         <script>
+            // Hàm xử lý khi chọn một item
+            function selectItem(id, title) {
+                // Điền thông tin vào form để chỉnh sửa
+                document.getElementById('itemTitle').value = title;
+                document.querySelector(".btnSubmitProcess").textContent = "Cập nhật";
+                // Tạo URL cho hành động "Cập nhật"
+                var formAction = '{{ route('admin.process.updateProcess', ':id') }}';
+                formAction = formAction.replace(':id', id);
+                // Cập nhật lại action của form
+                document.querySelector('form').action = formAction;
+            }
+            let btnCancelProcess = document.querySelector(".btnCancelProcess")
+            btnCancelProcess.addEventListener("click", () => {
+                // Điền thông tin vào form để chỉnh sửa
+                document.querySelector(".btnSubmitProcess").textContent = "Tao moi";
+                // Tạo URL cho hành động "Cập nhật"
+                var formAction = '{{ route('admin.process.store') }}';
+                // Cập nhật lại action của form
+                document.querySelector('form').action = formAction;
+            })
             $(function() {
                 // Kích hoạt tính năng sortable với jQuery UI
                 $("#sortable-list").sortable({
@@ -106,7 +133,7 @@
                                     // Sau khi thành công, cập nhật lại giao diện với thứ tự mới
                                     console.log("Cập nhật thứ tự thành công");
                                     updateOrderBadge(
-                                    order); // Cập nhật lại thứ tự item trong giao diện
+                                        order); // Cập nhật lại thứ tự item trong giao diện
                                 }
                             },
                             error: function(jqXHR, textStatus, errorThrown) {
@@ -127,4 +154,6 @@
                 });
             }
         </script>
+
+
     @endsection
