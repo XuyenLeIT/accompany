@@ -20,6 +20,11 @@ Route::get('/du-an', [ProjectController::class, "project"])->name("client.projec
 Route::get('/lien-he', [ContactController::class, "contact"])->name("client.contact");
 Route::get('/tin-tuc', [NewController::class, "news"])->name("client.news");
 Route::get('/tin-tuc/{slug}', [TVGSController::class, "newsDetail"])->name("client.newsDetail");
+//tai bao gia
+Route::get('/download-price-list', [PriceController::class, 'downloadPriceList'])->name('download.price');
+
+
+
 // admin
 Route::get('/admin/dashboard', [AdminController::class, "admin"])->name("admin.dashboard");
 //carausel
@@ -157,5 +162,4 @@ Route::get('/admin/contact/{id}', [ContactController::class, "edit"])
 ->name("admin.contact.edit");
 Route::post('/admin/contact/update/{contact}', [ContactController::class, "update"])
 ->name("admin.contact.update");
-
 

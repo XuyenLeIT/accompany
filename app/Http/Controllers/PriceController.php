@@ -3,11 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Models\Ads;
+use App\Models\Contact;
 use App\Models\News;
 use App\Models\NotePrice;
 use App\Models\Price;
 use App\Models\ProcessSup;
 use Illuminate\Http\Request;
+use PDF;
 
 class PriceController extends Controller
 {
@@ -99,5 +101,17 @@ class PriceController extends Controller
         $notePrice->update($request->desNote);
         return redirect()->route("admin.price.index")->with('success', 'note price update successfully.');
 
+    }
+    public function downloadPriceList()
+    {
+        // Lấy dữ liệu báo giá từ database
+        $prices = Price::all();
+        $notePrice = NotePrice::first();
+        $contact = Contact::first();
+        // Tạo PDF từ view
+        $pdf = PDF::loadView('pdf.price-list', ['prices' => $prices,'notePrice'=>$notePrice,'contact'=>$contact]);
+        // Trả về file PDF để tải xuống
+        
+        return $pdf->download('bao-gia.pdf');
     }
 }

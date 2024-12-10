@@ -207,7 +207,7 @@
                     </table>
                 </div>
                 <p>{!! $notePrice->desNote !!}</p>
-                <button class="btn btn-primary">Tải báo giá</button>
+                <a href="{{ route('download.price') }}" class="btn btn-primary">Tải báo giá</a>
             </div>
 
             <!-- Bài viết quy trình -->
