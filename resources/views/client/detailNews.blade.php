@@ -129,7 +129,7 @@
                     <div class="article-content">
                         <h1 class="article-title">{{ $newsDetail->title }}</h1>
                         <div class="article-meta">
-                            <span>Tác giả: Nguyễn Minh Hải</span> | <span>Ngày đăng:
+                            <span>Tác giả: Trương Minh Hải</span> | <span>Ngày đăng:
                                 {{ $formattedDate }}</span>
                         </div>
                         <div class="article-body">
@@ -145,7 +145,7 @@
             <!-- Quảng cáo -->
             <div class="col-lg-3">
                 <div class="advertisement">
-                    <h5>Quảng Cáo</h5>
+                    <h5>Hoạt Động Giám Sát</h5>
                     @if ($adsDetail->count() > 0)
                         @foreach ($adsDetail as $item)
                             <img src="{{ $item->image }}" alt="Quảng cáo 1">
@@ -170,23 +170,26 @@
                     return preg_replace('/[^\p{L}\p{N}\s]/u', '', $plainText);
                 }
             @endphp
-            <!-- Danh sách bài viết liên quan -->
-            <h3 class="related-title">Bài Viết Liên Quan</h3>
-            @if ($newsOther)
-                @foreach ($newsOther as $item)
-                    <!-- Card 1 -->
-                    <div class="col-lg-3 col-md-6">
-                        <div class="card related-card">
-                            <img src="{{ $item->image }}" class="card-img-top" alt="Bài viết 1">
-                            <div class="card-body">
-                                <h5 class="card-title text-title">{{ $item->title }}</h5>
-                                <p class="card-text text-description">{{ cleanText($item->description) }}</p>
-                                <a href="{{ route('client.newsDetail', [slugText($item->title, $item->id)]) }}"
-                                    class="btn btn-primary btn-sm">Đọc Thêm</a>
-                            </div>
-                        </div>
-                    </div>
-                @endforeach
-            @endif
+            <div class="row gx-3 gy-3">
+         <!-- Danh sách bài viết liên quan -->
+         <h3 class="related-title">Bài Viết Liên Quan</h3>
+         @if ($newsOther)
+             @foreach ($newsOther as $item)
+                 <!-- Card 1 -->
+                 <div class="col-lg-3 col-md-6">
+                     <div class="card related-card">
+                         <img src="{{ $item->image }}" class="card-img-top" alt="Bài viết 1">
+                         <div class="card-body">
+                             <h5 class="card-title text-title">{{ $item->title }}</h5>
+                             <p class="card-text text-description">{{ cleanText($item->description) }}</p>
+                             <a href="{{ route('client.newsDetail', [slugText($item->title, $item->id)]) }}"
+                                 class="btn btn-primary btn-sm">Đọc Thêm</a>
+                         </div>
+                     </div>
+                 </div>
+             @endforeach
+         @endif
+            </div>
+   
         </div>
     @endsection

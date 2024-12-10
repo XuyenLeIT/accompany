@@ -442,7 +442,7 @@
             @endif
         </div>
 
-        <div class="row p-4">
+        <div class="row p-4 gx-2 gy-2">
             @if ($introVideo)
                 <!-- Video Section -->
                 <div class="col-lg-7">

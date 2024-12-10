@@ -54,14 +54,40 @@
             </div>
         </div>
         <!-- Navigation Bar -->
-        <div class="nav-bar">
-            <a href={{ route('client.home') }}>TRANG CHỦ</a>
-            <a href={{ route('client.tvgs') }}>TƯ VẤN GIÁM SÁT</a>
-            <a href={{ route('client.price') }}>BÁO GIÁ</a>
-            <a href={{ route('client.project') }}>DỰ ÁN</a>
-            <a href={{ route('client.news') }}>TIN TỨC</a>
-            <a href={{ route('client.contact') }}>LIÊN HỆ</a>
-        </div>
+        <nav class="navbar navbar-expand-lg navbar-light">
+            <div class="container">
+                <!-- Nút Hamburger -->
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Danh sách Menu -->
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('client.home') }}">TRANG CHỦ</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('client.tvgs') }}">TƯ VẤN GIÁM SÁT</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('client.price') }}">BÁO GIÁ</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('client.project') }}">DỰ ÁN</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('client.news') }}">TIN TỨC</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('client.contact') }}">LIÊN HỆ</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
     </div>
 
     <main>
@@ -94,25 +120,31 @@
                 <div class="col-md-4 mb-4">
                     <h5 class="text-uppercase text-warning">Liên kết nhanh</h5>
                     <ul class="list-unstyled">
-                        <li><a href="#" class="text-light text-decoration-none">Trang chủ</a></li>
-                        <li><a href="#" class="text-light text-decoration-none">Giới thiệu</a></li>
-                        <li><a href="#" class="text-light text-decoration-none">Dịch vụ</a></li>
-                        <li><a href="#" class="text-light text-decoration-none">Liên hệ</a></li>
+                        <li><a href="{{ route('client.home') }}" class="text-light text-decoration-none">Trang chủ</a></li>
+                        <li><a href="{{ route('client.tvgs') }}" class="text-light text-decoration-none">Tư Vấn Giám Sát</a></li>
+                        <li><a href="{{ route('client.price') }}" class="text-light text-decoration-none">Báo Giá</a></li>
+                        <li><a href="{{ route('client.news') }}" class="text-light text-decoration-none">Tin Tức</a></li>
+                        <li><a href="{{ route('client.project') }}" class="text-light text-decoration-none">Dự Án</a></li>
+                        <li><a href="{{ route('client.contact') }}" class="text-light text-decoration-none">Liên hệ</a></li>
                     </ul>
                 </div>
                 <!-- Cột 3: Theo dõi chúng tôi -->
+                <!-- Cột 3: Theo dõi chúng tôi -->
                 <div class="col-md-4 mb-4">
                     <h5 class="text-uppercase text-warning">Theo dõi chúng tôi</h5>
-                    <div class="d-flex">
-                        <a href="#" class="text-light me-3"><i class="bi bi-facebook"
-                                style="font-size: 24px;"></i></a>
-                        <a href="#" class="text-light me-3"><i class="bi bi-instagram"
-                                style="font-size: 24px;"></i></a>
-                        <a href="#" class="text-light me-3"><i class="bi bi-twitter"
-                                style="font-size: 24px;"></i></a>
-                        <a href="#" class="text-light"><i class="bi bi-youtube" style="font-size: 24px;"></i></a>
-                    </div>
+                    <!-- Nhúng Fanpage Facebook -->
+                    <iframe 
+                    src="https://www.facebook.com/plugins/page.php?href=https://www.facebook.com/profile.php?id=100042978018147&tabs=timeline&width=300&height=300&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=true" 
+                    width="400" 
+                    height="200" 
+                    style="border:none;overflow:hidden" 
+                    scrolling="no" 
+                    frameborder="0" 
+                    allowfullscreen="true" 
+                    allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share">
+                </iframe>
                 </div>
+
             </div>
             <hr class="bg-light">
             <!-- Bản quyền -->

@@ -178,6 +178,8 @@
         overflow: hidden;
         box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
         transition: transform 0.4s ease, box-shadow 0.4s ease;
+        padding: 0;
+        margin: 0;
     }
 
     .activity-card:hover {
@@ -315,6 +317,329 @@
         -webkit-box-orient: vertical;
     }
 </style>
+<style>
+    <style>
+    /* Base Styling (Mobile-first) */
+    .title-card {
+        height: 80px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: linear-gradient(135deg, #c2e59c, #64b3f4);
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        text-align: center;
+    }
+
+    .title-page {
+        color: #0066cc;
+        font-weight: bold;
+        text-transform: uppercase;
+        text-shadow: 2px 2px 4px rgba(0, 102, 204, 0.3);
+    }
+
+    .title-page-content {
+        color: #0066cc;
+        font-weight: bold;
+        text-transform: uppercase;
+        text-shadow: 2px 2px 4px rgba(0, 102, 204, 0.3);
+        border-bottom: 4px solid #ff6a00;
+        padding-bottom: 10px;
+    }
+
+    .text-content {
+        color: #333333;
+        line-height: 1.8;
+    }
+
+    .section-title {
+        color: #0066cc;
+        font-weight: bold;
+        text-transform: uppercase;
+        margin-bottom: 15px;
+        position: relative;
+        display: inline-block;
+    }
+
+    .section-title::after {
+        content: '';
+        width: 100%;
+        height: 3px;
+        background: #ff6a00;
+        position: absolute;
+        left: 0;
+        bottom: -5px;
+    }
+
+    .banner-card {
+        position: relative;
+        overflow: hidden;
+        border-radius: 15px;
+        box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+        transition: transform 0.4s ease, box-shadow 0.4s ease;
+        height: 400px;
+        background: #f2f2f2;
+    }
+
+    .banner-img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        filter: brightness(0.7);
+        transition: transform 0.4s ease, filter 0.4s ease;
+    }
+
+    .banner-card:hover .banner-img {
+        transform: scale(1.1);
+        filter: brightness(0.5);
+    }
+
+    .banner-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.6);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: white;
+        z-index: 1;
+        opacity: 1;
+        transition: opacity 0.4s ease;
+    }
+
+    .banner-content {
+        text-align: center;
+        animation: fadeIn 1s ease forwards;
+    }
+
+    .banner-title {
+        font-size: 24px;
+        font-weight: bold;
+        text-transform: uppercase;
+        margin-bottom: 10px;
+        color: #ff6a00;
+    }
+
+    .banner-discount {
+        font-size: 20px;
+        font-weight: bold;
+        margin-bottom: 15px;
+        letter-spacing: 1px;
+    }
+
+    .custom-btn {
+        background: linear-gradient(90deg, #71a88e, #FFB200);
+        border: none;
+        color: white;
+        font-weight: bold;
+        padding: 10px 20px;
+        border-radius: 25px;
+        transition: background 0.4s ease, transform 0.3s ease;
+        box-shadow: 0 4px 10px rgba(255, 106, 0, 0.4);
+    }
+
+    .custom-btn:hover {
+        background: linear-gradient(90deg, #cc5500, #ff9a3f);
+        transform: translateY(-3px);
+        box-shadow: 0 6px 15px rgba(255, 106, 0, 0.6);
+    }
+
+    /* Mobile-first Keyframe Animation */
+    @keyframes fadeIn {
+        0% {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        100% {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    .activity-card {
+        height: 200px;
+        border: none;
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+        transition: transform 0.4s ease, box-shadow 0.4s ease;
+    }
+
+    .activity-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+    }
+
+    .card-img-tvgs {
+        height: 150px;
+        object-fit: cover;
+        transition: transform 0.4s ease, filter 0.4s ease;
+        filter: brightness(0.9);
+    }
+
+    .activity-card .card-img-top {
+        height: 200px;
+        object-fit: cover;
+        transition: transform 0.4s ease, filter 0.4s ease;
+        filter: brightness(0.9);
+    }
+
+    .activity-card:hover .card-img-top {
+        transform: scale(1.1);
+        filter: brightness(1);
+    }
+
+    .activity-card .card-title {
+        font-size: 18px;
+        font-weight: bold;
+        color: #0066cc;
+    }
+
+    .activity-card .card-text {
+        font-size: 14px;
+        color: #555;
+    }
+
+    .activity-card .btn {
+        border-radius: 25px;
+        padding: 8px 20px;
+        transition: background 0.4s ease, color 0.4s ease;
+    }
+
+    .activity-card .btn:hover {
+        background-color: #0066cc;
+        color: white;
+    }
+
+    .quote-section {
+        margin: 30px auto;
+        padding: 20px;
+        background-color: #e9f7e7;
+        border-left: 5px solid #ff8c42;
+        border-radius: 8px;
+        max-width: 800px;
+        text-align: center;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .quote-text {
+        font-style: italic;
+        font-size: 20px;
+        color: #2d6a4f;
+        margin: 0 0 10px;
+        line-height: 1.6;
+    }
+
+    .quote-author {
+        font-size: 16px;
+        color: #0066cc;
+        font-weight: bold;
+        margin: 0;
+    }
+
+    .sidebar-images {
+        margin-top: 20px;
+    }
+
+    .sidebar-card {
+        text-align: center;
+        background: #ffffff;
+        padding: 10px;
+        border-radius: 10px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .sidebar-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    .sidebar-card img {
+        border-radius: 10px;
+        transition: transform 0.4s ease, filter 0.4s ease;
+        filter: brightness(0.9);
+    }
+
+    .sidebar-card:hover img {
+        transform: scale(1.05);
+        filter: brightness(1);
+    }
+
+    .sidebar-title {
+        font-size: 16px;
+        font-weight: bold;
+        color: #0066cc;
+        text-transform: uppercase;
+        margin: 10px 0 0;
+    }
+
+    .text-title, .text-description {
+        overflow: hidden;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        line-clamp: 2;
+        -webkit-box-orient: vertical;
+    }
+
+    /* Media Queries for Larger Screens */
+    @media (min-width: 768px) {
+        /* Modify layout for tablets and above */
+        .col-lg-3, .col-lg-9 {
+            padding-left: 15px;
+            padding-right: 15px;
+        }
+
+        .banner-card {
+            height: 500px;
+        }
+
+        .banner-title {
+            font-size: 30px;
+        }
+
+        .banner-discount {
+            font-size: 24px;
+        }
+
+        .activity-card .card-title {
+            font-size: 20px;
+        }
+
+        .activity-card .card-text {
+            font-size: 16px;
+        }
+
+        .sidebar-title {
+            font-size: 18px;
+        }
+    }
+
+    @media (min-width: 992px) {
+        /* Modify layout for desktop and above */
+        .col-md-4 {
+            max-width: 30%;
+        }
+
+        .col-md-6 {
+            max-width: 45%;
+        }
+
+        .title-page {
+            font-size: 30px;
+        }
+
+        .activity-card .card-title {
+            font-size: 22px;
+        }
+    }
+</style>
+
+</style>
 @section('content')
     <div class="container-fluid mt-1">
         <div class="container">
@@ -371,7 +696,7 @@
                         @if ($newsStandountTVSG)
                             @foreach ($newsStandountTVSG as $item)
                             <div class="col-md-6 mb-4">
-                                <div class="card activity-card h-100">
+                                <div class="card activity-card">
                                     <img src="{{$item->image}}" class="card-img-top"
                                         alt="Hội Thảo Chuyên Đề">
                                     <div class="card-body">
@@ -398,7 +723,7 @@
             <!-- Sidebar: col-3 -->
             <div class="col-lg-3">
                 <div style="top: 20px;">
-                    <h4 class="mb-3 section-title">Quảng Cáo</h4>
+                    <h4 class="mb-3 section-title">Hoạt động giám sát</h4>
                     @if ($specialAds)
                     <div class="card banner-card">
                         <div class="banner-overlay">
