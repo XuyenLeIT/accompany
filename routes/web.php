@@ -135,4 +135,27 @@ Route::post('admin/price/desnote/edit/{notePrice}', [PriceController::class, 'up
 Route::get('/admin/process', [TVGSController::class, "process"])->name("admin.process.index");
 Route::post('/admin/process', [TVGSController::class, "storeProcess"])->name("admin.process.store");
 Route::post('/admin/process/update-order', [TVGSController::class, 'updateOrder'])->name('admin.process.updateOrder');
-Route::post('/admin/process/update-process/{id}', [TVGSController::class, 'updateProcess'])->name('admin.process.updateProcess');
+Route::post('/admin/process/update-process/{id}', [TVGSController::class, 'updateProcess'])
+->name('admin.process.updateProcess');
+//project
+Route::get('/admin/project', [ProjectController::class, "index"])
+->name("admin.project.index");
+Route::get('/admin/project/create', [ProjectController::class, "create"])
+->name("admin.project.create");
+Route::post('/admin/project/create', [ProjectController::class, "store"])
+->name("admin.project.store");
+Route::get('/admin/project/edit/{id}', [ProjectController::class, "edit"])
+->name("admin.project.edit");
+Route::post('/admin/project/edit/{project}', [ProjectController::class, "update"])
+->name("admin.project.update");
+Route::get('/admin/project/delete/{id}', [ProjectController::class, "delete"])
+->name("admin.project.delete");
+//contact
+Route::get('/admin/contact', [ContactController::class, "index"])
+->name("admin.contact.index");
+Route::get('/admin/contact/{id}', [ContactController::class, "edit"])
+->name("admin.contact.edit");
+Route::post('/admin/contact/update/{contact}', [ContactController::class, "update"])
+->name("admin.contact.update");
+
+

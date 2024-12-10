@@ -30,6 +30,8 @@
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         overflow: hidden;
         transition: transform 0.3s ease, box-shadow 0.3s ease;
+        background-color: gainsboro !important;
+
     }
 
     .card:hover {
@@ -39,7 +41,12 @@
 
     .card img {
         border-bottom: 3px solid #ff8c42;
-        /* Cam */
+        height: 200px;
+        width: 100%;
+        object-fit: contain;
+        padding-bottom: 10px;
+        padding-top: 10px;
+        border-radius:10px; 
     }
 
     .card-body {
@@ -110,53 +117,27 @@
     }
 </style>
 @section('content')
-
+    {{-- @dd($projects) --}}
     <div class="container project-grid">
         <div class="title-card mt-1 mb-2">
             <h2 class="title-page">DỰ ÁN TIÊU BIỂU</h2>
         </div>
         <div class="row g-4">
-            <!-- Card 1 -->
+            @foreach ($projects as $item)
+                     <!-- Card 1 -->
             <div class="col-lg-4 col-md-6">
                 <div class="card">
-                    <img src="https://via.placeholder.com/400x250?text=Dự+Án+1" class="img-fluid" alt="Dự án 1">
+                    <img src="{{$item->image}}" class="image-project img-fluid" alt="Dự án 1">
                     <div class="card-body">
-                        <h5 class="card-title">Biệt Thự Đà Lạt</h5>
-                        <p class="card-text">Loại công trình: Biệt Thự</p>
-                        <p class="card-text">Diện tích: 300 m²</p>
-                        <p class="card-text">Chủ đầu tư: Nguyễn Văn A</p>
+                        <h5 class="card-title">{{$item->title}}</h5>
+                        <p class="card-text">Loại công trình: {{$item->type}}</p>
+                        <p class="card-text">Diện tích: {{$item->area}} m²</p>
+                        <p class="card-text">Chủ đầu tư: {{$item->owner}}</p>
                     </div>
-                    <div class="card-footer">Hoàn thành: 2024</div>
+                    <div class="card-footer">Hoàn thành: {{$item->year}}</div>
                 </div>
             </div>
-
-            <!-- Card 2 -->
-            <div class="col-lg-4 col-md-6">
-                <div class="card">
-                    <img src="https://via.placeholder.com/400x250?text=Dự+Án+2" class="img-fluid" alt="Dự án 2">
-                    <div class="card-body">
-                        <h5 class="card-title">Nhà Phố Hiện Đại</h5>
-                        <p class="card-text">Loại công trình: Nhà phố</p>
-                        <p class="card-text">Diện tích: 200 m²</p>
-                        <p class="card-text">Chủ đầu tư: Trần Văn B</p>
-                    </div>
-                    <div class="card-footer">Hoàn thành: 2023</div>
-                </div>
-            </div>
-
-            <!-- Card 3 -->
-            <div class="col-lg-4 col-md-6">
-                <div class="card">
-                    <img src="https://via.placeholder.com/400x250?text=Dự+Án+3" class="img-fluid" alt="Dự án 3">
-                    <div class="card-body">
-                        <h5 class="card-title">Căn Hộ Cao Cấp</h5>
-                        <p class="card-text">Loại công trình: Căn hộ</p>
-                        <p class="card-text">Diện tích: 120 m²</p>
-                        <p class="card-text">Chủ đầu tư: Lê Thị C</p>
-                    </div>
-                    <div class="card-footer">Hoàn thành: 2025</div>
-                </div>
-            </div>
+            @endforeach
         </div>
         <div class="quote-section">
             <blockquote class="quote-text">

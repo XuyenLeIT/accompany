@@ -23,21 +23,32 @@
             <div class="row align-items-center">
                 <!-- Logo -->
                 <div class="col-md-4 logo-container">
-                    <img src="/images/logo.png" alt="Logo" class="logo-image">
+                    @if ($companyInfo)
+                        <img src="{{ $companyInfo->logo }}" alt="Logo" class="logo-image">
+                    @endif
+
                     <div>
-                        <span class="tagline">THƯƠNG HIỆU CỦA SỰ AN TÂM</span>
+                        @if ($companyInfo)
+                            <span class="tagline">{{ $companyInfo->sologan1 }}</strong>
+                        @endif
                     </div>
                 </div>
                 <!-- Main Title -->
                 <div class="col-md-4 header-title">
-                    <strong>THƯƠNG HIỆU 8 NĂM KHẲNG ĐỊNH UY TÍN TOP 1</strong>
+                    @if ($companyInfo)
+                        <strong>{{ $companyInfo->sologan2 }}</strong>
+                    @endif
+
                 </div>
                 <!-- Hotline -->
                 <div class="col-md-4">
                     <div class="hotline-box">
                         <span class="hotline-title">Hotline 24/7</span>
                         <br>
-                        <span class="hotline-number">0909 857 629</span>
+                        @if ($companyInfo)
+                            <span class="hotline-number">{{ $companyInfo->phone }}</span>
+                        @endif
+
                     </div>
                 </div>
             </div>
@@ -59,7 +70,10 @@
     <!-- Button Hotline -->
     <a href="tel:0909857629" class="hotline-button">
         <i class="fa-solid fa-phone hotline-icon"></i>
-        Hotline: 0909 857 629
+        @if ($companyInfo)
+            Hotline: {{ $companyInfo->phone }}
+        @endif
+
     </a>
     <!-- Footer -->
     <footer class="footer bg-dark text-light">
@@ -68,9 +82,13 @@
                 <!-- Cột 1: Thông tin liên hệ -->
                 <div class="col-md-4 mb-4">
                     <h5 class="text-uppercase text-warning">Liên hệ</h5>
-                    <p><i class="bi bi-geo-alt-fill"></i> 123 Đường ABC, Quận 1, TP.HCM</p>
-                    <p><i class="bi bi-telephone-fill"></i> Điện thoại: 0909 123 456</p>
-                    <p><i class="bi bi-envelope-fill"></i> Email: lienhe@example.com</p>
+                    @if ($companyInfo)
+                        <p><i class="bi bi-geo-alt-fill"></i> {{ $companyInfo->address1 }}</p>
+                        <p><i class="bi bi-geo-alt-fill"></i> {{ $companyInfo->address2 }}</p>
+                        <p><i class="bi bi-telephone-fill"></i>Điện thoại {{ $companyInfo->phone }}</p>
+                        <p><i class="bi bi-envelope-fill"></i>Email {{ $companyInfo->email }}</p>
+                    @endif
+
                 </div>
                 <!-- Cột 2: Liên kết nhanh -->
                 <div class="col-md-4 mb-4">

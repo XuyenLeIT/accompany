@@ -89,33 +89,30 @@
     <!-- Sidebar -->
     <div class="sidebar" id="sidebar">
         <h4 class="text-center py-3">Admin Panel</h4>
-        <div class="dropdown mb-2">
-            <button type="button" class="btn btn-primary dropdown-toggle w-100 p-2" data-bs-toggle="dropdown">
-                Home Page
-            </button>
-            <ul class="dropdown-menu bg-info w-100">
-                <li><a class="dropdown-item" href="#">Dashboard</a></li>
-                <li><a class="dropdown-item" href="{{ route('admin.carausels.index') }}">Carausel</a></li>
-                <li><a class="dropdown-item" href="{{ route('admin.introVideo') }}">Video Intro</a></li>
-                <li><a class="dropdown-item" href="{{ route('admin.homeIntro') }}">Intro Home</a></li>
-                <li><a class="dropdown-item" href="{{ route('admin.panelJob.index') }}">Panel Job</a></li>
-                <li><a class="dropdown-item" href="{{ route('admin.outstanding.index') }}">AC Outstanding</a></li>
-                <li><a class="dropdown-item" href="{{ route('admin.feedback.index') }}">Feedback</a></li>
-            </ul>
-        </div>
-        <div class="dropdown mb-2">
-            <button type="button" class="btn btn-primary dropdown-toggle w-100 p-2" data-bs-toggle="dropdown">
-                TƯ VẤN GIÁM SÁT
-            </button>
-            <ul class="dropdown-menu bg-info w-100">
-                <li><a class="dropdown-item" href="{{ route('admin.tvgs.index') }}">TVGS</a></li>
-            </ul>
-        </div>
-        <a class="btn btn-primary w-100 mb-2" href="{{ route('admin.post.create') }}">POST NEWS</a>
-        <a class="btn btn-primary w-100 mb-2" href="{{ route('admin.ads.create') }}">ADS</a>
-        <a class="btn btn-primary w-100 mb-2" href="{{ route('admin.price.index') }}">PRICE</a>
-        <a class="btn btn-primary w-100 mb-2" href="{{ route('admin.process.index') }}">QUY TRINH TVGS</a>
+        <div class="p-2">
 
+            <div class="dropdown mb-2">
+                <button type="button" class="btn btn-primary dropdown-toggle w-100 p-2" data-bs-toggle="dropdown">
+                    Home Page
+                </button>
+                <ul class="dropdown-menu bg-info w-100">
+                    <li><a class="dropdown-item" href="#">Dashboard</a></li>
+                    <li><a class="dropdown-item" href="{{ route('admin.carausels.index') }}">Carausel</a></li>
+                    <li><a class="dropdown-item" href="{{ route('admin.introVideo') }}">Video Intro</a></li>
+                    <li><a class="dropdown-item" href="{{ route('admin.homeIntro') }}">Intro Home</a></li>
+                    <li><a class="dropdown-item" href="{{ route('admin.panelJob.index') }}">Panel Job</a></li>
+                    <li><a class="dropdown-item" href="{{ route('admin.outstanding.index') }}">AC Outstanding</a></li>
+                    <li><a class="dropdown-item" href="{{ route('admin.feedback.index') }}">Feedback</a></li>
+                </ul>
+            </div>
+            <a class="btn btn-primary w-100 mb-2" href="{{ route('admin.tvgs.index') }}">TVGS</a>
+            <a class="btn btn-primary w-100 mb-2" href="{{ route('admin.post.create') }}">POST NEWS</a>
+            <a class="btn btn-primary w-100 mb-2" href="{{ route('admin.ads.create') }}">ADS</a>
+            <a class="btn btn-primary w-100 mb-2" href="{{ route('admin.price.index') }}">PRICE</a>
+            <a class="btn btn-primary w-100 mb-2" href="{{ route('admin.process.index') }}">QUY TRINH TVGS</a>
+            <a class="btn btn-primary w-100 mb-2" href="{{ route('admin.project.index') }}">DỰ ÁN</a>
+            <a class="btn btn-primary w-100 mb-2" href="{{ route('admin.contact.index') }}">CONTACT</a>
+        </div>
     </div>
 
     <!-- Toggle Button -->

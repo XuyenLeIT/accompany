@@ -8,6 +8,7 @@
         overflow: hidden;
         padding: 10px;
     }
+
     .title-card {
         height: 80px;
         /* Adjust height */
@@ -44,14 +45,19 @@
     .contact-image img {
         max-width: 100%;
         height: auto;
-        border-radius: 10px; /* Bo góc cho hình ảnh */
-        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Hiệu ứng đổ bóng */
-        transition: transform 0.3s ease, box-shadow 0.3s ease; /* Hiệu ứng hover mượt */
+        border-radius: 10px;
+        /* Bo góc cho hình ảnh */
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        /* Hiệu ứng đổ bóng */
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        /* Hiệu ứng hover mượt */
     }
 
     .contact-image img:hover {
-        transform: scale(1.01); /* Phóng to nhẹ khi hover */
-        box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3); /* Tăng độ sâu của bóng khi hover */
+        transform: scale(1.01);
+        /* Phóng to nhẹ khi hover */
+        box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3);
+        /* Tăng độ sâu của bóng khi hover */
     }
 
     .contact-form {
@@ -99,17 +105,20 @@
                 <!-- Col-8: Thông tin liên hệ và form -->
                 <div class="col-lg-8">
                     <!-- Header -->
-                        <div class="title-card">
-                            <h2 class="title-page"> THÔNG TIN LIÊN HỆ</h2>
-                        </div>
-                
+                    <div class="title-card">
+                        <h2 class="title-page"> THÔNG TIN LIÊN HỆ</h2>
+                    </div>
+
                     <!-- Thông tin liên hệ -->
                     <div class="contact-form">
                         <div class="contact-info mb-4">
                             <h5>Thông Tin Liên Hệ</h5>
-                            <p><i class="bi bi-geo-alt"></i> Địa chỉ: 123 Đường ABC, Quận 1, TP.HCM</p>
-                            <p><i class="bi bi-telephone"></i> Điện thoại: 0909 123 456</p>
-                            <p><i class="bi bi-envelope"></i> Email: lienhe@example.com</p>
+                            @if ($contact)
+                                <p><i class="bi bi-geo-alt"></i> Địa chỉ: {{$contact->address1}}</p>
+                                <p><i class="bi bi-telephone"></i> Điện thoại: {{$contact->phone}}</p>
+                                <p><i class="bi bi-envelope"></i> Email: {{$contact->email}}</p>
+                            @endif
+
                         </div>
 
                         <!-- Form gửi thông tin -->
@@ -134,7 +143,8 @@
 
                 <!-- Col-4: Hình ảnh đại diện -->
                 <div class="col-lg-4 contact-image">
-                    <img src="https://www.shutterstock.com/image-vector/office-operator-headset-talking-clients-600nw-2171955089.jpg" alt="Hình ảnh liên hệ">
+                    <img src="https://www.shutterstock.com/image-vector/office-operator-headset-talking-clients-600nw-2171955089.jpg"
+                        alt="Hình ảnh liên hệ">
                 </div>
             </div>
         </div>
