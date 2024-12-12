@@ -4,8 +4,8 @@
 @section('content')
     <div class="container">
         <div class="row">
-            <h1>Welcome to Admin Panel</h1>
-            <p>This is the main content area. You can customize this section as per your requirements.</p>
+            <h1 class="text-center">Welcome to Admin Panel</h1>
+            <img src="/images/manage.webp" alt="" style="width: 100vh;display: block;margin: auto">
         </div>
     </div>
 

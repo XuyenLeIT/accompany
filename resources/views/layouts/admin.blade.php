@@ -93,10 +93,10 @@
 
             <div class="dropdown mb-2">
                 <button type="button" class="btn btn-primary dropdown-toggle w-100 p-2" data-bs-toggle="dropdown">
-                    Home Page
+                    Admin Management
                 </button>
                 <ul class="dropdown-menu bg-info w-100">
-                    <li><a class="dropdown-item" href="#">Dashboard</a></li>
+                    <li><a class="dropdown-item" href="{{ route('admin.dashboard') }}">Dashboard</a></li>
                     <li><a class="dropdown-item" href="{{ route('admin.carausels.index') }}">Carausel</a></li>
                     <li><a class="dropdown-item" href="{{ route('admin.introVideo') }}">Video Intro</a></li>
                     <li><a class="dropdown-item" href="{{ route('admin.homeIntro') }}">Intro Home</a></li>
@@ -120,6 +120,22 @@
 
     <!-- Main Content -->
     <main class="main-content" id="main-content">
+        <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+            <div class="container-fluid d-flex justify-content-end">
+                <a class="navbar-brand" href="#">
+                    <img src="/images/avatar.png" alt="Logo" style="width:40px;" class="rounded-pill">
+                </a>
+            </div>
+            <div class="dropdown p-2 me-2">
+                <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+                <ul class="dropdown-menu p-2 me-2" style="margin-left: -100px"> <!-- Thêm class ms-3 để dịch chuyển sang trái -->
+                    <li><a class="dropdown-item" href="{{route('admin.formChangePass')}}">Change Pass</a></li>
+                    <li><a class="dropdown-item" href="{{route('admin.logout')}}">Logout</a></li>
+                </ul>
+            </div>
+        </nav>
         @yield('content')
     </main>
     <script>
