@@ -18,7 +18,7 @@ class TVGSController extends Controller
         $newsTVSG = News::where('type', 'TVGS')->get();
         $newsStandountTVSG = News::where('type', 'TVGSAT')->get();
         $specialAds = SpecialAds::first();
-       
+
         return view("client.tvgs", compact(
             "introtvgs",
             "newsTVSG",
@@ -32,10 +32,25 @@ class TVGSController extends Controller
         // Lấy phần tử cuối cùng trong mảng
         $lastPartId = (int) end($parts);
         $newsDetail = News::find($lastPartId);
+        $cleanDescription = $this->cleanDescription($newsDetail->description);
         $newsOther = News::where('id', '!=', $lastPartId)->get();
         $adsDetail = Ads::where('type', 'DETAILNEWS')->get();
-        return view("client.detailNews", compact("newsDetail", "newsOther", "adsDetail"));
+        return view("client.detailNews", compact("newsDetail", "newsOther", "adsDetail", "cleanDescription"));
+    }
+    // Hàm làm sạch description
+    private function cleanDescription($description)
+    {
+        // 1. Giải mã HTML entities (ví dụ: &agrave; thành à)
+        $description = html_entity_decode($description);
 
+        // 2. Loại bỏ tất cả thẻ HTML
+        $description = strip_tags($description);
+
+        // 3. Cắt bỏ khoảng trắng thừa ở đầu và cuối
+        $description = trim($description);
+
+        // Trả về mô tả đã làm sạch
+        return $description;
     }
     //admin
     public function viewTvsg()
@@ -111,16 +126,16 @@ class TVGSController extends Controller
         $item->save();
         return redirect()->back()->with('message', 'process item update successfully.');
     }
-        // delete item process
-        public function deleteItemProcess($id)
-        {
-            try {
-                $item = ProcessSup::find($id);
-                $item->delete();
-                return redirect()->back()->with('message', 'process item deleted successfully.');
-            } catch (\Throwable $th) {
-                return redirect()->back()->with('message', 'opp something went wrong.');
-            }
-          
+    // delete item process
+    public function deleteItemProcess($id)
+    {
+        try {
+            $item = ProcessSup::find($id);
+            $item->delete();
+            return redirect()->back()->with('message', 'process item deleted successfully.');
+        } catch (\Throwable $th) {
+            return redirect()->back()->with('message', 'opp something went wrong.');
         }
+
+    }
 }

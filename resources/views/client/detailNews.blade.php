@@ -1,5 +1,17 @@
 @extends('layouts.client')
-@section('title', 'Home Page')
+@section('title', 'Tư Vấn Giám Sát')
+@section('meta_tags')
+    <meta name="keywords" content="giamsatxaydung,tuvanxaydung,tintucxaydung,xaynha">
+    <meta name="author" content="Trương Minh Hải">
+    <meta property="og:description" content="{{$cleanDescription }}">
+    <!-- Thẻ Open Graph cho chia sẻ trên mạng xã hội -->
+    <meta property="og:title" content={{ $newsDetail->title }}>
+    <meta property="og:description" content="{{$cleanDescription }}>
+    <meta property="og:image"
+        content="https://thumbs.dreamstime.com/z/working-online-work-office-businessman-employee-cartoon-vector-illustration-154769768.jpg">
+    <meta property="og:url" content="{{ url()->current() }}">
+    <meta property="og:type" content="article">
+@endsection
 <style>
     /* Nội dung bài viết */
     .article-content {
@@ -171,25 +183,25 @@
                 }
             @endphp
             <div class="row gx-3 gy-3">
-         <!-- Danh sách bài viết liên quan -->
-         <h3 class="related-title">Bài Viết Liên Quan</h3>
-         @if ($newsOther)
-             @foreach ($newsOther as $item)
-                 <!-- Card 1 -->
-                 <div class="col-lg-3 col-md-6">
-                     <div class="card related-card">
-                         <img src="{{ $item->image }}" class="card-img-top" alt="Bài viết 1">
-                         <div class="card-body">
-                             <h5 class="card-title text-title">{{ $item->title }}</h5>
-                             <p class="card-text text-description">{{ cleanText($item->description) }}</p>
-                             <a href="{{ route('client.newsDetail', [slugText($item->title, $item->id)]) }}"
-                                 class="btn btn-primary btn-sm">Đọc Thêm</a>
-                         </div>
-                     </div>
-                 </div>
-             @endforeach
-         @endif
+                <!-- Danh sách bài viết liên quan -->
+                <h3 class="related-title">Bài Viết Liên Quan</h3>
+                @if ($newsOther)
+                    @foreach ($newsOther as $item)
+                        <!-- Card 1 -->
+                        <div class="col-lg-3 col-md-6">
+                            <div class="card related-card">
+                                <img src="{{ $item->image }}" class="card-img-top" alt="Bài viết 1">
+                                <div class="card-body">
+                                    <h5 class="card-title text-title">{{ $item->title }}</h5>
+                                    <p class="card-text text-description">{{ cleanText($item->description) }}</p>
+                                    <a href="{{ route('client.newsDetail', [slugText($item->title, $item->id)]) }}"
+                                        class="btn btn-primary btn-sm">Đọc Thêm</a>
+                                </div>
+                            </div>
+                        </div>
+                    @endforeach
+                @endif
             </div>
-   
+
         </div>
     @endsection
