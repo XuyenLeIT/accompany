@@ -21,6 +21,8 @@ Route::get('/du-an', [ProjectController::class, "project"])->name("client.projec
 Route::get('/lien-he', [ContactController::class, "contact"])->name("client.contact");
 Route::get('/tin-tuc', [NewController::class, "news"])->name("client.news");
 Route::get('/tin-tuc/{slug}', [TVGSController::class, "newsDetail"])->name("client.newsDetail");
+Route::post('/lien-he/message', [ContactController::class, "messageMail"])->name("client.contact.message");
+
 //tai bao gia
 Route::get('/download-price-list', [PriceController::class, 'downloadPriceList'])->name('download.price');
 //login
@@ -32,7 +34,7 @@ Route::post('/login/otp', [AdminController::class, "checkOTP"])->name("admin.che
 Route::get('/logout', [AdminController::class, "logout"])->name("admin.logout");
 Route::prefix('admin')->middleware(AuthMiddelware::class)->group(function () {
     Route::get('/change-pass', [AdminController::class, "formChangePass"])->name("admin.formChangePass");
-Route::post('/change-pass', [AdminController::class, "changePass"])->name("admin.changePass");
+    Route::post('/change-pass', [AdminController::class, "changePass"])->name("admin.changePass");
     // admin
     Route::get('/', [AdminController::class, "admin"])->name("admin.dashboard");
     //carausel
@@ -150,6 +152,9 @@ Route::post('/change-pass', [AdminController::class, "changePass"])->name("admin
     Route::post('/process/update-order', [TVGSController::class, 'updateOrder'])->name('admin.process.updateOrder');
     Route::post('/process/update-process/{id}', [TVGSController::class, 'updateProcess'])
         ->name('admin.process.updateProcess');
+        Route::get('/process/delete-process/{id}', [TVGSController::class, 'deleteItemProcess'])
+        ->name('admin.process.deleteProcess');
+        
     //project
     Route::get('/project', [ProjectController::class, "index"])
         ->name("admin.project.index");
@@ -170,6 +175,8 @@ Route::post('/change-pass', [AdminController::class, "changePass"])->name("admin
         ->name("admin.contact.edit");
     Route::post('/contact/update/{contact}', [ContactController::class, "update"])
         ->name("admin.contact.update");
+    Route::get('/message/{id}', [ContactController::class, "delete"])
+        ->name("admin.message.delete");
 });
 Route::fallback(function () {
     return response()->view('404', [], 404);

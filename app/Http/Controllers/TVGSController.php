@@ -54,7 +54,7 @@ class TVGSController extends Controller
         IntroTvgs::create([
             "description" => $request->description,
         ]);
-        return redirect()->back()->with('success', 'intro created successfully.');
+        return redirect()->back()->with('message', 'intro created successfully.');
 
     }
     public function updateIntroTVSG(Request $request, IntroTvgs $introTVSG)
@@ -65,7 +65,7 @@ class TVGSController extends Controller
         $introTVSG->update([
             "description" => $request->description,
         ]);
-        return redirect()->back()->with('success', 'intro updated successfully.');
+        return redirect()->back()->with('message', 'intro updated successfully.');
 
     }
 
@@ -86,7 +86,7 @@ class TVGSController extends Controller
             "title" => $request->title,
             "order" => $newOrder,
         ]);
-        return redirect()->back()->with('success', 'process item created successfully.');
+        return redirect()->back()->with('message', 'process item created successfully.');
     }
     public function updateOrder(Request $request)
     {
@@ -97,7 +97,7 @@ class TVGSController extends Controller
             ProcessSup::where('id', $item['id'])->update(['order' => $item['position']]);
         }
 
-        return response()->json(['success' => true]);
+        return response()->json(['message' => true]);
     }
     // Cập nhật item
     public function updateProcess(Request $request, $id)
@@ -109,6 +109,18 @@ class TVGSController extends Controller
         $item = ProcessSup::findOrFail($id);
         $item->title = $request->title;
         $item->save();
-        return redirect()->back()->with('success', 'process item update successfully.');
+        return redirect()->back()->with('message', 'process item update successfully.');
     }
+        // delete item process
+        public function deleteItemProcess($id)
+        {
+            try {
+                $item = ProcessSup::find($id);
+                $item->delete();
+                return redirect()->back()->with('message', 'process item deleted successfully.');
+            } catch (\Throwable $th) {
+                return redirect()->back()->with('message', 'opp something went wrong.');
+            }
+          
+        }
 }

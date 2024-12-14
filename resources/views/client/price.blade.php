@@ -26,15 +26,18 @@
 
     /* Container cho table cuộn ngang */
     .table-container {
-        overflow-x: auto; /* Cho phép cuộn ngang */
-        -webkit-overflow-scrolling: touch; /* Cuộn mượt trên mobile */
+        overflow-x: auto;
+        /* Cho phép cuộn ngang */
+        -webkit-overflow-scrolling: touch;
+        /* Cuộn mượt trên mobile */
     }
 
     table {
         width: 100%;
         border-collapse: collapse;
         margin-bottom: 20px;
-        min-width: 700px; /* Ngăn bảng co quá nhỏ trên mobile */
+        min-width: 700px;
+        /* Ngăn bảng co quá nhỏ trên mobile */
     }
 
     table th,
@@ -64,10 +67,13 @@
 
     /* Media query cho mobile */
     @media (max-width: 768px) {
+
         table th,
         table td {
-            font-size: 14px; /* Giảm cỡ chữ cho mobile */
-            padding: 6px; /* Giảm padding */
+            font-size: 14px;
+            /* Giảm cỡ chữ cho mobile */
+            padding: 6px;
+            /* Giảm padding */
         }
     }
 
@@ -127,138 +133,172 @@
 
     /* Quy trình */
     .process-section {
-    padding: 40px 0;
-    background-color: #e9f7e7;
-    border-radius: 10px;
+        padding: 20px 0;
+        background-color: #e9f7e7;
+        border-radius: 10px;
+    }
+
+    /* Căn giữa hàng quy trình */
+    .process-section .row {
+        display: flex;
+        justify-content: center;
+        /* Căn giữa các bước */
+        align-items: center;
+        /* Căn giữa theo chiều dọc */
+        overflow-x: auto; 
+    }
+
+    /* Các bước quy trình */
+    .step-item {
+        text-align: center;
+        margin: 15px;
+        /* Khoảng cách giữa các bước */
+        max-width: 200px;
+        /* Giới hạn chiều rộng cho mỗi bước */
+    }
+
+    .step-icon {
+        font-size: 40px;
+        color: #007bff;
+        /* Màu biểu tượng */
+        margin-bottom: 10px;
+    }
+
+    .step-title {
+        font-size: 18px;
+        font-weight: bold;
+        color: #333;
+        margin-bottom: 8px;
+    }
+
+    .step-desc {
+        font-size: 14px;
+        color: #555;
+    }
+    .step-item {
+    margin: 10px 0; /* Khoảng cách giữa các bước */
+    flex: 0 0 auto; /* Đảm bảo kích thước không thay đổi */
 }
 
-/* Căn giữa hàng quy trình */
-.process-section .row {
+.arrow-container {
     display: flex;
-    justify-content: center; /* Căn giữa các bước */
-    align-items: center; /* Căn giữa theo chiều dọc */
-    flex-wrap: wrap; /* Cho phép các bước tự xuống hàng khi không đủ chỗ */
+    align-items: center;
+    justify-content: center;
 }
-
-/* Các bước quy trình */
-.step-item {
-    text-align: center;
-    margin: 15px; /* Khoảng cách giữa các bước */
-    max-width: 200px; /* Giới hạn chiều rộng cho mỗi bước */
-}
-
-.step-icon {
-    font-size: 40px;
-    color: #007bff; /* Màu biểu tượng */
-    margin-bottom: 10px;
-}
-
-.step-title {
-    font-size: 18px;
-    font-weight: bold;
-    color: #333;
-    margin-bottom: 8px;
-}
-
-.step-desc {
-    font-size: 14px;
-    color: #555;
-}
-
     @media (min-width: 992px) {
         .d-none.d-lg-flex {
             display: flex !important;
         }
+
     }
 </style>
 
 @section('content')
-<div class="container my-4">
-    <div class="row">
-        <!-- Nội dung chính -->
-        <div class="col-lg-9 col-md-8">
-            <div class="main-content">
-                <h2 class="header-title">Báo Giá Tư Vấn Giám Sát</h2>
-                <!-- Table Container -->
-                <div class="table-container">
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>STT</th>
-                                <th>Gói dịch vụ</th>
-                                <th>Thời gian giám sát</th>
-                                <th>Thời gian (h)/ngày</th>
-                                <th>Chi phí / tháng</th>
-                                <th>Ghi chú</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach ($list as $key => $item)
-                            <tr>
-                                <td>{{$key + 1}}</td>
-                                <td>{{$item->package}}</td>
-                                <td>{{$item->timew}}</td>
-                                <td>{{$item->timed}}</td>
-                                <td>{{intval($item->cost)}} triệu</td>
-                                <td>{{$item->note}}</td>
-                            </tr>
+    <div class="container my-4">
+        <div class="row">
+            <!-- Nội dung chính -->
+            <div class="col-lg-9 col-md-8">
+                <div class="main-content">
+                    <h2 class="header-title">Báo Giá Tư Vấn Giám Sát</h2>
+                    <!-- Table Container -->
+                    <div class="table-container">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>STT</th>
+                                    <th>Gói dịch vụ</th>
+                                    <th>Thời gian giám sát</th>
+                                    <th>Thời gian (h)/ngày</th>
+                                    <th>Chi phí / tháng</th>
+                                    <th>Ghi chú</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach ($list as $key => $item)
+                                    <tr>
+                                        <td>{{ $key + 1 }}</td>
+                                        <td>{{ $item->package }}</td>
+                                        <td>{{ $item->timew }}</td>
+                                        <td>{{ $item->timed }}</td>
+                                        <td>{{ intval($item->cost) }} triệu</td>
+                                        <td>{{ $item->note }}</td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
+                    <p>{!! $notePrice->desNote !!}</p>
+                    <a href="{{ route('download.price') }}" class="btn btn-primary">Tải báo giá</a>
+                </div>
+
+                <!-- Bài viết quy trình -->
+                <div class="articles-section">
+                    <h3>Quy Trình Giám Sát Xây Dựng</h3>
+                    <ul>
+                        @if ($processes && $processes->count() > 0)
+                            @foreach ($processes as $item)
+                                <li>{{ $item->title }}</li>
                             @endforeach
-                        </tbody>
-                    </table>
+                        @endif
+                    </ul>
                 </div>
-                <p>{!! $notePrice->desNote !!}</p>
-                <a href="{{ route('download.price') }}" class="btn btn-primary">Tải báo giá</a>
             </div>
 
-            <!-- Bài viết quy trình -->
-            <div class="articles-section">
-                <h3>Quy Trình Giám Sát Xây Dựng</h3>
-                <ul>
-                    @if ($processes && $processes->count() > 0)
-                    @foreach ($processes as $item)
-                    <li>{{$item->title}}</li>
-                    @endforeach
-                    @endif
-                </ul>
+            <!-- Sidebar quảng cáo -->
+            <div class="col-lg-3 col-md-4">
+                <div class="sidebar">
+                    <h4 class="text-center">Hoạt Động TVGS</h4>
+                    <div class="mt-3">
+                        @if ($priceAds && $priceAds->count() > 0)
+                            @foreach ($priceAds as $item)
+                                <img src="{{ $item->image }}" class="img-fluid rounded mb-3" alt="Ad 1">
+                            @endforeach
+                        @endif
+                    </div>
+                </div>
             </div>
         </div>
 
-        <!-- Sidebar quảng cáo -->
-        <div class="col-lg-3 col-md-4">
-            <div class="sidebar">
-                <h4 class="text-center">Hoạt Động TVGS</h4>
-                <div class="mt-3">
-                    @if ($priceAds && $priceAds->count() > 0)
-                    @foreach ($priceAds as $item)
-                    <img src="{{$item->image}}" class="img-fluid rounded mb-3" alt="Ad 1">
-                    @endforeach
-                    @endif
+        <!-- Quy trình các bước -->
+        <div class="row mt-3">
+            <div class="process-section">
+                <div class="row text-center align-items-center flex-lg-nowrap flex-wrap">
+                    <!-- Step 1 -->
+                    <div class="col-lg-2 col-md-6 step-item">
+                        <div class="step-icon"><i class="fa-regular fa-handshake"></i></div>
+                        <h5 class="step-title">Trao Đổi Tư Vấn</h5>
+                        <p class="step-desc">Trao đổi yêu cầu và tư vấn định hướng ý tưởng.</p>
+                    </div>
+                    <div class="col-lg-1 d-none d-lg-flex arrow-container">
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </div>
+                    <!-- Step 2 -->
+                    <div class="col-lg-2 col-md-6 step-item">
+                        <div class="step-icon"><i class="fa-solid fa-clipboard-check"></i></div>
+                        <h5 class="step-title">Báo Giá</h5>
+                        <p class="step-desc">Gửi báo giá và quy trình cụ thể.</p>
+                    </div>
+                    <div class="col-lg-1 d-none d-lg-flex arrow-container">
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </div>
+                    <!-- Step 3 -->
+                    <div class="col-lg-2 col-md-6 step-item">
+                        <div class="step-icon"><i class="fa-solid fa-lightbulb"></i></div>
+                        <h5 class="step-title">Triển Khai</h5>
+                        <p class="step-desc">Bắt đầu triển khai dự án theo yêu cầu.</p>
+                    </div>
+                    <div class="col-lg-1 d-none d-lg-flex arrow-container">
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </div>
+                    <!-- Step 4 -->
+                    <div class="col-lg-2 col-md-6 step-item">
+                        <div class="step-icon"><i class="fa-solid fa-check-circle"></i></div>
+                        <h5 class="step-title">Hoàn Thành</h5>
+                        <p class="step-desc">Bàn giao sản phẩm và hỗ trợ sau triển khai.</p>
+                    </div>
                 </div>
             </div>
+            
         </div>
     </div>
-
-    <!-- Quy trình các bước -->
-    <div class="row mt-3">
-        <div class="process-section">
-            <div class="row text-center align-items-center">
-                <!-- Step 1 -->
-                <div class="col-lg-2 col-md-6 step-item">
-                    <div class="step-icon"><i class="fa-regular fa-handshake"></i></div>
-                    <h5 class="step-title">Trao Đổi Tư Vấn</h5>
-                    <p class="step-desc">Trao đổi yêu cầu và tư vấn định hướng ý tưởng.</p>
-                </div>
-                <div class="col-lg-1 d-none d-lg-flex arrow-container">
-                    <i class="fa-solid fa-arrow-right"></i>
-                </div>
-                <!-- Step 2 -->
-                <div class="col-lg-2 col-md-6 step-item">
-                    <div class="step-icon"><i class="fa-solid fa-clipboard-check"></i></div>
-                    <h5 class="step-title">Báo Giá</h5>
-                    <p class="step-desc">Gửi báo giá và quy trình cụ thể.</p>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
 @endsection

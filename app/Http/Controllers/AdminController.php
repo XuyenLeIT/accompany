@@ -33,6 +33,7 @@ class AdminController extends Controller
     }
     public function checkLogin(Request $request)
     {
+       try {
         // Giả sử bạn đã xác thực người dùng và lấy được $user
         $account = Account::where("email", $request->email)->first();
         // dd($account);
@@ -53,6 +54,9 @@ class AdminController extends Controller
 
         // Xử lý khi thông tin đăng nhập không đúng
         return redirect('/login')->with('message', 'Tên đăng nhập hoặc mật khẩu không đúng');
+       } catch (\Throwable $th) {
+        return redirect('/login')->with('message', 'opp! something went wrong');
+       }
     }
     public function viewOTP()
     {
@@ -78,6 +82,7 @@ class AdminController extends Controller
         return redirect('/login/otp')->with('message', 'Mã OTP không hợp lệ');
 
     }
+ 
     public function formChangePass()
     {
         // Xóa thông tin người dùng khỏi session

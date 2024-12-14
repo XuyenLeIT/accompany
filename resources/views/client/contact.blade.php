@@ -114,27 +114,49 @@
                         <div class="contact-info mb-4">
                             <h5>Thông Tin Liên Hệ</h5>
                             @if ($contact)
-                                <p><i class="bi bi-geo-alt"></i> Địa chỉ: {{$contact->address1}}</p>
-                                <p><i class="bi bi-telephone"></i> Điện thoại: {{$contact->phone}}</p>
-                                <p><i class="bi bi-envelope"></i> Email: {{$contact->email}}</p>
+                                <p><i class="bi bi-geo-alt"></i> Địa chỉ: {{ $contact->address1 }}</p>
+                                <p><i class="bi bi-telephone"></i> Điện thoại: {{ $contact->phone }}</p>
+                                <p><i class="bi bi-envelope"></i> Email: {{ $contact->email }}</p>
                             @endif
-
                         </div>
-
+                        @if (session('message'))
+                            <div class="alert alert-info">
+                                <strong>Info!</strong> {{ session('message') }}
+                            </div>
+                        @endif
                         <!-- Form gửi thông tin -->
-                        <form>
+                        <form action="{{ route('client.contact.message') }}" method="post">
+                            @csrf
                             <div class="mb-3">
                                 <label for="name" class="form-label">Họ và Tên</label>
-                                <input type="text" class="form-control" id="name"
+                                <input type="text" class="form-control" id="name" name="name"
                                     placeholder="Nhập họ và tên của bạn">
+                                @error('name')
+                                    <p class="text-center">{{ $message }}</p>
+                                @enderror
                             </div>
                             <div class="mb-3">
                                 <label for="email" class="form-label">Email</label>
-                                <input type="email" class="form-control" id="email" placeholder="Nhập email của bạn">
+                                <input type="text" class="form-control" name="email" id="email"
+                                    placeholder="Nhập email của bạn">
+                                @error('email')
+                                    <p class="text-center">{{ $message }}</p>
+                                @enderror
+                            </div>
+                            <div class="mb-3">
+                                <label for="phone" class="form-label">Phone</label>
+                                <input type="phone" class="form-control" id="phone" placeholder="Nhập phone của bạn"
+                                    name="phone">
+                                @error('phone')
+                                    <p class="text-center">{{ $message }}</p>
+                                @enderror
                             </div>
                             <div class="mb-3">
                                 <label for="message" class="form-label">Lời nhắn</label>
-                                <textarea class="form-control" id="message" rows="5" placeholder="Nhập lời nhắn của bạn"></textarea>
+                                <textarea class="form-control" id="message" name="message" rows="5" placeholder="Nhập lời nhắn của bạn"></textarea>
+                                @error('message')
+                                    <p class="text-center">{{ $message }}</p>
+                                @enderror
                             </div>
                             <button type="submit" class="btn btn-success w-100">Gửi Thông Tin</button>
                         </form>

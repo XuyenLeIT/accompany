@@ -27,10 +27,25 @@
         border: 1px solid #6c757d;
         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     }
+
+    .delete-process-link {
+        text-decoration: none;
+        color: white;
+
+    }
+
+    .delete-badge:hover {
+        cursor: pointer;
+    }
 </style>
 @section('content')
     <div class="container p-5">
         <h1 class="text-center bg-primary">QUY TRÌNH TƯ VẤN GIÁM SÁT</h1>
+        @if (session('message'))
+            <div class="alert alert-info">
+                <strong>Info!</strong> {{ session('message') }}
+            </div>
+        @endif
         <div class="row">
             <div class="col-md-6">
                 <h4 class="text-center">DANH SÁCH TỪNG HẠNG MỤC</h4>
@@ -42,6 +57,8 @@
                                 data-id="{{ $proc->id }}"
                                 onclick="selectItem({{ $proc->id }}, {{ json_encode($proc->title) }})">
                                 <span>{{ $proc->title }}</span>
+                                <span class="badge bg-danger delete-badge"><a class="delete-process-link"
+                                        href="{{ route('admin.process.deleteProcess', $proc->id) }}">Delete</a></span>
                                 <span class="badge bg-primary order-badge">Order {{ $proc->order }}</span>
                             </li>
                         @endforeach
