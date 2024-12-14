@@ -18,7 +18,7 @@
     }
 
     /* Tiêu đề chính */
-    .header-title {
+    .header-price-title{
         color: #2d6a4f;
         /* Xanh đậm */
         font-weight: bold;
@@ -199,7 +199,7 @@
             <!-- Nội dung chính -->
             <div class="col-lg-9 col-md-8">
                 <div class="main-content">
-                    <h2 class="header-title">Báo Giá Tư Vấn Giám Sát</h2>
+                    <h2 class="header-price-title">Báo Giá Tư Vấn Giám Sát</h2>
                     <!-- Table Container -->
                     <div class="table-container">
                         <table>
