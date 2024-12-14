@@ -112,6 +112,7 @@
             <a class="btn btn-primary w-100 mb-2" href="{{ route('admin.process.index') }}">QUY TRINH TVGS</a>
             <a class="btn btn-primary w-100 mb-2" href="{{ route('admin.project.index') }}">DỰ ÁN</a>
             <a class="btn btn-primary w-100 mb-2" href="{{ route('admin.contact.index') }}">CONTACT</a>
+            <a class="btn btn-primary w-100 mb-2" href="{{ route('admin.quote.index') }}">QUOTE</a>
         </div>
     </div>
 

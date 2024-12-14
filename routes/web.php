@@ -152,9 +152,9 @@ Route::prefix('admin')->middleware(AuthMiddelware::class)->group(function () {
     Route::post('/process/update-order', [TVGSController::class, 'updateOrder'])->name('admin.process.updateOrder');
     Route::post('/process/update-process/{id}', [TVGSController::class, 'updateProcess'])
         ->name('admin.process.updateProcess');
-        Route::get('/process/delete-process/{id}', [TVGSController::class, 'deleteItemProcess'])
+    Route::get('/process/delete-process/{id}', [TVGSController::class, 'deleteItemProcess'])
         ->name('admin.process.deleteProcess');
-        
+
     //project
     Route::get('/project', [ProjectController::class, "index"])
         ->name("admin.project.index");
@@ -177,6 +177,20 @@ Route::prefix('admin')->middleware(AuthMiddelware::class)->group(function () {
         ->name("admin.contact.update");
     Route::get('/message/{id}', [ContactController::class, "delete"])
         ->name("admin.message.delete");
+
+    //quote
+    Route::get('/quote', [AdminController::class, "listQuote"])
+        ->name("admin.quote.index");
+    Route::get('/quote/create', [AdminController::class, "createQuote"])
+        ->name("admin.quote.create");
+    Route::post('/quote/create', [AdminController::class, "storeQuote"])
+        ->name("admin.quote.store");
+    Route::get('/quote/edit/{id}', [AdminController::class, "editQuote"])
+        ->name("admin.quote.edit");
+    Route::post('/quote/edit/{quote}', [AdminController::class, "updateQuote"])
+        ->name("admin.quote.update");
+     Route::get('/quote/delete/{id}', [AdminController::class, "deleteQuote"])
+        ->name("admin.quote.delete");
 });
 Route::fallback(function () {
     return response()->view('404', [], 404);

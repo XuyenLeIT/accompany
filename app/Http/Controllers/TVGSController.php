@@ -6,6 +6,7 @@ use App\Models\Ads;
 use App\Models\IntroTvgs;
 use App\Models\News;
 use App\Models\ProcessSup;
+use App\Models\Quote;
 use App\Models\SpecialAds;
 use Illuminate\Http\Request;
 use Session;
@@ -18,12 +19,13 @@ class TVGSController extends Controller
         $newsTVSG = News::where('type', 'TVGS')->get();
         $newsStandountTVSG = News::where('type', 'TVGSAT')->get();
         $specialAds = SpecialAds::first();
-
+        $quote = Quote::where('type', 'TVGS')->first();
         return view("client.tvgs", compact(
             "introtvgs",
             "newsTVSG",
             "newsStandountTVSG",
             "specialAds",
+            "quote"
         ));
     }
     public function newsDetail($slug)

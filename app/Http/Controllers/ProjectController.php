@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Project;
+use App\Models\Quote;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
 
@@ -11,8 +12,8 @@ class ProjectController extends Controller
   public function project()
   {
     $projects = Project::all();
-
-    return view("client.project", compact("projects"));
+    $quote = Quote::where('type', 'DUAN')->first();
+    return view("client.project", compact("projects","quote"));
   }
   public function index()
   {

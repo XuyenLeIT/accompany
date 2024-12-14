@@ -6,6 +6,7 @@ use App\Models\Account;
 use App\Models\Feedback;
 use App\Models\Outstanding;
 use App\Models\PanelJobImage;
+use App\Models\Quote;
 use Hash;
 use Session;
 use Carbon\Carbon;
@@ -33,30 +34,30 @@ class AdminController extends Controller
     }
     public function checkLogin(Request $request)
     {
-       try {
-        // Giả sử bạn đã xác thực người dùng và lấy được $user
-        $account = Account::where("email", $request->email)->first();
-        // dd($account);
-        if ($account != null) {
-            if ($account && Hash::check($request->password, $account->password)) {
-                // Lưu user_id vào session
-                $request->session()->put('accountLogin', $account);
-                // Redirect người dùng đến trang chủ
-                $OTPCode = Str::upper(Str::random(6));
-                Mail::to($account->email)->send(new OTPMail($OTPCode));
-                $account->update([
-                    "otp" => $OTPCode,
-                    "expireotp" => Carbon::now()->addMinutes(5)
-                ]);
-                return redirect('/login/otp');
+        try {
+            // Giả sử bạn đã xác thực người dùng và lấy được $user
+            $account = Account::where("email", $request->email)->first();
+            // dd($account);
+            if ($account != null) {
+                if ($account && Hash::check($request->password, $account->password)) {
+                    // Lưu user_id vào session
+                    $request->session()->put('accountLogin', $account);
+                    // Redirect người dùng đến trang chủ
+                    $OTPCode = Str::upper(Str::random(6));
+                    Mail::to($account->email)->send(new OTPMail($OTPCode));
+                    $account->update([
+                        "otp" => $OTPCode,
+                        "expireotp" => Carbon::now()->addMinutes(5)
+                    ]);
+                    return redirect('/login/otp');
+                }
             }
-        }
 
-        // Xử lý khi thông tin đăng nhập không đúng
-        return redirect('/login')->with('message', 'Tên đăng nhập hoặc mật khẩu không đúng');
-       } catch (\Throwable $th) {
-        return redirect('/login')->with('message', 'opp! something went wrong');
-       }
+            // Xử lý khi thông tin đăng nhập không đúng
+            return redirect('/login')->with('message', 'Tên đăng nhập hoặc mật khẩu không đúng');
+        } catch (\Throwable $th) {
+            return redirect('/login')->with('message', 'opp! something went wrong');
+        }
     }
     public function viewOTP()
     {
@@ -82,7 +83,7 @@ class AdminController extends Controller
         return redirect('/login/otp')->with('message', 'Mã OTP không hợp lệ');
 
     }
- 
+
     public function formChangePass()
     {
         // Xóa thông tin người dùng khỏi session
@@ -570,7 +571,45 @@ class AdminController extends Controller
         }
         return redirect()->back()->with('success', 'feedback deleted successfully.');
     }
-
-
+    public function listQuote()
+    {
+        $quotes = Quote::all();
+        return view("admin.quote.index", compact("quotes"));
+    }
+    public function createQuote()
+    {
+        return view("admin.quote.create");
+    }
+    public function storeQuote(Request $request)
+    {
+        $request->validate([
+            'type' => 'required',
+            'author' => 'required',
+            'description' => 'required',
+        ]);
+        Quote::create($request->all());
+        return redirect()->route("admin.quote.index")->with('success', 'quote created successfully.');
+    }
+    public function editQuote($id)
+    { 
+    $quote = Quote::find($id);
+    return view("admin.quote.edit",compact("quote"));
+    }
+    public function updateQuote(Request $request,Quote $quote)
+    {
+        $request->validate([
+            'type' => 'required',
+            'author' => 'required',
+            'description' => 'required',
+        ]);
+        $quote->update($request->all());
+        return redirect()->route("admin.quote.index")->with('success', 'quote updated successfully.');
+    }
+    public function deleteQuote($id)
+    { 
+    $quote = Quote::find($id);
+    $quote->delete();
+    return redirect()->route("admin.quote.index")->with('success', 'quote deleted successfully.');
+    }
 }
 

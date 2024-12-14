@@ -139,12 +139,14 @@
             </div>
             @endforeach
         </div>
+        @if ($quote)
         <div class="quote-section">
             <blockquote class="quote-text">
-                "Kiến trúc không chỉ là xây dựng, mà còn là sự thăng hoa của nghệ thuật và tâm hồn."
+                "{{$quote->description}}"
             </blockquote>
-            <p class="quote-author">- Frank Lloyd Wright</p>
+            <p class="quote-author">- {{$quote->author}}</p>
         </div>
+        @endif
     </div>
 
 
