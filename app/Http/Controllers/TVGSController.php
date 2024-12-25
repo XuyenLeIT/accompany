@@ -19,13 +19,15 @@ class TVGSController extends Controller
         $newsTVSG = News::where('type', 'TVGS')->get();
         $newsStandountTVSG = News::where('type', 'TVGSAT')->get();
         $specialAds = SpecialAds::first();
+        $addsTVSG = Ads::where('type', 'TVGS')->get();
         $quote = Quote::where('type', 'TVGS')->first();
         return view("client.tvgs", compact(
             "introtvgs",
             "newsTVSG",
             "newsStandountTVSG",
             "specialAds",
-            "quote"
+            "quote",
+            "addsTVSG"
         ));
     }
     public function newsDetail($slug)

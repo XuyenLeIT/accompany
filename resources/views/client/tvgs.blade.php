@@ -196,7 +196,7 @@
 
     .activity-card .card-img-top {
         height: 200px;
-        object-fit: cover;
+        object-fit: contain;
         transition: transform 0.4s ease, filter 0.4s ease;
         filter: brightness(0.9);
     }
@@ -749,10 +749,10 @@
                  
                 </div>
                 <!-- Additional Image Cards -->
-                {{-- @dd($newsStandountTVSG) --}}
+                {{-- @dd($addsTVSG) --}}
                 <div class="sidebar-images">
-                    @if ($newsStandountTVSG)
-                        @foreach ($newsStandountTVSG as $item)
+                    @if ($addsTVSG)
+                        @foreach ($addsTVSG as $item)
                         <div class="sidebar-card mb-3">
                             <img src="{{$item->image}}" class="img-fluid rounded" alt="Sản phẩm nổi bật">
                             <h5 class="sidebar-title mt-2">{{$item->title}}</h5>
