@@ -61,7 +61,9 @@ class TVGSController extends Controller
     {
         $introTVSG = IntroTvgs::first();
         $newsTVSG = News::whereIn('type', ['TVGS', 'TVGSAT'])->get();
-        $adsTVSG = Ads::where('type', 'TVGS')->get();
+        // $adsTVSG = Ads::where('type', 'TVGS')->get();
+            $adsTVSG = Ads::all();
+        // dd($adsTVSG);
         $specialAds = SpecialAds::first();
         return view("admin.tvgs.index", compact("introTVSG", "newsTVSG", "adsTVSG", "specialAds"));
     }
