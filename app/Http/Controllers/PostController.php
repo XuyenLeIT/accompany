@@ -104,7 +104,7 @@ class PostController extends Controller
 
         try {
             // Xử lý tải ảnh thumbnail
-            if ($request->hasFile('thumbnail')) {
+            if ($request->hasFile('image')) {
                 // Tạo tên tệp ảnh độc nhất
                 $filename = uniqid() . '.' . $request->image->getClientOriginalExtension();
                 // Lưu ảnh vào thư mục 'public/knowImages'
@@ -118,7 +118,6 @@ class PostController extends Controller
                 // Giữ nguyên thumbnail cũ nếu không có ảnh mới
                 $image = $request->input('imageExisted');
             }
-
             // Lấy và xử lý nội dung mô tả
             $description = $request->input('description');
             $deletedImages = json_decode($request->input('deleted_images'), true);
