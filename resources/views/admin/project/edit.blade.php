@@ -22,21 +22,21 @@
             </div>
             <div class="mb-3 mt-3">
                 <label for="owner" class="form-label">Owner:</label>
-                <input type="text" class="form-control" name="owner" value="{{old("title",$project->owner)}}">
+                <input type="text" class="form-control" name="owner" value="{{old("owner",$project->owner)}}">
                 @error('owner')
                     <p class="text-danger">{{ $message }}</p>
                 @enderror
             </div>
             <div class="mb-3 mt-3">
                 <label for="area" class="form-label">Area:</label>
-                <input type="number" class="form-control" name="area" value="{{old("title",$project->area)}}">
+                <input type="number" class="form-control" name="area" value="{{old("area",$project->area)}}">
                 @error('area')
                     <p class="text-danger">{{ $message }}</p>
                 @enderror
             </div>
             <div class="mb-3 mt-3">
                 <label for="year" class="form-label">Year Complete:</label>
-                <input type="number" class="form-control" name="year" value="{{old("title",$project->year)}}">
+                <input type="number" class="form-control" name="year" value="{{old("year",$project->year)}}">
                 @error('year')
                     <p class="text-danger">{{ $message }}</p>
                 @enderror
@@ -48,6 +48,7 @@
                     <option value="NHAPHO" @selected(old('type',$project->type)=="NHAPHO")>NHÀ PHỐ</option>
                     <option value="BIETTHU" @selected(old('type',$project->type)=="BIETTHU")>BIỆT THỰ</option>
                     <option value="CANHO" @selected(old('type',$project->type)=="CANHO")>CĂN HỘ</option>
+                    <option value="SCHOOL" @selected(old('type',$project->type)=="SCHOOL")>TRƯỜNG HỌC</option>
                   </select>
                 @error('type')
                     <p class="text-danger">{{ $message }}</p>

@@ -15,28 +15,28 @@
             @csrf
             <div class="mb-3 mt-3">
                 <label for="title" class="form-label">Title:</label>
-                <input type="text" class="form-control" name="title">
+                <input type="text" class="form-control" value="{{old('title')}}" name="title">
                 @error('title')
                     <p class="text-danger">{{ $message }}</p>
                 @enderror
             </div>
             <div class="mb-3 mt-3">
                 <label for="owner" class="form-label">Owner:</label>
-                <input type="text" class="form-control" name="owner">
+                <input type="text" class="form-control" value="{{old('owner')}}" name="owner">
                 @error('owner')
                     <p class="text-danger">{{ $message }}</p>
                 @enderror
             </div>
             <div class="mb-3 mt-3">
                 <label for="area" class="form-label">Area:</label>
-                <input type="number" class="form-control" name="area">
+                <input type="number" class="form-control" name="area" value="{{old('area')}}">
                 @error('area')
                     <p class="text-danger">{{ $message }}</p>
                 @enderror
             </div>
             <div class="mb-3 mt-3">
                 <label for="year" class="form-label">Year Complete:</label>
-                <input type="number" class="form-control" name="year">
+                <input type="number" class="form-control" name="year" value="{{old('year')}}">
                 @error('year')
                     <p class="text-danger">{{ $message }}</p>
                 @enderror
@@ -48,6 +48,7 @@
                     <option value="NHAPHO" @selected(old('type')=="NHAPHO")>NHÀ PHỐ</option>
                     <option value="BIETTHU" @selected(old('type')=="BIETTHU")>BIỆT THỰ</option>
                     <option value="CANHO" @selected(old('type')=="CANHO")>CĂN HỘ</option>
+                    <option value="SCHOOL" @selected(old('type')=="SCHOOL")>TRƯỜNG HỌC</option>
                   </select>
                 @error('type')
                     <p class="text-danger">{{ $message }}</p>
