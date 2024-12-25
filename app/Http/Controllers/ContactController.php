@@ -35,7 +35,9 @@ class ContactController extends Controller
       'logo' => 'image|mimes:jpeg,png,webp,jpg,gif|max:2048',
       'phone' => 'required',
       'address1' => 'required',
+      'sologan1' => 'required',
       'email' => 'required',
+      'sologan2' => 'required',
       'person' => 'required'
     ]);
     try {
