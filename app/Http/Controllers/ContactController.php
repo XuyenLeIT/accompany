@@ -58,6 +58,8 @@ class ContactController extends Controller
         'phone' => $request->phone,
         'address1' => $request->address1,
         'address2' => $request->address2,
+        'sologan1' => $request->sologan1,
+        'sologan2' => $request->sologan2,
         'email' => $request->email,
         'person' => $request->person,
         'logo' => $image
