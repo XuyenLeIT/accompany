@@ -1,6 +1,10 @@
 @extends('layouts.admin')
 @section('title', 'Carausel Page')
 <style>
+    .news-table,.adds-table{
+        height: 400px;
+        overflow-y: scroll;
+    }
     .text-description {
         overflow: hidden;
         display: -webkit-box;
@@ -45,7 +49,7 @@
             @endif
         </div>
 
-        <div class="row">
+        <div class="row news-table">
             <h4 class="text-center">NEWS LIST</h4>
             <a class="btn btn-primary mt-2 w-25" href="{{ route('admin.post.create') }}">Tạo thêm tin tức</a>
             <table class="table knowtable">
@@ -54,7 +58,7 @@
                         <th>Id</th>
                         <th>Title</th>
                         <th>Image</th>
-                        <th>Status</th>
+                        <th>Type</th>
                         <th>Actions</th>
                     </tr>
                 </thead>
@@ -69,7 +73,7 @@
                                 @endif
                             </td>
                             <td>
-                                {{ $item->status }}
+                                {{ $item->type }}
                             </td>
                             <td>
                                 <a class="btn btn-warning" href="{{ route('admin.post.edit', $item->id) }}"><i
@@ -82,7 +86,7 @@
                 </tbody>
             </table>
         </div>
-        <div class="row">
+        <div class="row adds-table">
             <h4 class="text-center">ADS IMAGE LIST</h4>
             <a class="btn btn-primary mt-2 w-25" href="{{ route('admin.ads.create') }}">Tạo thêm ads</a>
             <table class="table knowtable">
