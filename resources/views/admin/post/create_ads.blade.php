@@ -4,8 +4,7 @@
 
 @section('content')
     <div class="container">
-        <a class="btn btn-primary" href="{{ route('admin.tvgs.index') }}">Danh sach post TVGS</a>
-        <a class="btn btn-primary" href="{{ route('admin.tvgs.index') }}">Danh sach post Tin Tuc</a>
+        <a class="btn btn-primary" href="{{ route('admin.tvgs.index') }}">Danh sach Bài Viết</a>
         <h1>Create form post ads</h1>
         @if (session('info'))
             <div class="alert alert-success">

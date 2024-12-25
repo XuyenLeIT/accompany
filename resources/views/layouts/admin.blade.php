@@ -98,17 +98,17 @@
                 <ul class="dropdown-menu bg-info w-100">
                     <li><a class="dropdown-item" href="{{ route('admin.dashboard') }}">Dashboard</a></li>
                     <li><a class="dropdown-item" href="{{ route('admin.carausels.index') }}">Carausel</a></li>
-                    <li><a class="dropdown-item" href="{{ route('admin.introVideo') }}">Video Intro</a></li>
-                    <li><a class="dropdown-item" href="{{ route('admin.homeIntro') }}">Intro Home</a></li>
-                    <li><a class="dropdown-item" href="{{ route('admin.panelJob.index') }}">Panel Job</a></li>
-                    <li><a class="dropdown-item" href="{{ route('admin.outstanding.index') }}">AC Outstanding</a></li>
+                    <li><a class="dropdown-item" href="{{ route('admin.introVideo') }}">Video trang chủ</a></li>
+                    <li><a class="dropdown-item" href="{{ route('admin.homeIntro') }}">Giơi thiệu trang chủ</a></li>
+                    <li><a class="dropdown-item" href="{{ route('admin.panelJob.index') }}">Hạng mục giám sát</a></li>
+                    <li><a class="dropdown-item" href="{{ route('admin.outstanding.index') }}">Sự khác biệt</a></li>
                     <li><a class="dropdown-item" href="{{ route('admin.feedback.index') }}">Feedback</a></li>
                 </ul>
             </div>
             <a class="btn btn-primary w-100 mb-2" href="{{ route('admin.tvgs.index') }}">TVGS</a>
-            <a class="btn btn-primary w-100 mb-2" href="{{ route('admin.post.create') }}">POST NEWS</a>
-            <a class="btn btn-primary w-100 mb-2" href="{{ route('admin.ads.create') }}">ADS</a>
-            <a class="btn btn-primary w-100 mb-2" href="{{ route('admin.price.index') }}">PRICE</a>
+            <a class="btn btn-primary w-100 mb-2" href="{{ route('admin.post.create') }}">Bài Viết</a>
+            <a class="btn btn-primary w-100 mb-2" href="{{ route('admin.ads.create') }}">Hình Quảng Cáo</a>
+            <a class="btn btn-primary w-100 mb-2" href="{{ route('admin.price.index') }}">Báo Giá</a>
             <a class="btn btn-primary w-100 mb-2" href="{{ route('admin.process.index') }}">QUY TRINH TVGS</a>
             <a class="btn btn-primary w-100 mb-2" href="{{ route('admin.project.index') }}">DỰ ÁN</a>
             <a class="btn btn-primary w-100 mb-2" href="{{ route('admin.contact.index') }}">CONTACT</a>
