@@ -60,7 +60,7 @@ class TVGSController extends Controller
     public function viewTvsg()
     {
         $introTVSG = IntroTvgs::first();
-        $newsTVSG = News::whereIn('type', ['TVGS', 'TVGSAT'])->get();
+        $newsTVSG = News::all();
         // $adsTVSG = Ads::where('type', 'TVGS')->get();
             $adsTVSG = Ads::all();
         // dd($adsTVSG);
