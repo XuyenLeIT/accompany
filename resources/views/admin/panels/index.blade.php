@@ -74,10 +74,10 @@
                         <div class="mb-3 mt-3">
                             <label for="Type" class="form-label">Type:</label>
                             <select class="form-select" name="type">
-                                <option value="1" {{ old('type', $panelJob->type) == 1 ? 'selected' : '' }}> NGHIEM
+                                <option value="1" @selected(old('type', $panelJob->type) == 1)> NGHIEM
                                     THU BE
                                     TONG</option>
-                                <option value="2" {{ old('type', $panelJob->type) == 2 ? 'selected' : '' }}>NGHIEM THU
+                                <option value="2" @selected(old('type', $panelJob->type) == 2)>NGHIEM THU
                                     COT
                                     THEP</option>
                             </select>
@@ -89,13 +89,13 @@
                             <label for="name" class="form-label">Status:</label>
                             <div class="form-check">
                                 <input class="form-check-input" type="checkbox" id="check1" name="status" value="1"
-                                    {{ old('status', $panelJob->status) ? 'checked' : '' }}>
+                                    @checked(old('status', $panelJob->status))>
                                 <label class="form-check-label" for="check1">Active</label>
                             </div>
                         </div>
                         <button type="submit" class="btn btn-primary">Update</button>
                         <a type="cancel" class="btn btn-warning"
-                            href="{{ route('admin.panelJob.cancel', $panelJob->id) }}">Cancel</a>
+                            href="{{ route('admin.form.cancel', $panelJob->id) }}">Cancel</a>
                     </form>
                 @else
                     <form method="POST" action="{{ route('admin.panelJob.store') }}">
@@ -128,7 +128,7 @@
                             <label for="name" class="form-label">Status:</label>
                             <div class="form-check">
                                 <input class="form-check-input" type="checkbox" id="check1" name="status" value="1"
-                                    {{ old('status') ? 'checked' : '' }}>
+                                @checked(old('status'))>
                                 <label class="form-check-label" for="check1">Active</label>
                             </div>
                         </div>

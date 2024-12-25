@@ -82,7 +82,7 @@
                             <label for="name" class="form-label">Status:</label>
                             <div class="form-check">
                                 <input class="form-check-input" type="checkbox" id="check1" name="status" value="1"
-                                    {{ old('status', $panelJobImage->status) ? 'checked' : '' }}>
+                                @checked(old('status', $panelJobImage->status))>
                                 <label class="form-check-label" for="check1">Active</label>
                             </div>
                         </div>
@@ -107,7 +107,7 @@
                             <label for="name" class="form-label">Status:</label>
                             <div class="form-check">
                                 <input class="form-check-input" type="checkbox" id="check1" name="status" value="1"
-                                    {{ old('status') ? 'checked' : '' }}>
+                                @checked(old('status'))>
                                 <label class="form-check-label" for="check1">Active</label>
                             </div>
                         </div>
