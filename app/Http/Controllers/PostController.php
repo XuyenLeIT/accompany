@@ -230,7 +230,7 @@ class PostController extends Controller
     public function storeAds(Request $request)
     {
         $request->validate([
-            'image' => 'required|image|mimes:jpeg,png,webp,jpg,gif|max:2048',
+            'image' => 'required|image|mimes:jpeg,png,webp,jpg,gif|max:4048',
             "title"=>"required",
             "type"=>"required"
         ]);
