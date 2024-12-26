@@ -21,7 +21,7 @@ class CarauselController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'image' => 'required|image|mimes:jpeg,png,webp,jpg,gif|max:2048',
+            'image' => 'required|image|mimes:jpeg,png,webp,jpg,gif|max:6048',
         ]);
         $checkStatus = $request->status?true:false;
         $filename = "";
@@ -52,7 +52,7 @@ class CarauselController extends Controller
     public function update(Request $request, Carausel $carausel)
     {
         $request->validate([
-            'image' => 'image|mimes:jpeg,png,jpg,gif,webp|max:2048',
+            'image' => 'image|mimes:jpeg,png,jpg,gif,webp|max:6048',
         ]);
         try {
             // Kiểm tra xem checkbox có được chọn hay không

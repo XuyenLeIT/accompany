@@ -1,152 +1,152 @@
-    /* General Header Styles */
-    .header {
-        background-color: #C9E6F0;
-        padding-left: 5px;
-    }
+/* General Header Styles */
+.header {
+    background-color: #c9e6f0;
+    padding-left: 5px;
+}
 
-    /* Logo Section */
-    .logo-container {
-        display: flex;
-        align-items: center;
-        justify-content: start;
-        gap: 10px;
-    }
+/* Logo Section */
+.logo-container {
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    gap: 10px;
+}
 
-    .logo-image {
-        max-width: 80px;
-        height: auto;
-        border-radius: 10px;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    }
+.logo-image {
+    max-width: 80px;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
 
-    .tagline {
-        font-size: 14px;
-        color: #009990;
-        font-weight: bold;
-        text-transform: uppercase;
-        letter-spacing: 1px;
-    }
+.tagline {
+    font-size: 14px;
+    color: #009990;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
 
-    /* Main Title */
-    .header-title {
-        text-align: center;
-    }
+/* Main Title */
+.header-title {
+    text-align: center;
+}
 
-    .header-title strong {
-        color: #d9534f;
-        font-size: 18px;
-        display: block;
-    }
+.header-title strong {
+    color: #d9534f;
+    font-size: 18px;
+    display: block;
+}
 
-    .header-title span {
-        color: #4CAF50;
-        font-size: 14px;
-    }
+.header-title span {
+    color: #4caf50;
+    font-size: 14px;
+}
 
-    /* Hotline Section */
-    .hotline-box {
-        position: relative;
-        background-color: #4CAF50;
-        padding: 20px;
-        clip-path: polygon(50% 0, 100% 0, 100% 100%, 20% 100%);
-        color: #fff;
-        text-align: right;
-        height: 100px;
-    }
+/* Hotline Section */
+.hotline-box {
+    position: relative;
+    background-color: #4caf50;
+    padding: 20px;
+    clip-path: polygon(50% 0, 100% 0, 100% 100%, 20% 100%);
+    color: #fff;
+    text-align: right;
+    height: 100px;
+}
 
-    .hotline-box .hotline-title {
-        font-size: 16px;
-        font-weight: bold;
-    }
+.hotline-box .hotline-title {
+    font-size: 16px;
+    font-weight: bold;
+}
 
-    .hotline-box .hotline-number {
-        font-size: 20px;
-        font-weight: bold;
-        color: #FFD700;
-    }
-.nav-item{
+.hotline-box .hotline-number {
+    font-size: 20px;
+    font-weight: bold;
+    color: #ffd700;
+}
+.nav-item {
     margin-left: 40px;
 }
-    .navbar {
-        background-color: #4CAF50;
+.navbar {
+    background-color: #4caf50;
+}
+
+.navbar-brand {
+    font-weight: bold;
+    color: #e67e00;
+}
+
+.nav-link {
+    color: white;
+    transition: color 0.3s ease;
+    font-weight: bold;
+}
+
+.nav-link:hover {
+    background: #e67e00;
+    border-radius: 5px;
+}
+
+/* Tùy chỉnh nút hamburger */
+.navbar-toggler {
+    border-color: rgba(0, 0, 0, 0.1);
+}
+
+.navbar-toggler-icon {
+    background-size: contain;
+}
+/* Button Hotline */
+.hotline-button {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #ff8c42;
+    color: #fff;
+    font-size: 16px;
+    font-weight: bold;
+    padding: 15px 20px;
+    border-radius: 50px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    z-index: 1000;
+}
+
+.hotline-button:hover {
+    background-color: #e67e00;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+    transform: scale(1.1);
+}
+
+/* Icon trong nút */
+.hotline-icon {
+    font-size: 24px;
+    animation: infinity-bounce 0.8s infinite ease-in-out;
+}
+
+/* Animation infinity */
+@keyframes infinity-bounce {
+    0%,
+    100% {
+        transform: translateY(0);
     }
-    
-    .navbar-brand {
-        font-weight: bold;
-        color: #e67e00;
+
+    50% {
+        transform: translateY(-5px);
     }
-    
-    .nav-link {
-        color: white;
-        transition: color 0.3s ease;
-        font-weight: bold;
-    }
-    
-    .nav-link:hover {
-        background: #e67e00;
-        border-radius: 5px;
-    }
-    
-    /* Tùy chỉnh nút hamburger */
-    .navbar-toggler {
-        border-color: rgba(0, 0, 0, 0.1);
-    }
-    
-    .navbar-toggler-icon {
-        background-size: contain;
-    }
-    /* Button Hotline */
+}
+
+/* Responsive: Ẩn trên màn hình nhỏ hơn 576px */
+@media (max-width: 576px) {
     .hotline-button {
-        position: fixed;
-        bottom: 20px;
-        right: 20px;
-        background-color: #ff8c42;
-        color: #fff;
-        font-size: 16px;
-        font-weight: bold;
-        padding: 15px 20px;
-        border-radius: 50px;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-        text-decoration: none;
-        display: flex;
-        align-items: center;
-        gap: 10px;
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
-        z-index: 1000;
+        padding: 10px 15px;
+        font-size: 14px;
     }
 
-    .hotline-button:hover {
-        background-color: #e67e00;
-        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
-        transform: scale(1.1);
-    }
-
-    /* Icon trong nút */
     .hotline-icon {
-        font-size: 24px;
-        animation: infinity-bounce 0.8s infinite ease-in-out;
+        font-size: 20px;
     }
-
-    /* Animation infinity */
-    @keyframes infinity-bounce {
-        0%,
-        100% {
-            transform: translateY(0);
-        }
-
-        50% {
-            transform: translateY(-5px);
-        }
-    }
-
-    /* Responsive: Ẩn trên màn hình nhỏ hơn 576px */
-    @media (max-width: 576px) {
-        .hotline-button {
-            padding: 10px 15px;
-            font-size: 14px;
-        }
-
-        .hotline-icon {
-            font-size: 20px;
-        }
-    }
+}
