@@ -130,7 +130,6 @@
                     </ul>
                 </div>
                 <!-- Cột 3: Theo dõi chúng tôi -->
-                <!-- Cột 3: Theo dõi chúng tôi -->
                 <div class="col-md-4 mb-4">
                     <h5 class="text-uppercase text-warning">Theo dõi chúng tôi</h5>
                     <!-- Nhúng Fanpage Facebook -->
@@ -150,7 +149,7 @@
             <hr class="bg-light">
             <!-- Bản quyền -->
             <div class="text-center">
-                <p class="mb-0">&copy; 2024 Công ty TNHH XYZ. Tất cả các quyền được bảo lưu.</p>
+                <p class="mb-0">&copy; 2024 Công ty TNHH TVGS Xây Dựng A&C. Tất cả các quyền được bảo lưu.</p>
             </div>
         </div>
     </footer>
