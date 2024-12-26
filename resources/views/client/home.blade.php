@@ -16,7 +16,7 @@
         padding: 10px;
     }
 
-    /* cell number */
+
     .carousel-cell-flick:before {
         display: block;
         text-align: center;
@@ -29,9 +29,12 @@
     .image-caraulsel {
         width: 100%;
         object-fit: cover;
-        height: 100%;
+        height: 280px;
 
-    }
+    } 
+
+
+
 
     /* General Styling */
     .home-intro-content {
@@ -100,24 +103,7 @@
         box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
     }
 
-    /* Responsive */
-    @media (max-width: 768px) {
-        .home-intro-content {
-            padding: 20px;
-        }
-
-        .home-intro-content h3 {
-            font-size: 24px;
-        }
-
-        .intro-content {
-            font-size: 14px;
-        }
-
-        .features-list li {
-            font-size: 14px;
-        }
-    }
+   
 
 
     /* General Styling */
@@ -179,24 +165,7 @@
         font-weight: bold;
     }
 
-    /* Responsive */
-    @media (max-width: 768px) {
-        .video-container iframe {
-            height: 250px;
-        }
-
-        .description-container {
-            padding: 15px;
-        }
-
-        .description-title {
-            font-size: 22px;
-        }
-
-        .description-text {
-            font-size: 14px;
-        }
-    }
+   
 
     /* General Container Styling */
     .item-work {
@@ -243,9 +212,44 @@
         transform: scale(1.05);
         box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
     }
-
     /* Responsive Layout */
     @media (max-width: 768px) {
+        .carousel-flick-cell{
+            height: 140px;
+        }
+        .image-caraulsel{
+            height: 120px;
+        }
+        .home-intro-content {
+            padding: 20px;
+        }
+
+        .home-intro-content h3 {
+            font-size: 24px;
+        }
+
+        .intro-content {
+            font-size: 14px;
+        }
+
+        .features-list li {
+            font-size: 14px;
+        }
+        .video-container iframe {
+            height: 250px;
+        }
+
+        .description-container {
+            padding: 15px;
+        }
+
+        .description-title {
+            font-size: 22px;
+        }
+
+        .description-text {
+            font-size: 14px;
+        }
         .item-work {
             padding: 15px;
         }
@@ -536,8 +540,9 @@
                     <!-- Indicators -->
                     <div class="carousel-indicators">
                         @foreach ($feedbacks as $key => $item)
-                        <button type="button" data-bs-target="#testimonialCarousel" data-bs-slide-to="{{$key}}" class="{{$key==0?'active':''}}"
-                        aria-current="true" aria-label="Slide-{{$key}}"></button>
+                            <button type="button" data-bs-target="#testimonialCarousel"
+                                data-bs-slide-to="{{ $key }}" class="{{ $key == 0 ? 'active' : '' }}"
+                                aria-current="true" aria-label="Slide-{{ $key }}"></button>
                         @endforeach
                     </div>
 
@@ -545,16 +550,16 @@
                     <div class="carousel-inner">
                         <!-- Slide 1 -->
                         @foreach ($feedbacks as $key => $item)
-                        <div class="carousel-item {{$key==0?'active':''}}">
-                            <div class="testimonial-card mx-auto">
-                                <img src="{{$item->image}}" alt="Customer Image">
-                                <h5 class="testimonial-name">{{$item->name}}</h5>
-                                <p class="testimonial-title">Chủ Dự Án</p>
-                                <p class="testimonial-content">
-                                    "{{$item->description}}"
-                                </p>
+                            <div class="carousel-item {{ $key == 0 ? 'active' : '' }}">
+                                <div class="testimonial-card mx-auto">
+                                    <img src="{{ $item->image }}" alt="Customer Image">
+                                    <h5 class="testimonial-name">{{ $item->name }}</h5>
+                                    <p class="testimonial-title">Chủ Dự Án</p>
+                                    <p class="testimonial-content">
+                                        "{{ $item->description }}"
+                                    </p>
+                                </div>
                             </div>
-                        </div>
                         @endforeach
                     </div>
                     <!-- Controls -->
@@ -575,12 +580,12 @@
     </div>
     <script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
     <script>
-        // Khởi tạo Flickity
         const elem = document.querySelector('.carousel-flick');
         const flkty = new Flickity(elem, {
-            cellAlign: 'left',
+            cellAlign: 'center',
             contain: true,
             wrapAround: true, // Cho phép lặp lại carousel
+            adaptiveHeight: true,
             autoPlay: 2000, // Tự động chuyển slide sau 3 giây
             prevNextButtons: true, // Hiển thị nút điều hướng
             pageDots: false // Hiển thị điểm chỉ báo
