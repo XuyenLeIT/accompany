@@ -1,5 +1,5 @@
 @extends('layouts.client')
-@section('title', 'Home Page')
+@section('title', 'Trang chủ')
 <style>
     /* carausels */
     .carousel-flick {

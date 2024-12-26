@@ -1,5 +1,5 @@
 @extends('layouts.client')
-@section('title', 'Home Page')
+@section('title', 'tin tức')
 <style>
     .title-card {
         height: 80px;

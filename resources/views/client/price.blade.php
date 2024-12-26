@@ -1,5 +1,5 @@
 @extends('layouts.client')
-@section('title', 'Home Page')
+@section('title', 'Báo giá')
 <style>
     /* Nội dung chính */
     .main-content {

@@ -64,7 +64,9 @@
         font-weight: bold;
         color: #FFD700;
     }
-
+.nav-item{
+    margin-left: 40px;
+}
     .navbar {
         background-color: #4CAF50;
     }

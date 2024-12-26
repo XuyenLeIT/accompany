@@ -1,5 +1,5 @@
 @extends('layouts.client')
-@section('title', 'Home Page')
+@section('title', 'Liên hệ')
 <style>
     .contact-container {
         background-color: #fff;
