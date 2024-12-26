@@ -414,9 +414,6 @@
             @if ($homeIntro)
                 <div class="col-md-7">
                     <div class="home-intro-content">
-
-                        {{-- @dd($homeIntro) --}}
-                        {{-- <h3>CHÚNG TÔI SINH RA VÌ <span class="text-highlight">HẠNH PHÚC</span> CỦA CHÍNH BẠN</h3> --}}
                         <h3>{{ $homeIntro->title }}</h3>
                         <p class="intro-content">
                             {{ $homeIntro->description }}

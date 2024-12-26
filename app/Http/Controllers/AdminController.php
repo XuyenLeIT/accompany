@@ -398,8 +398,8 @@ class AdminController extends Controller
         $panelJob = PanelJobImage::findOrFail($id);
         $existingImagePath = $panelJob->image;
         $panelJob->delete();
-        if (File::exists($existingImagePath)) {
-            File::delete($existingImagePath);
+        if (File::exists(public_path($existingImagePath))) {
+            File::delete(public_path($existingImagePath));
         }
         return redirect()->back()->with('success', 'panel images deleted successfully.');
     }
