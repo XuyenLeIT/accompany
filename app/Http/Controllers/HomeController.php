@@ -6,6 +6,7 @@ use App\Models\Ads;
 use App\Models\Carausel;
 use App\Models\Feedback;
 use App\Models\IntroBenefit;
+use App\Models\IntroCompany;
 use App\Models\IntroHome;
 use App\Models\IntroTvgs;
 use App\Models\IntroVideo;
@@ -20,6 +21,7 @@ class HomeController extends Controller
   {
     $carausels = Carausel::all();
     $homeIntro = IntroHome::first();
+    $introCompany = IntroCompany::first();
     $benefitItems = IntroBenefit::all()->toArray();;
     $features_chunks = array_chunk($benefitItems, count($benefitItems) / 2);
     $introVideo = IntroVideo::first();
@@ -28,7 +30,7 @@ class HomeController extends Controller
     $feedbacks = Feedback::all();
     return view("client.home",compact("homeIntro",
     "features_chunks","carausels","introVideo",
-    "panelJobs","outstandings","feedbacks"));
+    "panelJobs","introCompany","outstandings","feedbacks"));
   }
 
 }

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use App\Mail\OTPMail;
 use App\Models\Account;
 use App\Models\Feedback;
+use App\Models\IntroCompany;
 use App\Models\Outstanding;
 use App\Models\PanelJobImage;
 use App\Models\Quote;
@@ -610,6 +611,48 @@ class AdminController extends Controller
     $quote = Quote::find($id);
     $quote->delete();
     return redirect()->route("admin.quote.index")->with('success', 'quote deleted successfully.');
+    }
+
+    public function editIntroCompanmy()
+    {
+        $introCompany = IntroCompany::first();
+        return view("admin.company.index",compact("introCompany"));
+
+    }
+    public function updateIntroCompanmy(Request $request, IntroCompany $introCompany)
+    {
+        $request->validate([
+            'image' => 'image|mimes:jpeg,png,webp,jpg,gif|max:2048',
+            'description' => 'required',
+            'title' => 'required',
+        ]);
+        try {
+            // Kiểm tra xem checkbox có được chọn hay không
+            $imagePath = "";
+            if ($request->hasFile('image')) {
+                $existingImagePath = public_path( $request->imageExisting);
+                if (File::exists($existingImagePath)) {
+                    File::delete($existingImagePath);
+                }
+                $filename = uniqid() . '.' . $request->image->getClientOriginalName();
+                $request->image->move(public_path("introCompanyImage"), $filename);
+                $imagePath = '/introCompanyImage/' . $filename;
+            } else {
+                $imagePath = $request->imageExisting;
+            }
+            $introCompany->update([
+                'image' => $imagePath,
+                'title' => $request->title,
+                'description' => $request->description
+            ]);
+            return redirect()->back()->with('info', 'updated intro company successfully');
+        } catch (\Throwable $th) {
+            $existingImagePath = public_path($imagePath);
+            if (File::exists($existingImagePath)) {
+                File::delete($existingImagePath);
+            }
+            return redirect()->back()->with('info', 'Opp error serve.');
+        }
     }
 }
 

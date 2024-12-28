@@ -31,7 +31,7 @@
         object-fit: cover;
         height: 280px;
 
-    } 
+    }
 
 
 
@@ -103,7 +103,7 @@
         box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
     }
 
-   
+
 
 
     /* General Styling */
@@ -165,7 +165,7 @@
         font-weight: bold;
     }
 
-   
+
 
     /* General Container Styling */
     .item-work {
@@ -212,14 +212,31 @@
         transform: scale(1.05);
         box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
     }
+
+    .img-intro {
+        width: 100%;
+        object-fit: cover;
+        border-radius: 10px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        margin-bottom: 15px;
+    }
+
+    .img-intro:hover {
+        transform: scale(1.05);
+        box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+    }
+
     /* Responsive Layout */
     @media (max-width: 768px) {
-        .carousel-flick-cell{
+        .carousel-flick-cell {
             height: 140px;
         }
-        .image-caraulsel{
+
+        .image-caraulsel {
             height: 120px;
         }
+
         .home-intro-content {
             padding: 20px;
         }
@@ -235,6 +252,7 @@
         .features-list li {
             font-size: 14px;
         }
+
         .video-container iframe {
             height: 250px;
         }
@@ -250,6 +268,7 @@
         .description-text {
             font-size: 14px;
         }
+
         .item-work {
             padding: 15px;
         }
@@ -517,7 +536,25 @@
             @endforeach
 
         @endif
-        <div class="row">
+        {{-- gioi thieu cong ty --}}
+        <div class="container p-1 item-work">
+            <div class="row justify-content-center w-80 mx-auto">
+                @if ($introCompany)
+                    <div class="col-md-5">
+                        @if ($introCompany->image)
+                            <img class="img-intro" src="{{ $introCompany->image }}" />
+                        @else
+                            <p>No Image</p>
+                        @endif
+                    </div>
+                    <div class="col-md-7">
+                        <h4 class="title-acceptance">{{ $introCompany->title }}</h4>
+                        <p class="content-acceptance">{!! $introCompany->description !!}</p>
+                    </div>
+                @endif
+            </div>
+        </div>
+        <div class="row mt-1">
             <h3 class="text-center fancy-title">SỰ KHÁC BIỆT CỦA A&C</h3>
             @if ($outstandings && $outstandings->count() > 0)
                 @foreach ($outstandings as $item)

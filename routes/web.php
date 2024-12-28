@@ -18,9 +18,11 @@ Route::get('/', [HomeController::class, "home"])->name("client.home");
 Route::get('/tu-van-giam-sat', [TVGSController::class, "tvgs"])->name("client.tvgs");
 Route::get('/bao-gia-tu-van-giam-sat', [PriceController::class, "price"])->name("client.price");
 Route::get('/du-an', [ProjectController::class, "project"])->name("client.project");
+Route::get('/du-an/{slug}', [ProjectController::class, "detailProject"])->name("client.detailProject");
 Route::get('/lien-he', [ContactController::class, "contact"])->name("client.contact");
 Route::get('/tin-tuc', [NewController::class, "news"])->name("client.news");
 Route::get('/tin-tuc/{slug}', [TVGSController::class, "newsDetail"])->name("client.newsDetail");
+
 Route::post('/lien-he/message', [ContactController::class, "messageMail"])->name("client.contact.message");
 
 //tai bao gia
@@ -84,6 +86,12 @@ Route::prefix('admin')->middleware(AuthMiddelware::class)->group(function () {
         ->name("admin.panelJob.storeUpdate");
     Route::get('/panel/delete/{id}', [AdminController::class, "deletePanelJob"])
         ->name("admin.panelJob.delete");
+
+    //introCompany
+    Route::get('/intro/company', [AdminController::class, "editIntroCompanmy"])
+    ->name("admin.intro.company.index");
+    Route::post('/intro/company/{introCompany}', [AdminController::class, "updateIntroCompanmy"])
+    ->name("admin.intro.company.update");
 
     //panel image
     Route::get('/panel/detail/{id}', [AdminController::class, "detailPanelJob"])

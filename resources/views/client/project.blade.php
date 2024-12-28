@@ -135,6 +135,7 @@
                         <p class="card-text">Chủ đầu tư: {{$item->owner}}</p>
                     </div>
                     <div class="card-footer">Hoàn thành: {{$item->year}}</div>
+                    <div class="card-footer"><a class="btn btn-info" href="{{route("client.detailProject",$item->id)}}">Chi tiết</a></div>
                 </div>
             </div>
             @endforeach

@@ -61,9 +61,21 @@
                     <p class="text-danger">{{ $message }}</p>
                 @enderror
             </div>
-
+            <div class="mb-3 mt-3">
+                <label for="image" class="form-label">Description:</label>
+                <textarea name="description"  id="description"  class="form-control" cols="30" rows="10">{{ old('description') }}</textarea>
+                @error('description')
+                    <p class="text-danger">{{ $message }}</p>
+                @enderror
+            </div>
             <button type="submit" class="btn btn-primary">Submit</button>
         </form>
     </div>
-
+    <script>
+        $('#description').summernote({
+            tabsize: 2,
+            height: 300
+        });
+        let markupStr = $('#summernote').summernote('code');
+    </script>
 @endsection
