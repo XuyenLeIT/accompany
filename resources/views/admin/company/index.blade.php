@@ -14,7 +14,7 @@
             @csrf
             <div class="mb-3 mt-3">
                 <label for="title" class="form-label">Title:</label>
-                <input type="text"  class="form-control" value="{{ $introCompany->tutle }}" name="title">
+                <input type="text"  class="form-control" value="{{ $introCompany->title }}" name="title">
                 @error('title')
                     <p class="text-danger">{{ $message }}</p>
                 @enderror
@@ -47,13 +47,18 @@
             height: 300,
             toolbar: [
                 ['style', ['style']],
-                ['font', ['bold', 'italic', 'subscript', 'superscript', 'clear']],
+                ['font', ['bold', 'italic', 'underline', 'clear']],
+                ['fontsize', ['fontsize']], // Thêm công cụ chỉnh size chữ
+                ['fontname', ['fontname']], // Thêm công cụ chọn font chữ
                 ['color', ['color']],
-                ['para', ['ol', 'ul', 'paragraph']],
+                ['para', ['ul', 'ol', 'paragraph']],
                 ['table', ['table']],
-                ['insert', ['hr']],
-                ['view', ['fullscreen']]
+                ['view', ['fullscreen', 'codeview', 'help']]
             ],
+            fontSizes: ['8', '10', '12', '14', '16', '18', '24', '36', '48', '64', '82', '150'], // Cấu hình tùy chọn size chữ
         });
+    
+        // Lấy nội dung từ Summernote nếu cần
+        let markupStr = $('#description').summernote('code');
     </script>
 @endsection
