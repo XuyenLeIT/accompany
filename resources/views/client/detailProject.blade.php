@@ -1,14 +1,11 @@
 @extends('layouts.client')
 @section('title', 'Tư Vấn Giám Sát')
 @section('meta_tags')
-    <meta name="description"
-        content="{{ $cleanDescription }}">
-    <meta property="og:image"
-        content="https://thumbs.dreamstime.com/z/working-online-work-office-businessman-employee-cartoon-vector-illustration-154769768.jpg">
-        <meta name="keywords" content="giamsatxaydung,tuvanxaydung,tintucxaydung,xaynha">
+    <meta name="description" content="{{ $cleanDescription }}">
+    <meta name="keywords" content="giamsatxaydung,tuvanxaydung,tintucxaydung,xaynha">
     <meta name="author" content="Trương Minh Hải">
     <!-- Thẻ Open Graph cho chia sẻ trên mạng xã hội -->
-    <meta property="og:title" content={{ $detailProject->title }}>
+    <meta property="og:title" content="{{ $detailProject->title }}">
     <meta property="og:description" content="{{ $cleanDescription }}">
     <meta property="og:image"
         content="https://thumbs.dreamstime.com/z/working-online-work-office-businessman-employee-cartoon-vector-illustration-154769768.jpg">
