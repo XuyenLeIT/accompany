@@ -1,12 +1,15 @@
 @extends('layouts.client')
 @section('title', 'Tư Vấn Giám Sát')
 @section('meta_tags')
-    <meta name="keywords" content="giamsatxaydung,tuvanxaydung,tintucxaydung,xaynha">
+    <meta name="description"
+        content="{{ $cleanDescription }}">
+    <meta property="og:image"
+        content="https://thumbs.dreamstime.com/z/working-online-work-office-businessman-employee-cartoon-vector-illustration-154769768.jpg">
+        <meta name="keywords" content="giamsatxaydung,tuvanxaydung,tintucxaydung,xaynha">
     <meta name="author" content="Trương Minh Hải">
-    <meta property="og:description" content="{{$cleanDescription }}">
     <!-- Thẻ Open Graph cho chia sẻ trên mạng xã hội -->
     <meta property="og:title" content={{ $detailProject->title }}>
-    <meta property="og:description" content="{{$cleanDescription }}>
+    <meta property="og:description" content="{{ $cleanDescription }}">
     <meta property="og:image"
         content="https://thumbs.dreamstime.com/z/working-online-work-office-businessman-employee-cartoon-vector-illustration-154769768.jpg">
     <meta property="og:url" content="{{ url()->current() }}">
@@ -187,7 +190,7 @@
                     <!-- Danh sách bài viết liên quan -->
                     <h3 class="related-title">Các dự án khác</h3>
                     @if ($projectOther)
-                    {{-- @dd($projectOther) --}}
+                        {{-- @dd($projectOther) --}}
                         @foreach ($projectOther as $item)
                             <!-- Card 1 -->
                             <div class="col-lg-4 col-md-6">
@@ -204,7 +207,7 @@
                         @endforeach
                     @endif
                 </div>
-    
+
             </div>
         </div>
 
