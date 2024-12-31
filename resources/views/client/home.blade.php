@@ -452,8 +452,8 @@
 </style>
 @section('content')
 
-    <div class="container-fluid">
-        <div class="row">
+    <div class="container-fluid gx-0">
+        <div class="row gx-0">
             @if ($carausels && $carausels->count() > 0)
                 <div class="carousel-flick" data-flickity>
                     @foreach ($carausels as $item)

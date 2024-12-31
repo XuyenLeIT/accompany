@@ -4,7 +4,7 @@
 
 @section('content')
     <div class="container p-5">
-        <h1>Update form introCompany</h1>
+        <h1>CẬP NHẬT GIỚI THIỆU CÔNG TY</h1>
         @if (session('info'))
             <div class="alert alert-success">
                 <strong>Info!</strong> {{ session('info') }}

@@ -19,7 +19,7 @@
 
 <body>
     <!-- Header Section -->
-    <div class="container-fluid">
+    <div class="container-fluid gx-0">
         <div class="header">
             <div class="row align-items-center">
                 <!-- Logo -->
