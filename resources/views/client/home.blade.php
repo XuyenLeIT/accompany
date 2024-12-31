@@ -222,16 +222,17 @@
 
     .img-container {
         width: 100%;
-        height: 200px;
-        padding: 5px;
+        height: 250px;
+        padding: 10px;
         margin-bottom: 30px;
     }
 
     /* Image Grid Styling */
     .img-acceptance {
-        object-fit: cover;
+        object-fit: contain;
         width: 100%;
-        border-radius: 10px;
+        height: 100%;
+        padding: 10px;
         border-radius: 10px;
         box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
         transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -310,145 +311,148 @@
             font-size: 14px;
         }
 
-        .img-acceptance {
-            height: 150px;
+        .img-container {
+            width: 80%;
+            height: 100%;
+            display: block;
+            margin: auto;
+            margin-bottom: 10px;
         }
-    }
 
-    /* Title Styling */
-    /* Title Styling */
-    .fancy-title {
-        font-size: 28px;
-        font-weight: bold;
-        text-transform: uppercase;
-        color: #0066cc;
-        margin-bottom: 30px;
-        text-align: center;
-        text-shadow: 2px 2px 4px rgba(0, 102, 204, 0.2);
-    }
-
-    /* Card Container */
-    .card {
-        position: relative;
-        overflow: hidden;
-        border-radius: 15px;
-        box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
-        margin-bottom: 20px;
-    }
-
-    .card:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
-    }
-
-    /* Image Styling */
-    .card img {
-        width: 100%;
-        height: 250px;
-        object-fit: cover;
-    }
-
-    /* Always Visible Overlay at Bottom */
-    .card .overlay {
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        width: 100%;
-        background: rgba(0, 0, 0, 0.6);
-        color: white;
-        padding: 10px 15px;
-        text-align: center;
-        border-radius: 0 0 15px 15px;
-    }
-
-    .card .overlay h2 {
-        font-size: 18px;
-        font-weight: bold;
-        text-transform: uppercase;
-        margin: 0;
-        text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.5);
-    }
-
-    /* Responsive Styling */
-    @media (max-width: 768px) {
+        /* Title Styling */
+        /* Title Styling */
         .fancy-title {
-            font-size: 24px;
+            font-size: 28px;
+            font-weight: bold;
+            text-transform: uppercase;
+            color: #0066cc;
+            margin-bottom: 30px;
+            text-align: center;
+            text-shadow: 2px 2px 4px rgba(0, 102, 204, 0.2);
         }
 
+        /* Card Container */
+        .card {
+            position: relative;
+            overflow: hidden;
+            border-radius: 15px;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            margin-bottom: 20px;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Image Styling */
         .card img {
-            height: 200px;
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+        }
+
+        /* Always Visible Overlay at Bottom */
+        .card .overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            color: white;
+            padding: 10px 15px;
+            text-align: center;
+            border-radius: 0 0 15px 15px;
         }
 
         .card .overlay h2 {
-            font-size: 16px;
+            font-size: 18px;
+            font-weight: bold;
+            text-transform: uppercase;
+            margin: 0;
+            text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.5);
         }
-    }
+
+        /* Responsive Styling */
+        @media (max-width: 768px) {
+            .fancy-title {
+                font-size: 24px;
+            }
+
+            .card img {
+                height: 200px;
+            }
+
+            .card .overlay h2 {
+                font-size: 16px;
+            }
+        }
 
 
-    .home-feedback {
-        background: #E2DFD0;
-        border-radius: 10px;
-        margin-top: 10px;
-        padding: 5px;
-    }
+        .home-feedback {
+            background: #E2DFD0;
+            border-radius: 10px;
+            margin-top: 10px;
+            padding: 5px;
+        }
 
-    .carousel-item {
-        text-align: center;
-        padding: 30px;
-    }
+        .carousel-item {
+            text-align: center;
+            padding: 30px;
+        }
 
-    .testimonial-card {
-        background-color: #fff;
-        border-radius: 10px;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        padding: 20px;
-        display: inline-block;
-    }
+        .testimonial-card {
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            display: inline-block;
+        }
 
-    .testimonial-card img {
-        width: 80px;
-        height: 80px;
-        border-radius: 50%;
-        object-fit: cover;
-        margin-bottom: 15px;
-        border: 3px solid #007bff;
-    }
+        .testimonial-card img {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 15px;
+            border: 3px solid #007bff;
+        }
 
-    .testimonial-name {
-        font-size: 18px;
-        font-weight: bold;
-        color: #343a40;
-    }
+        .testimonial-name {
+            font-size: 18px;
+            font-weight: bold;
+            color: #343a40;
+        }
 
-    .testimonial-title {
-        font-size: 14px;
-        color: #6c757d;
-        margin-bottom: 15px;
-    }
+        .testimonial-title {
+            font-size: 14px;
+            color: #6c757d;
+            margin-bottom: 15px;
+        }
 
-    .testimonial-content {
-        font-size: 16px;
-        color: #6c757d;
-        line-height: 1.5;
-        font-style: italic;
-    }
+        .testimonial-content {
+            font-size: 16px;
+            color: #6c757d;
+            line-height: 1.5;
+            font-style: italic;
+        }
 
-    .carousel-control-prev-icon,
-    .carousel-control-next-icon {
-        background-color: #007bff;
-        /* Màu xanh cho icon */
-        border-radius: 50%;
-        /* Biểu tượng dạng hình tròn */
-        width: 40px;
-        height: 40px;
-    }
+        .carousel-control-prev-icon,
+        .carousel-control-next-icon {
+            background-color: #007bff;
+            /* Màu xanh cho icon */
+            border-radius: 50%;
+            /* Biểu tượng dạng hình tròn */
+            width: 40px;
+            height: 40px;
+        }
 
-    .carousel-control-prev-icon:hover,
-    .carousel-control-next-icon:hover {
-        background-color: #0056b3;
-        /* Màu đậm hơn khi hover */
-    }
+        .carousel-control-prev-icon:hover,
+        .carousel-control-next-icon:hover {
+            background-color: #0056b3;
+            /* Màu đậm hơn khi hover */
+        }
 </style>
 @section('content')
 
@@ -530,7 +534,7 @@
                                                 <div class="img-container">
                                                     <img class="img-acceptance" src="{{ $ig->image }}" />
                                                 </div>
-                                         
+
                                             </div>
                                         @endforeach
                                     @else
