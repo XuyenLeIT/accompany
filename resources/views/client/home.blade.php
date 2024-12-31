@@ -11,7 +11,7 @@
     <meta property="og:title" content="Giám Sát Xây Dựng A&C - Dịch Vụ Giám Sát Chất Lượng Cao">
     <meta property="og:description"
         content="Công ty Giám sát xây dựng A&C cung cấp dịch vụ giám sát công trình uy tín và chuyên nghiệp. Đảm bảo chất lượng và tiến độ công trình xây dựng của bạn.">
-    <meta property="og:image" content="{{$introCompany->image}}">
+    <meta property="og:image" content="{{ $introCompany->image }}">
     <meta property="og:url" content="{{ url()->current() }}">
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="Giám Sát Xây Dựng A&C">
@@ -220,15 +220,21 @@
         color: #555555;
     }
 
-    /* Image Grid Styling */
-    .img-acceptance {
+    .img-container {
         width: 100%;
         height: 200px;
+        padding: 5px;
+        margin-bottom: 30px;
+    }
+
+    /* Image Grid Styling */
+    .img-acceptance {
         object-fit: cover;
+        width: 100%;
+        border-radius: 10px;
         border-radius: 10px;
         box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
         transition: transform 0.3s ease, box-shadow 0.3s ease;
-        margin-bottom: 15px;
     }
 
     .img-acceptance:hover {
@@ -521,7 +527,10 @@
                                     @if ($item->panelJobImages->count() > 0)
                                         @foreach ($item->panelJobImages as $ig)
                                             <div class="col-md-4">
-                                                <img class="img-acceptance" src="{{ $ig->image }}" />
+                                                <div class="img-container">
+                                                    <img class="img-acceptance" src="{{ $ig->image }}" />
+                                                </div>
+                                         
                                             </div>
                                         @endforeach
                                     @else
@@ -544,7 +553,9 @@
                                     @if ($item->panelJobImages->count() > 0)
                                         @foreach ($item->panelJobImages as $ig)
                                             <div class="col-md-4">
-                                                <img class="img-acceptance" src="{{ $ig->image }}" />
+                                                <div class="img-container">
+                                                    <img class="img-acceptance" src="{{ $ig->image }}" />
+                                                </div>
                                             </div>
                                         @endforeach
                                     @else
