@@ -14,7 +14,7 @@
     <div class="container">
         <h1 class="text-center bg-primary">PANEL JOB</h1>
         <div class="row">
-            <div class="col-md-7">
+            <div class="col-md-12">
                 <table class="table knowtable">
                     <h1>Danh Sach Panel Job</h1>
                     <thead>
@@ -27,6 +27,7 @@
                         </tr>
                     </thead>
                     <tbody>
+                        {{-- @dd($panels) --}}
                         @foreach ($panels as $item)
                             <tr>
                                 <td>{{ $item->id }}</td>
@@ -38,8 +39,8 @@
                                 <td>
                                     <a class="btn btn-warning" href="{{ route('admin.panelJob.edit', $item->id) }}"><i
                                             class="fa-solid fa-pen-to-square"></i></a>
-                                    <a class="btn btn-danger" href="{{ route('admin.panelJob.delete', $item->id) }}"><i
-                                            class="fa-solid fa-trash"></i></a>
+                                    {{-- <a class="btn btn-danger" href="{{ route('admin.panelJob.delete', $item->id) }}"><i
+                                            class="fa-solid fa-trash"></i></a> --}}
                                     <a class="btn btn-info" href="{{ route('admin.panelJob.detail', $item->id) }}"><i class="fa-solid fa-circle-info"></i></a>
                                 </td>
                             </tr>
@@ -47,7 +48,7 @@
                     </tbody>
                 </table>
             </div>
-            <div class="col-md-5">
+            {{-- <div class="col-md-5">
                 <h1>Create form Panel Job</h1>
                 @if (session('info'))
                     <div class="alert alert-success">
@@ -136,7 +137,7 @@
                     </form>
                 @endif
 
-            </div>
+            </div> --}}
         </div>
     </div>
 @endsection
