@@ -353,8 +353,20 @@
             object-fit: cover;
         }
 
-        /* Always Visible Overlay at Bottom */
-        .card .overlay {
+        .fancy-title {
+            font-size: 24px;
+        }
+
+        .card img {
+            height: 200px;
+        }
+
+        .card .overlay h2 {
+            font-size: 16px;
+        }
+    }
+            /* Always Visible Overlay at Bottom */
+            .card .overlay {
             position: absolute;
             bottom: 0;
             left: 0;
@@ -374,88 +386,71 @@
             text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.5);
         }
 
-        /* Responsive Styling */
-        @media (max-width: 768px) {
-            .fancy-title {
-                font-size: 24px;
-            }
+    .home-feedback {
+        background: #E2DFD0;
+        border-radius: 10px;
+        margin-top: 10px;
+        padding: 5px;
+    }
 
-            .card img {
-                height: 200px;
-            }
+    .carousel-item {
+        text-align: center;
+        padding: 30px;
+    }
 
-            .card .overlay h2 {
-                font-size: 16px;
-            }
-        }
+    .testimonial-card {
+        background-color: #fff;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        padding: 20px;
+        display: inline-block;
+    }
 
+    .testimonial-card img {
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+        object-fit: cover;
+        margin-bottom: 15px;
+        border: 3px solid #007bff;
+    }
 
-        .home-feedback {
-            background: #E2DFD0;
-            border-radius: 10px;
-            margin-top: 10px;
-            padding: 5px;
-        }
+    .testimonial-name {
+        font-size: 18px;
+        font-weight: bold;
+        color: #343a40;
+    }
 
-        .carousel-item {
-            text-align: center;
-            padding: 30px;
-        }
+    .testimonial-title {
+        font-size: 14px;
+        color: #6c757d;
+        margin-bottom: 15px;
+    }
 
-        .testimonial-card {
-            background-color: #fff;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            padding: 20px;
-            display: inline-block;
-        }
+    .testimonial-content {
+        font-size: 16px;
+        color: #6c757d;
+        line-height: 1.5;
+        font-style: italic;
+    }
 
-        .testimonial-card img {
-            width: 80px;
-            height: 80px;
-            border-radius: 50%;
-            object-fit: cover;
-            margin-bottom: 15px;
-            border: 3px solid #007bff;
-        }
+    .carousel-control-prev-icon,
+    .carousel-control-next-icon {
+        background-color: #007bff;
+        /* Màu xanh cho icon */
+        border-radius: 50%;
+        /* Biểu tượng dạng hình tròn */
+        width: 40px;
+        height: 40px;
+    }
 
-        .testimonial-name {
-            font-size: 18px;
-            font-weight: bold;
-            color: #343a40;
-        }
-
-        .testimonial-title {
-            font-size: 14px;
-            color: #6c757d;
-            margin-bottom: 15px;
-        }
-
-        .testimonial-content {
-            font-size: 16px;
-            color: #6c757d;
-            line-height: 1.5;
-            font-style: italic;
-        }
-
-        .carousel-control-prev-icon,
-        .carousel-control-next-icon {
-            background-color: #007bff;
-            /* Màu xanh cho icon */
-            border-radius: 50%;
-            /* Biểu tượng dạng hình tròn */
-            width: 40px;
-            height: 40px;
-        }
-
-        .carousel-control-prev-icon:hover,
-        .carousel-control-next-icon:hover {
-            background-color: #0056b3;
-            /* Màu đậm hơn khi hover */
-        }
+    .carousel-control-prev-icon:hover,
+    .carousel-control-next-icon:hover {
+        background-color: #0056b3;
+        /* Màu đậm hơn khi hover */
+    }
 </style>
 @section('content')
-
     <div class="container-fluid gx-0">
         <div class="row gx-0">
             @if ($carausels && $carausels->count() > 0)
