@@ -13,14 +13,15 @@
         integrity="sha512-5Hs3dF2AEPkpNAR7UiOHba+lRSJNeM2ECkwxUIxC1Q/FLycGTbNapWXB4tP889k5T5Ju8fs4b1P5z/iB4nMfSQ=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="https://unpkg.com/flickity@2/dist/flickity.min.css">
-    <link rel="stylesheet" href="/css/client_header.css">
     <link rel="icon" sizes="32x32" type="image/png" href="/images/logo.png">
+    <link rel="stylesheet" href="/css/client_header.css">
+
 </head>
 
 <body>
     <!-- Header Section -->
     <div class="container-fluid gx-0">
-        <div class="header_company">
+        <div class="header-company">
             <div class="row align-items-center">
                 <!-- Logo -->
                 <div class="col-md-4 logo-container">
