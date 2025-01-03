@@ -139,7 +139,7 @@
     }
 }
     /* Responsive Layout */
-    @media (max-width: 600px) {
+    @media only screen and (max-width: 600px) {
         .hotline-button {
             padding: 10px 15px;
             font-size: 14px;
