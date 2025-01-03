@@ -139,11 +139,11 @@
     }
 }
     /* Responsive Layout */
-    @media only screen and (max-width: 600px) {
+    @media only screen and (max-width: 768px) {
         .hotline-button {
             padding: 10px 15px;
             font-size: 14px;
-            right: 60px;
+            right: 30px;
         }
     
         .hotline-icon {
