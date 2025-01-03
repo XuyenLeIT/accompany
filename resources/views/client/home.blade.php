@@ -318,6 +318,10 @@
             margin: auto;
             margin-bottom: 10px;
         }
+
+        .card img {
+            height: 250px;
+        }
     }
 
     /* Title Styling */
@@ -349,7 +353,7 @@
     /* Image Styling */
     .card img {
         width: 100%;
-        height: 250px;
+        height: 400px;
         object-fit: cover;
     }
 
@@ -357,9 +361,6 @@
         font-size: 24px;
     }
 
-    .card img {
-        height: 200px;
-    }
 
     .card .overlay h2 {
         font-size: 16px;
