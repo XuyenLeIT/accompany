@@ -20,7 +20,7 @@
 <body>
     <!-- Header Section -->
     <div class="container-fluid gx-0">
-        <div class="header">
+        <div class="header_company">
             <div class="row align-items-center">
                 <!-- Logo -->
                 <div class="col-md-4 logo-container">
