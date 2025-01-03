@@ -1,6 +1,6 @@
 /* General Header Styles */
 .header_company {
-    background-color: #c9e6f0;
+    background-color: #c9e6f0 !important;
     padding-left: 10px;
 }
 
