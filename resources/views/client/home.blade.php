@@ -353,7 +353,7 @@
     /* Image Styling */
     .card img {
         width: 100%;
-        height: 400px;
+        height: 350px;
         object-fit: cover;
     }
 
@@ -585,7 +585,7 @@
             @endif
         </div>
     </div>
-    <div class="row mt-1 gx-0">
+    <div class="row mt-1 gx-0 p-3">
         <h3 class="text-center fancy-title">SỰ KHÁC BIỆT CỦA A&C</h3>
         @if ($outstandings && $outstandings->count() > 0)
             @foreach ($outstandings as $item)
