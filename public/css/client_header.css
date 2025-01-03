@@ -98,7 +98,7 @@
 /* Button Hotline */
 .hotline-button {
     position: fixed;
-    bottom: 10px;
+    bottom: 15px;
     right: 5px;
     background-color: #ff8c42;
     color: #fff;
@@ -143,7 +143,7 @@
         .hotline-button {
             padding: 10px 15px;
             font-size: 14px;
-            right: 30px;
+            right: 50px;
         }
     
         .hotline-icon {
