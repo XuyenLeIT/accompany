@@ -1,7 +1,9 @@
 /* General Header Styles */
+
 .header-company {
     background-color: #c9e6f0 !important;
     padding-left: 10px;
+    width: 100%;
 }
 
 /* Logo Section */
@@ -52,6 +54,7 @@
     color: #fff;
     text-align: right;
     height: 100px;
+
 }
 
 .hotline-box .hotline-title {

@@ -461,7 +461,7 @@
             </div>
         @endif
     </div>
-    <div class="row p-4 gx-2">
+    <div class="row p-4 gx-0">
         @if ($homeIntro)
             <div class="col-md-7">
                 <div class="home-intro-content">
@@ -490,7 +490,7 @@
         @endif
     </div>
 
-    <div class="row p-4 gy-2 gx-2">
+    <div class="row p-4 gy-2 gx-0">
         @if ($introVideo)
             <!-- Video Section -->
             <div class="col-lg-7">

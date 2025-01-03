@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@yield('title')</title>
     @yield('meta_tags')
+  
     <!-- Bootstrap 5 CSS CDN -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
@@ -20,75 +21,78 @@
 
 <body>
     <!-- Header Section -->
-    <div class="container-fluid gx-0">
-        <div class="header-company">
-            <div class="row align-items-center">
-                <!-- Logo -->
-                <div class="col-md-4 logo-container">
-                    @if ($companyInfo)
-                        <img src="{{ $companyInfo->logo }}" alt="Logo" class="logo-image">
-                    @endif
-
-                    <div>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="header-company">
+                <div class="row align-items-center">
+                    <!-- Logo -->
+                    <div class="col-md-4 logo-container">
                         @if ($companyInfo)
-                            <span class="tagline">{{ $companyInfo->sologan1 }}</strong>
+                            <img src="{{ $companyInfo->logo }}" alt="Logo" class="logo-image">
                         @endif
+    
+                        <div>
+                            @if ($companyInfo)
+                                <span class="tagline">{{ $companyInfo->sologan1 }}</strong>
+                            @endif
+                        </div>
                     </div>
-                </div>
-                <!-- Main Title -->
-                <div class="col-md-4 header-title">
-                    @if ($companyInfo)
-                        <strong>{{ $companyInfo->sologan2 }}</strong>
-                    @endif
-
-                </div>
-                <!-- Hotline -->
-                <div class="col-md-4">
-                    <div class="hotline-box">
-                        <span class="hotline-title">Hotline 24/7</span>
-                        <br>
+                    <!-- Main Title -->
+                    <div class="col-md-4 header-title">
                         @if ($companyInfo)
-                            <span class="hotline-number">{{ $companyInfo->phone }}</span>
+                            <strong>{{ $companyInfo->sologan2 }}</strong>
                         @endif
-
+    
+                    </div>
+                    <!-- Hotline -->
+                    <div class="col-md-4 gx-0">
+                        <div class="hotline-box">
+                            <span class="hotline-title">Hotline 24/7</span>
+                            <br>
+                            @if ($companyInfo)
+                                <span class="hotline-number">{{ $companyInfo->phone }}</span>
+                            @endif
+    
+                        </div>
                     </div>
                 </div>
             </div>
+            <!-- Navigation Bar -->
+            <nav class="navbar navbar-expand-lg navbar-light">
+                <div class="container">
+                    <!-- Nút Hamburger -->
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+    
+                    <!-- Danh sách Menu -->
+                    <div class="collapse navbar-collapse" id="navbarNav">
+                        <ul class="navbar-nav">
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('client.home') }}">TRANG CHỦ</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('client.tvgs') }}">TƯ VẤN GIÁM SÁT</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('client.price') }}">BÁO GIÁ</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('client.project') }}">DỰ ÁN</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('client.news') }}">TIN TỨC</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('client.contact') }}">LIÊN HỆ</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
         </div>
-        <!-- Navigation Bar -->
-        <nav class="navbar navbar-expand-lg navbar-light">
-            <div class="container">
-                <!-- Nút Hamburger -->
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
 
-                <!-- Danh sách Menu -->
-                <div class="collapse navbar-collapse" id="navbarNav">
-                    <ul class="navbar-nav">
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('client.home') }}">TRANG CHỦ</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('client.tvgs') }}">TƯ VẤN GIÁM SÁT</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('client.price') }}">BÁO GIÁ</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('client.project') }}">DỰ ÁN</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('client.news') }}">TIN TỨC</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('client.contact') }}">LIÊN HỆ</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
 
     </div>
 
@@ -106,7 +110,7 @@
     <!-- Footer -->
     <footer class="footer bg-dark text-light gx-0">
         <div class="container py-4">
-            <div class="row">
+            <div class="row rx-0">
                 <!-- Cột 1: Thông tin liên hệ -->
                 <div class="col-md-4 mb-4">
                     <h5 class="text-uppercase text-warning">Liên hệ</h5>
