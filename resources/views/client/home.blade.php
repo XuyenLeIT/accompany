@@ -318,73 +318,73 @@
             margin: auto;
             margin-bottom: 10px;
         }
-
-        /* Title Styling */
-        /* Title Styling */
-        .fancy-title {
-            font-size: 28px;
-            font-weight: bold;
-            text-transform: uppercase;
-            color: #0066cc;
-            margin-bottom: 30px;
-            text-align: center;
-            text-shadow: 2px 2px 4px rgba(0, 102, 204, 0.2);
-        }
-
-        /* Card Container */
-        .card {
-            position: relative;
-            overflow: hidden;
-            border-radius: 15px;
-            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            margin-bottom: 20px;
-        }
-
-        .card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
-        }
-
-        /* Image Styling */
-        .card img {
-            width: 100%;
-            height: 250px;
-            object-fit: cover;
-        }
-
-        .fancy-title {
-            font-size: 24px;
-        }
-
-        .card img {
-            height: 200px;
-        }
-
-        .card .overlay h2 {
-            font-size: 16px;
-        }
     }
-            /* Always Visible Overlay at Bottom */
-            .card .overlay {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            background: rgba(0, 0, 0, 0.6);
-            color: white;
-            padding: 10px 15px;
-            text-align: center;
-            border-radius: 0 0 15px 15px;
-        }
 
-        .card .overlay h2 {
-            font-size: 18px;
-            font-weight: bold;
-            text-transform: uppercase;
-            margin: 0;
-            text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.5);
-        }
+    /* Title Styling */
+    .fancy-title {
+        font-size: 28px;
+        font-weight: bold;
+        text-transform: uppercase;
+        color: #0066cc;
+        margin-bottom: 30px;
+        text-align: center;
+        text-shadow: 2px 2px 4px rgba(0, 102, 204, 0.2);
+    }
+
+    /* Card Container */
+    .card {
+        position: relative;
+        overflow: hidden;
+        border-radius: 15px;
+        box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        margin-bottom: 20px;
+    }
+
+    .card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Image Styling */
+    .card img {
+        width: 100%;
+        height: 250px;
+        object-fit: cover;
+    }
+
+    .fancy-title {
+        font-size: 24px;
+    }
+
+    .card img {
+        height: 200px;
+    }
+
+    .card .overlay h2 {
+        font-size: 16px;
+    }
+
+    /* Always Visible Overlay at Bottom */
+    .card .overlay {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        background: rgba(0, 0, 0, 0.6);
+        color: white;
+        padding: 10px 15px;
+        text-align: center;
+        border-radius: 0 0 15px 15px;
+    }
+
+    .card .overlay h2 {
+        font-size: 18px;
+        font-weight: bold;
+        text-transform: uppercase;
+        margin: 0;
+        text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.5);
+    }
 
     .home-feedback {
         background: #E2DFD0;
