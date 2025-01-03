@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@yield("title")</title>
+    <title>@yield('title')</title>
     @yield('meta_tags')
     <!-- Bootstrap 5 CSS CDN -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -14,7 +14,7 @@
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="https://unpkg.com/flickity@2/dist/flickity.min.css">
     <link rel="stylesheet" href="/css/client_header.css">
-
+    <link rel="icon" sizes="32x32" type="image/png" href="/images/logo.png">
 </head>
 
 <body>
@@ -103,7 +103,7 @@
 
     </a>
     <!-- Footer -->
-    <footer class="footer bg-dark text-light">
+    <footer class="footer bg-dark text-light gx-0">
         <div class="container py-4">
             <div class="row">
                 <!-- Cột 1: Thông tin liên hệ -->
@@ -121,28 +121,30 @@
                 <div class="col-md-4 mb-4">
                     <h5 class="text-uppercase text-warning">Liên kết nhanh</h5>
                     <ul class="list-unstyled">
-                        <li><a href="{{ route('client.home') }}" class="text-light text-decoration-none">Trang chủ</a></li>
-                        <li><a href="{{ route('client.tvgs') }}" class="text-light text-decoration-none">Tư Vấn Giám Sát</a></li>
-                        <li><a href="{{ route('client.price') }}" class="text-light text-decoration-none">Báo Giá</a></li>
-                        <li><a href="{{ route('client.news') }}" class="text-light text-decoration-none">Tin Tức</a></li>
-                        <li><a href="{{ route('client.project') }}" class="text-light text-decoration-none">Dự Án</a></li>
-                        <li><a href="{{ route('client.contact') }}" class="text-light text-decoration-none">Liên hệ</a></li>
+                        <li><a href="{{ route('client.home') }}" class="text-light text-decoration-none">Trang chủ</a>
+                        </li>
+                        <li><a href="{{ route('client.tvgs') }}" class="text-light text-decoration-none">Tư Vấn Giám
+                                Sát</a></li>
+                        <li><a href="{{ route('client.price') }}" class="text-light text-decoration-none">Báo Giá</a>
+                        </li>
+                        <li><a href="{{ route('client.news') }}" class="text-light text-decoration-none">Tin Tức</a>
+                        </li>
+                        <li><a href="{{ route('client.project') }}" class="text-light text-decoration-none">Dự Án</a>
+                        </li>
+                        <li><a href="{{ route('client.contact') }}" class="text-light text-decoration-none">Liên hệ</a>
+                        </li>
                     </ul>
                 </div>
                 <!-- Cột 3: Theo dõi chúng tôi -->
                 <div class="col-md-4 mb-4">
                     <h5 class="text-uppercase text-warning">Theo dõi chúng tôi</h5>
                     <!-- Nhúng Fanpage Facebook -->
-                    <iframe 
-                    src="https://www.facebook.com/plugins/page.php?href=https://www.facebook.com/profile.php?id=100042978018147&tabs=timeline&width=300&height=300&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=true" 
-                    width="400" 
-                    height="200" 
-                    style="border:none;overflow:hidden" 
-                    scrolling="no" 
-                    frameborder="0" 
-                    allowfullscreen="true" 
-                    allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share">
-                </iframe>
+                    <iframe
+                        src="https://www.facebook.com/plugins/page.php?href=https://www.facebook.com/profile.php?id=100042978018147&tabs=timeline&width=300&height=300&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=true"
+                        width="400" height="200" style="border:none;overflow:hidden" scrolling="no" frameborder="0"
+                        allowfullscreen="true"
+                        allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share">
+                    </iframe>
                 </div>
 
             </div>

@@ -27,12 +27,12 @@
     /* carausels */
     .carousel-flick {
         background: #EEE;
+        margin: auto;
     }
 
     .carousel-flick-cell {
         width: 100%;
         height: 300px;
-        margin-right: 10px;
         background: #8C8;
         border-radius: 5px;
         counter-increment: gallery-cell;
@@ -452,202 +452,198 @@
     }
 </style>
 @section('content')
-    <div class="container-fluid gx-0">
-        <div class="row gx-0">
-            @if ($carausels && $carausels->count() > 0)
-                <div class="carousel-flick" data-flickity>
-                    @foreach ($carausels as $item)
-                        <div class="carousel-flick-cell"><img src="{{ $item->image }}" class="image-caraulsel" /></div>
-                    @endforeach
-                </div>
-            @endif
-        </div>
-        <div class="row p-4">
-            @if ($homeIntro)
-                <div class="col-md-7">
-                    <div class="home-intro-content">
-                        <h3>{{ $homeIntro->title }}</h3>
-                        <p class="intro-content">
-                            {{ $homeIntro->description }}
-                        </p>
+    <div class="row gx-0">
+        @if ($carausels && $carausels->count() > 0)
+            <div class="carousel-flick" data-flickity>
+                @foreach ($carausels as $item)
+                    <div class="carousel-flick-cell"><img src="{{ $item->image }}" class="image-caraulsel" /></div>
+                @endforeach
+            </div>
+        @endif
+    </div>
+    <div class="row p-4 gx-2">
+        @if ($homeIntro)
+            <div class="col-md-7">
+                <div class="home-intro-content">
+                    <h3>{{ $homeIntro->title }}</h3>
+                    <p class="intro-content">
+                        {{ $homeIntro->description }}
+                    </p>
 
-                        <!-- Features List -->
-                        <ul class="features-list row">
-                            @foreach ($features_chunks as $chunk)
-                                <div class="col-md-6">
-                                    @foreach ($chunk as $feature)
-                                        <li><i class="intro-icon fa-solid fa-check"></i> {{ $feature['title'] }}</li>
+                    <!-- Features List -->
+                    <ul class="features-list row">
+                        @foreach ($features_chunks as $chunk)
+                            <div class="col-md-6">
+                                @foreach ($chunk as $feature)
+                                    <li><i class="intro-icon fa-solid fa-check"></i> {{ $feature['title'] }}</li>
+                                @endforeach
+                            </div>
+                        @endforeach
+
+                </div>
+            </div>
+            <div class="col-md-5">
+                <div class="image-container">
+                    <img src="{{ $homeIntro->image }}" alt="Giới Thiệu" class="home-intro-image">
+                </div>
+            </div>
+        @endif
+    </div>
+
+    <div class="row p-4 gy-2 gx-2">
+        @if ($introVideo)
+            <!-- Video Section -->
+            <div class="col-lg-7">
+                <div class="video-container">
+                    <iframe width="100%" height="400" src="{{ $introVideo->urlVideo }}" title="YouTube video player"
+                        frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowfullscreen>
+                    </iframe>
+                </div>
+            </div>
+
+            <!-- Description Section -->
+            <div class="col-lg-5">
+                <div class="description-container">
+                    <h2 class="description-title">{{ $introVideo->title }}</h2>
+                    <p class="description-text">
+                        {{ $introVideo->description }}
+                    </p>
+                </div>
+            </div>
+        @endif
+
+    </div>
+    @if ($panelJobs && $panelJobs->count() > 0)
+        @foreach ($panelJobs as $item)
+            <div class="item-work gx-0">
+                <div class="row p-1">
+                    @if ($item->type && $item->type == 1)
+                        <div class="col-md-9">
+                            <div class="row">
+                                @if ($item->panelJobImages->count() > 0)
+                                    @foreach ($item->panelJobImages as $ig)
+                                        <div class="col-md-4">
+                                            <div class="img-container">
+                                                <img class="img-acceptance" src="{{ $ig->image }}" />
+                                            </div>
+
+                                        </div>
                                     @endforeach
-                                </div>
-                            @endforeach
-
-                    </div>
+                                @else
+                                    <p>No Image</p>
+                                @endif
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <h4 class="title-acceptance">{{ $item->title }}</h4>
+                            <p class="content-acceptance">{{ $item->description }}</p>
+                        </div>
+                    @endif
+                    @if ($item->type && $item->type == 2)
+                        <div class="col-md-3">
+                            <h4 class="title-acceptance">{{ $item->title }}</h4>
+                            <p class="content-acceptance">{{ $item->description }}</p>
+                        </div>
+                        <div class="col-md-9">
+                            <div class="row">
+                                @if ($item->panelJobImages->count() > 0)
+                                    @foreach ($item->panelJobImages as $ig)
+                                        <div class="col-md-4">
+                                            <div class="img-container">
+                                                <img class="img-acceptance" src="{{ $ig->image }}" />
+                                            </div>
+                                        </div>
+                                    @endforeach
+                                @else
+                                    <p>No Image</p>
+                                @endif
+                            </div>
+                        </div>
+                    @endif
                 </div>
+
+            </div>
+        @endforeach
+
+    @endif
+    <div class="container p-1 item-work">
+        <div class="row justify-content-center w-80 mx-auto">
+            @if ($introCompany)
                 <div class="col-md-5">
-                    <div class="image-container">
-                        <img src="{{ $homeIntro->image }}" alt="Giới Thiệu" class="home-intro-image">
-                    </div>
+                    @if ($introCompany->image)
+                        <img class="img-intro" src="{{ $introCompany->image }}" />
+                    @else
+                        <p>No Image</p>
+                    @endif
+                </div>
+                <div class="col-md-7">
+                    <h4 class="title-acceptance">{{ $introCompany->title }}</h4>
+                    <p class="content-acceptance">{!! $introCompany->description !!}</p>
                 </div>
             @endif
         </div>
-
-        <div class="row p-4 gx-2 gy-2">
-            @if ($introVideo)
-                <!-- Video Section -->
-                <div class="col-lg-7">
-                    <div class="video-container">
-                        <iframe width="100%" height="400" src="{{ $introVideo->urlVideo }}" title="YouTube video player"
-                            frameborder="0"
-                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                            allowfullscreen>
-                        </iframe>
+    </div>
+    <div class="row mt-1 gx-0">
+        <h3 class="text-center fancy-title">SỰ KHÁC BIỆT CỦA A&C</h3>
+        @if ($outstandings && $outstandings->count() > 0)
+            @foreach ($outstandings as $item)
+                <div class="col-md-4">
+                    <div class="card">
+                        <img src="{{ $item->image }}" alt="Card Image">
+                        <div class="overlay">
+                            <h2>{{ $item->title }}</h2>
+                        </div>
                     </div>
-                </div>
-
-                <!-- Description Section -->
-                <div class="col-lg-5">
-                    <div class="description-container">
-                        <h2 class="description-title">{{ $introVideo->title }}</h2>
-                        <p class="description-text">
-                            {{ $introVideo->description }}
-                        </p>
-                    </div>
-                </div>
-            @endif
-
-        </div>
-        {{-- @dd($panelJob) --}}
-        @if ($panelJobs && $panelJobs->count() > 0)
-            @foreach ($panelJobs as $item)
-                <div class="item-work">
-                    <div class="row p-1">
-                        @if ($item->type && $item->type == 1)
-                            <div class="col-md-9">
-                                <div class="row">
-                                    @if ($item->panelJobImages->count() > 0)
-                                        @foreach ($item->panelJobImages as $ig)
-                                            <div class="col-md-4">
-                                                <div class="img-container">
-                                                    <img class="img-acceptance" src="{{ $ig->image }}" />
-                                                </div>
-
-                                            </div>
-                                        @endforeach
-                                    @else
-                                        <p>No Image</p>
-                                    @endif
-                                </div>
-                            </div>
-                            <div class="col-md-3">
-                                <h4 class="title-acceptance">{{ $item->title }}</h4>
-                                <p class="content-acceptance">{{ $item->description }}</p>
-                            </div>
-                        @endif
-                        @if ($item->type && $item->type == 2)
-                            <div class="col-md-3">
-                                <h4 class="title-acceptance">{{ $item->title }}</h4>
-                                <p class="content-acceptance">{{ $item->description }}</p>
-                            </div>
-                            <div class="col-md-9">
-                                <div class="row">
-                                    @if ($item->panelJobImages->count() > 0)
-                                        @foreach ($item->panelJobImages as $ig)
-                                            <div class="col-md-4">
-                                                <div class="img-container">
-                                                    <img class="img-acceptance" src="{{ $ig->image }}" />
-                                                </div>
-                                            </div>
-                                        @endforeach
-                                    @else
-                                        <p>No Image</p>
-                                    @endif
-                                </div>
-                            </div>
-                        @endif
-                    </div>
-
                 </div>
             @endforeach
 
         @endif
-        {{-- gioi thieu cong ty --}}
-        <div class="container p-1 item-work">
-            <div class="row justify-content-center w-80 mx-auto">
-                @if ($introCompany)
-                    <div class="col-md-5">
-                        @if ($introCompany->image)
-                            <img class="img-intro" src="{{ $introCompany->image }}" />
-                        @else
-                            <p>No Image</p>
-                        @endif
-                    </div>
-                    <div class="col-md-7">
-                        <h4 class="title-acceptance">{{ $introCompany->title }}</h4>
-                        <p class="content-acceptance">{!! $introCompany->description !!}</p>
-                    </div>
-                @endif
-            </div>
-        </div>
-        <div class="row mt-1">
-            <h3 class="text-center fancy-title">SỰ KHÁC BIỆT CỦA A&C</h3>
-            @if ($outstandings && $outstandings->count() > 0)
-                @foreach ($outstandings as $item)
-                    <div class="col-md-4">
-                        <div class="card">
-                            <img src="{{ $item->image }}" alt="Card Image">
-                            <div class="overlay">
-                                <h2>{{ $item->title }}</h2>
+    </div>
+    <div class="container home-feedback">
+        <h2 class="text-center mb-4">Cảm Nhận Khách Hàng</h2>
+        @if ($feedbacks && $feedbacks->count() > 0)
+            <div id="testimonialCarousel" class="carousel slide" data-bs-ride="carousel">
+                <!-- Indicators -->
+                <div class="carousel-indicators">
+                    @foreach ($feedbacks as $key => $item)
+                        <button type="button" data-bs-target="#testimonialCarousel" data-bs-slide-to="{{ $key }}"
+                            class="{{ $key == 0 ? 'active' : '' }}" aria-current="true"
+                            aria-label="Slide-{{ $key }}"></button>
+                    @endforeach
+                </div>
+
+                <!-- Slides -->
+                <div class="carousel-inner">
+                    <!-- Slide 1 -->
+                    @foreach ($feedbacks as $key => $item)
+                        <div class="carousel-item {{ $key == 0 ? 'active' : '' }}">
+                            <div class="testimonial-card mx-auto">
+                                <img src="{{ $item->image }}" alt="Customer Image">
+                                <h5 class="testimonial-name">{{ $item->name }}</h5>
+                                <p class="testimonial-title">Chủ Dự Án</p>
+                                <p class="testimonial-content">
+                                    "{{ $item->description }}"
+                                </p>
                             </div>
                         </div>
-                    </div>
-                @endforeach
-
-            @endif
-        </div>
-        <div class="container home-feedback">
-            <h2 class="text-center mb-4">Cảm Nhận Khách Hàng</h2>
-            @if ($feedbacks && $feedbacks->count() > 0)
-                <div id="testimonialCarousel" class="carousel slide" data-bs-ride="carousel">
-                    <!-- Indicators -->
-                    <div class="carousel-indicators">
-                        @foreach ($feedbacks as $key => $item)
-                            <button type="button" data-bs-target="#testimonialCarousel"
-                                data-bs-slide-to="{{ $key }}" class="{{ $key == 0 ? 'active' : '' }}"
-                                aria-current="true" aria-label="Slide-{{ $key }}"></button>
-                        @endforeach
-                    </div>
-
-                    <!-- Slides -->
-                    <div class="carousel-inner">
-                        <!-- Slide 1 -->
-                        @foreach ($feedbacks as $key => $item)
-                            <div class="carousel-item {{ $key == 0 ? 'active' : '' }}">
-                                <div class="testimonial-card mx-auto">
-                                    <img src="{{ $item->image }}" alt="Customer Image">
-                                    <h5 class="testimonial-name">{{ $item->name }}</h5>
-                                    <p class="testimonial-title">Chủ Dự Án</p>
-                                    <p class="testimonial-content">
-                                        "{{ $item->description }}"
-                                    </p>
-                                </div>
-                            </div>
-                        @endforeach
-                    </div>
-                    <!-- Controls -->
-                    <button class="carousel-control-prev" type="button" data-bs-target="#testimonialCarousel"
-                        data-bs-slide="prev">
-                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden">Previous</span>
-                    </button>
-                    <button class="carousel-control-next" type="button" data-bs-target="#testimonialCarousel"
-                        data-bs-slide="next">
-                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden">Next</span>
-                    </button>
+                    @endforeach
                 </div>
-            @endif
+                <!-- Controls -->
+                <button class="carousel-control-prev" type="button" data-bs-target="#testimonialCarousel"
+                    data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#testimonialCarousel"
+                    data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
+            </div>
+        @endif
 
-        </div>
     </div>
     <script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
     <script>
