@@ -98,7 +98,7 @@
     <a href="tel:0909857629" class="hotline-button">
         <i class="fa-solid fa-phone hotline-icon"></i>
         @if ($companyInfo)
-            Hotline: {{ $companyInfo->phone }}
+            {{ $companyInfo->phone }}
         @endif
 
     </a>
