@@ -569,7 +569,7 @@
     <div class="container p-1 item-work">
         <div class="row justify-content-center w-80 mx-auto">
             @if ($introCompany)
-                <div class="col-md-5">
+                <div class="col-md-5 m-auto">
                     @if ($introCompany->image)
                         <img class="img-intro" src="{{ $introCompany->image }}" />
                     @else
