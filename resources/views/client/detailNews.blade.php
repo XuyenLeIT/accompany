@@ -151,16 +151,14 @@
                         </div>
                     </div>
                 @endif
-
             </div>
-
             <!-- Quảng cáo -->
             <div class="col-lg-3">
                 <div class="advertisement">
                     <h5>Hoạt Động Giám Sát</h5>
                     @if ($adsDetail->count() > 0)
                         @foreach ($adsDetail as $item)
-                            <img src="{{ $item->image }}" alt="Quảng cáo 1">
+                            <img  src="{{ $item->image }}" alt="Quảng cáo 1">
                         @endforeach
                     @endif
 

@@ -98,7 +98,7 @@ class PriceController extends Controller
         $request->validate([
             'desNote' => 'required|string',
         ]);
-        $notePrice->update($request->desNote);
+        $notePrice->update(['desNote' => $request->desNote]);
         return redirect()->route("admin.price.index")->with('success', 'note price update successfully.');
 
     }

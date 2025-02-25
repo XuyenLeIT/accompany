@@ -3,20 +3,18 @@
     <!-- Meta Description: Tối ưu SEO cho mô tả ngắn gọn về dịch vụ -->
     <meta name="description"
         content="Công ty Giám sát xây dựng A&C chuyên cung cấp dịch vụ giám sát chất lượng, tiến độ, và an toàn cho các công trình xây dựng dân dụng và công nghiệp. Liên hệ ngay để nhận báo giá chi tiết.">
-
     <!-- Meta Keywords: Từ khóa liên quan đến ngành -->
     <meta name="keywords"
         content="giám sát xây dựng, giám sát công trình, dịch vụ xây dựng, giám sát chất lượng, tiến độ xây dựng, A&C">
-    <!-- Thẻ Open Graph cho chia sẻ trên mạng xã hội (Facebook, Zalo, LinkedIn) -->
+      <!-- Meta Author: Thông tin tác giả hoặc công ty -->
+      <meta name="author" content="Công Ty Giám Sát Xây Dựng A&C">
+        <!-- Thẻ Open Graph cho chia sẻ trên mạng xã hội (Facebook, Zalo, LinkedIn) -->
     <meta property="og:title" content="Giám Sát Xây Dựng A&C - Dịch Vụ Giám Sát Chất Lượng Cao">
     <meta property="og:description"
         content="Công ty Giám sát xây dựng A&C cung cấp dịch vụ giám sát công trình uy tín và chuyên nghiệp. Đảm bảo chất lượng và tiến độ công trình xây dựng của bạn.">
     <meta property="og:image" content="{{ $introCompany->image }}">
     <meta property="og:url" content="{{ url()->current() }}">
     <meta property="og:type" content="website">
-    <meta property="og:site_name" content="Giám Sát Xây Dựng A&C">
-    <!-- Meta Author: Thông tin tác giả hoặc công ty -->
-    <meta name="author" content="Công Ty Giám Sát Xây Dựng A&C">
     <!-- Open Graph Image Format for better rendering -->
     <meta property="og:image:type" content="image/jpeg">
     <meta property="og:image:width" content="1200">
@@ -658,4 +656,5 @@
             pageDots: false // Hiển thị điểm chỉ báo
         });
     </script>
+
 @endsection
