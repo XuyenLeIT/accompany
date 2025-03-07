@@ -142,7 +142,7 @@
 /* Responsive Layout */
 @media (max-width: 768px) {
     .logo-image {
-        max-width: 40px;
+        width: 40px;
     }
     .hotline-button {
         padding: 10px 15px;

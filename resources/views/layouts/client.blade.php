@@ -106,7 +106,7 @@
 
     </a>
     <!-- Footer -->
-        <footer class="footer bg-dark text-light">
+        <footer class="footer bg-dark text-light p-3">
             <div class="container">
                 <div class="row">
                     <!-- Cột 1: Thông tin liên hệ -->
