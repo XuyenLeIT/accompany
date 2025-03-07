@@ -140,7 +140,7 @@
     }
 }
 /* Responsive Layout */
-@media only screen and (max-width: 768px) {
+@media (max-width: 768px) {
     .logo-image {
         max-width: 40px;
     }
