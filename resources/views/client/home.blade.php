@@ -53,7 +53,12 @@
         height: 280px;
 
     }
-
+    .home-intro-container{
+        width: 100%;
+        display: flex;
+        justify-items: center;
+        height: 570px;
+    }
 
 
 
@@ -63,6 +68,7 @@
         padding: 30px;
         border-radius: 15px;
         box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+       
     }
 
     .home-intro-content h3 {
@@ -109,14 +115,16 @@
     /* Image Container */
     .image-container {
         text-align: center;
+        max-height: 100%;
     }
 
     .image-container .home-intro-image {
-        width: 100%;
-        height: auto;
         border-radius: 15px;
         box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
         transition: transform 0.3s ease, box-shadow 0.3s ease;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
     }
 
     .image-container .home-intro-image:hover {
@@ -296,7 +304,9 @@
         .description-text {
             font-size: 14px;
         }
-
+        .image-container .home-intro-image{
+            display: none;
+        }
         .item-work {
             padding: 15px;
         }
@@ -459,7 +469,7 @@
             </div>
         @endif
     </div>
-    <div class="row p-4 gx-0">
+    <div class="row p-4 gx-2 home-intro-container">
         @if ($homeIntro)
             <div class="col-md-7">
                 <div class="home-intro-content">
@@ -488,7 +498,7 @@
         @endif
     </div>
 
-    <div class="row p-4 gy-2 gx-0">
+    <div class="row p-4 gy-2 gx-1">
         @if ($introVideo)
             <!-- Video Section -->
             <div class="col-lg-7">

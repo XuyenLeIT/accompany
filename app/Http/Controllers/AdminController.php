@@ -9,6 +9,7 @@ use App\Models\Outstanding;
 use App\Models\PanelJobImage;
 use App\Models\Quote;
 use Hash;
+use Illuminate\Support\Facades\DB;
 use Session;
 use Carbon\Carbon;
 
@@ -523,6 +524,8 @@ class AdminController extends Controller
         Session::put('feedback', $feedback);
         return redirect()->back();
     }
+  
+    
     public function updateFeedback(Request $request, Feedback $feedback)
     {
         $request->validate([
@@ -530,38 +533,52 @@ class AdminController extends Controller
             'name' => 'required',
             'description' => 'required',
         ]);
+    
+        DB::beginTransaction();
         try {
-            // Kiểm tra xem checkbox có được chọn hay không
             $filename = "";
-            $image = "";
-            $status = $request->status == null ? false : true;
+            $image = $feedback->image; // Giữ nguyên ảnh cũ nếu không có ảnh mới
+            $status = $request->status ? true : false;
+    
             if ($request->hasFile('image')) {
+                // Xóa ảnh cũ nếu có
                 $existingImagePath = public_path($feedback->image);
                 if (File::exists($existingImagePath)) {
                     File::delete($existingImagePath);
                 }
-                $filename = uniqid() . '.' . $request->image->getClientOriginalName();
+    
+                // Lưu ảnh mới
+                $filename = uniqid() . '.' . $request->image->getClientOriginalExtension();
                 $request->image->move(public_path("feedbackImages"), $filename);
                 $image = '/feedbackImages/' . $filename;
-            } else {
-                $feedback = $request->imageExisting;
             }
+    
+            // Cập nhật thông tin feedback
             $feedback->update([
                 'status' => $status,
                 'image' => $image,
                 'name' => $request->name,
                 'description' => $request->description
             ]);
+    
+            DB::commit();
             Session::put('feedback', null);
-            return redirect()->back()->with('info', 'updated feddback job image successfully');
-        } catch (\Throwable $th) {
-            $existingImagePath = public_path('/feedbackImages/' . $filename);
-            if (File::exists($existingImagePath)) {
-                File::delete($existingImagePath);
+            return redirect()->back()->with('info', 'Updated feedback successfully');
+        } catch (\Exception $ex) {
+            DB::rollBack();
+            
+            // Xóa ảnh mới nếu đã tải lên
+            if (!empty($filename)) {
+                $existingImagePath = public_path('/feedbackImages/' . $filename);
+                if (File::exists($existingImagePath)) {
+                    File::delete($existingImagePath);
+                }
             }
-            return redirect()->back()->with('info', 'Opp error serve.');
+    
+            return redirect()->back()->with('info', 'Opps, server error: ' . $ex->getMessage());
         }
     }
+    
     public function deleteFeedback($id)
     {
         $feedback = Feedback::findOrFail($id);

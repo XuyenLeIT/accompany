@@ -53,7 +53,6 @@
     color: #fff;
     text-align: right;
     height: 100px;
-
 }
 
 .hotline-box .hotline-title {
@@ -140,15 +139,18 @@
         transform: translateY(-5px);
     }
 }
-    /* Responsive Layout */
-    @media only screen and (max-width: 768px) {
-        .hotline-button {
-            padding: 10px 15px;
-            font-size: 14px;
-            right: 40px;
-        }
-    
-        .hotline-icon {
-            font-size: 20px;
-        }
+/* Responsive Layout */
+@media only screen and (max-width: 768px) {
+    .logo-image {
+        max-width: 40px;
     }
+    .hotline-button {
+        padding: 10px 15px;
+        font-size: 14px;
+        right: 40px;
+    }
+
+    .hotline-icon {
+        font-size: 20px;
+    }
+}
