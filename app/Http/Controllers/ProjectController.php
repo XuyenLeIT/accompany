@@ -130,7 +130,7 @@ class ProjectController extends Controller
         }
       } else {
         // Giữ nguyên thumbnail cũ nếu không có ảnh mới
-        $image = $request->input('imageExisted');
+        $image = $request->input('imageExisting');
       }
       // Lấy và xử lý nội dung mô tả
       $description = $request->input('description');
@@ -189,7 +189,7 @@ class ProjectController extends Controller
       // Chuyển hướng về trang danh sách với thông báo thành công
       return redirect()->route('admin.project.index')->with('success', 'project updated successfully.');
     } catch (\Throwable $th) {
-      return redirect()->back()->with('info', 'Opp error serve.');
+      return redirect()->back()->with('info', 'Opp error serve.'.$th);
     }
 
   }

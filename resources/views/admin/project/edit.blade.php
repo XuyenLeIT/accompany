@@ -5,7 +5,7 @@
 @section('content')
     <div class="container p-5">
         <a class="btn btn-primary" href="{{ route('admin.project.index') }}">Back to list</a>
-        <h1>Create form carausel</h1>
+        <h1>Cập nhật thông tin dự án</h1>
         @if (session('info'))
             <div class="alert alert-success">
                 <strong>Info!</strong> {{ session('info') }}
