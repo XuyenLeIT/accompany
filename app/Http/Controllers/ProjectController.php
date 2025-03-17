@@ -189,7 +189,7 @@ class ProjectController extends Controller
       // Chuyển hướng về trang danh sách với thông báo thành công
       return redirect()->route('admin.project.index')->with('success', 'project updated successfully.');
     } catch (\Throwable $th) {
-      return redirect()->back()->with('info', 'Opp error serve.'.$th);
+      return redirect()->back()->with('info', 'Opp error serve.' . $th);
     }
 
   }
@@ -244,6 +244,10 @@ class ProjectController extends Controller
     // Lấy phần tử cuối cùng trong mảng
     $lastPartId = (int) end($parts);
     $detailProject = Project::find($lastPartId);
+    if ($detailProject == null) {
+      // dd("alo");
+      return redirect()->route("client.project");
+    }
     $cleanDescription = $this->cleanDescription($detailProject->description);
     $projectOther = Project::where('id', '!=', $lastPartId)->get();
     $adsDetail = Ads::where('type', 'DETAILNEWS')->get();

@@ -168,6 +168,8 @@
 
                 </div>
             </div>
+        </div>
+        <div class="row">
             <div class="col-lg-9">
                 @php
                     function slugText($title, $id)
@@ -207,5 +209,6 @@
 
             </div>
         </div>
+    </div>
 
-    @endsection
+@endsection
