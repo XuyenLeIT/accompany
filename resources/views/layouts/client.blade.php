@@ -6,7 +6,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@yield('title')</title>
     @yield('meta_tags')
-
+    <!-- Google Tag Manager -->
+    <script>
+        (function(w, d, s, l, i) {
+            w[l] = w[l] || [];
+            w[l].push({
+                'gtm.start': new Date().getTime(),
+                event: 'gtm.js'
+            });
+            var f = d.getElementsByTagName(s)[0],
+                j = d.createElement(s),
+                dl = l != 'dataLayer' ? '&l=' + l : '';
+            j.async = true;
+            j.src =
+                'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+            f.parentNode.insertBefore(j, f);
+        })(window, document, 'script', 'dataLayer', 'GTM-K7V6M3V6');
+    </script>
+    <!-- End Google Tag Manager -->
     <!-- Bootstrap 5 CSS CDN -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
@@ -30,7 +47,7 @@
                         @if ($companyInfo)
                             <img src="{{ $companyInfo->logo }}" alt="Logo" class="logo-image">
                         @endif
-    
+
                         <div>
                             @if ($companyInfo)
                                 <span class="tagline">{{ $companyInfo->sologan1 }}</strong>
@@ -42,7 +59,7 @@
                         @if ($companyInfo)
                             <strong>{{ $companyInfo->sologan2 }}</strong>
                         @endif
-    
+
                     </div>
                     <!-- Hotline -->
                     <div class="col-md-4 gx-0">
@@ -52,7 +69,7 @@
                             @if ($companyInfo)
                                 <span class="hotline-number">{{ $companyInfo->phone }}</span>
                             @endif
-    
+
                         </div>
                     </div>
                 </div>
@@ -65,7 +82,7 @@
                         aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
                     </button>
-    
+
                     <!-- Danh sách Menu -->
                     <div class="collapse navbar-collapse" id="navbarNav">
                         <ul class="navbar-nav">
@@ -106,52 +123,62 @@
 
     </a>
     <!-- Footer -->
-        <footer class="footer bg-dark text-light p-3">
-            <div class="container">
-                <div class="row">
-                    <!-- Cột 1: Thông tin liên hệ -->
-                    <div class="col-md-4 mb-4">
-                        <h5 class="text-uppercase text-warning">Liên hệ</h5>
-                        @if ($companyInfo)
-                            <p><i class="bi bi-geo-alt-fill"></i> {{ $companyInfo->address1 }}</p>
-                            <p><i class="bi bi-geo-alt-fill"></i> {{ $companyInfo->address2 }}</p>
-                            <p><i class="bi bi-telephone-fill"></i> Điện thoại: {{ $companyInfo->phone }}</p>
-                            <p><i class="bi bi-envelope-fill"></i> Email: {{ $companyInfo->email }}</p>
-                        @endif
-                    </div>
-    
-                    <!-- Cột 2: Liên kết nhanh -->
-                    <div class="col-md-4 mb-4">
-                        <h5 class="text-uppercase text-warning">Liên kết nhanh</h5>
-                        <ul class="list-unstyled">
-                            <li><a href="{{ route('client.home') }}" class="text-light text-decoration-none">Trang chủ</a></li>
-                            <li><a href="{{ route('client.tvgs') }}" class="text-light text-decoration-none">Tư Vấn Giám Sát</a></li>
-                            <li><a href="{{ route('client.price') }}" class="text-light text-decoration-none">Báo Giá</a></li>
-                            <li><a href="{{ route('client.news') }}" class="text-light text-decoration-none">Tin Tức</a></li>
-                            <li><a href="{{ route('client.project') }}" class="text-light text-decoration-none">Dự Án</a></li>
-                            <li><a href="{{ route('client.contact') }}" class="text-light text-decoration-none">Liên hệ</a></li>
-                        </ul>
-                    </div>
-    
-                    <!-- Cột 3: Theo dõi chúng tôi -->
-                    <div class="col-md-4 mb-4">
-                        <h5 class="text-uppercase text-warning">Theo dõi chúng tôi</h5>
-                        <!-- Nhúng Fanpage Facebook -->
-                        <iframe
-                            src="https://www.facebook.com/plugins/page.php?href=https://www.facebook.com/profile.php?id=100042978018147&tabs=timeline&width=300&height=300&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=true"
-                            width="100%" height="200" style="border:none;overflow:hidden" scrolling="no" frameborder="0"
-                            allowfullscreen="true"
-                            allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share">
-                        </iframe>
-                    </div>
+    <footer class="footer bg-dark text-light p-3">
+        <div class="container">
+            <div class="row">
+                <!-- Cột 1: Thông tin liên hệ -->
+                <div class="col-md-4 mb-4">
+                    <h5 class="text-uppercase text-warning">Liên hệ</h5>
+                    @if ($companyInfo)
+                        <p><i class="bi bi-geo-alt-fill"></i> {{ $companyInfo->address1 }}</p>
+                        <p><i class="bi bi-geo-alt-fill"></i> {{ $companyInfo->address2 }}</p>
+                        <p><i class="bi bi-telephone-fill"></i> Điện thoại: {{ $companyInfo->phone }}</p>
+                        <p><i class="bi bi-envelope-fill"></i> Email: {{ $companyInfo->email }}</p>
+                    @endif
                 </div>
-                <hr class="bg-light">
-                <!-- Bản quyền -->
-                <div class="text-center">
-                    <p class="mb-0">&copy; 2024 Công ty TNHH TVGS Xây Dựng A&C. Tất cả các quyền được bảo lưu.</p>
+
+                <!-- Cột 2: Liên kết nhanh -->
+                <div class="col-md-4 mb-4">
+                    <h5 class="text-uppercase text-warning">Liên kết nhanh</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="{{ route('client.home') }}" class="text-light text-decoration-none">Trang chủ</a>
+                        </li>
+                        <li><a href="{{ route('client.tvgs') }}" class="text-light text-decoration-none">Tư Vấn Giám
+                                Sát</a></li>
+                        <li><a href="{{ route('client.price') }}" class="text-light text-decoration-none">Báo Giá</a>
+                        </li>
+                        <li><a href="{{ route('client.news') }}" class="text-light text-decoration-none">Tin Tức</a>
+                        </li>
+                        <li><a href="{{ route('client.project') }}" class="text-light text-decoration-none">Dự Án</a>
+                        </li>
+                        <li><a href="{{ route('client.contact') }}" class="text-light text-decoration-none">Liên hệ</a>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Cột 3: Theo dõi chúng tôi -->
+                <div class="col-md-4 mb-4">
+                    <h5 class="text-uppercase text-warning">Theo dõi chúng tôi</h5>
+                    <!-- Nhúng Fanpage Facebook -->
+                    <iframe
+                        src="https://www.facebook.com/plugins/page.php?href=https://www.facebook.com/profile.php?id=100042978018147&tabs=timeline&width=300&height=300&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=true"
+                        width="100%" height="200" style="border:none;overflow:hidden" scrolling="no" frameborder="0"
+                        allowfullscreen="true"
+                        allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share">
+                    </iframe>
                 </div>
             </div>
-        </footer>  
+            <hr class="bg-light">
+            <!-- Bản quyền -->
+            <div class="text-center">
+                <p class="mb-0">&copy; 2024 Công ty TNHH TVGS Xây Dựng A&C. Tất cả các quyền được bảo lưu.</p>
+            </div>
+        </div>
+        <!-- Google Tag Manager (noscript) -->
+        <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-K7V6M3V6" height="0"
+                width="0" style="display:none;visibility:hidden"></iframe></noscript>
+        <!-- End Google Tag Manager (noscript) -->
+    </footer>
 </body>
 
 </html>

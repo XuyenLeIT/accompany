@@ -107,7 +107,7 @@ Route::prefix('admin')->middleware(AuthMiddelware::class)->group(function () {
     Route::get('/outstanding/{id}', [AdminController::class, "editOutstanding"])->name("admin.outstanding.edit");
     Route::post('/outstanding', [AdminController::class, "storeOutstanding"])->name("admin.outstanding.create");
     Route::post('/outstanding/update/{outstanding}', [AdminController::class, "updateOutstanding"])->name("admin.outstanding.update");
-
+    Route::get('/outstanding/delete/{id}', [AdminController::class, "deleteOutstanding"])->name("admin.outstanding.delete");
     //feedbacks
     Route::get('/feedback', [AdminController::class, "feedback"])->name("admin.feedback.index");
 

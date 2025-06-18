@@ -451,35 +451,67 @@ class AdminController extends Controller
             'image' => 'image|mimes:jpeg,png,webp,jpg,gif|max:2048',
             'title' => 'required',
         ]);
+
         try {
-            // Kiểm tra xem checkbox có được chọn hay không
-            $filename = "";
-            $image = "";
-            $status = $request->status == null ? false : true;
+            $status = $request->status === null ? false : true;
+            $image = $outstanding->image; // default to existing image
+
             if ($request->hasFile('image')) {
+                // Delete old image if it exists
                 $existingImagePath = public_path($outstanding->image);
                 if (File::exists($existingImagePath)) {
                     File::delete($existingImagePath);
                 }
+
+                // Save new image
                 $filename = uniqid() . '.' . $request->image->getClientOriginalName();
                 $request->image->move(public_path("outStandingImages"), $filename);
                 $image = '/outStandingImages/' . $filename;
-            } else {
-                $outstanding = $request->imageExisting;
             }
+
+            // Update the Eloquent model
             $outstanding->update([
                 'status' => $status,
                 'image' => $image,
                 'title' => $request->title
             ]);
+
             Session::put('outstanding', null);
-            return redirect()->back()->with('info', 'updated outstanding job image successfully');
+            return redirect()->back()->with('info', 'Updated outstanding job image successfully.');
+
         } catch (\Throwable $th) {
-            $existingImagePath = public_path('/outStandingImages/' . $filename);
-            if (File::exists($existingImagePath)) {
-                File::delete($existingImagePath);
+            // Optional cleanup: if image upload succeeded before failure
+            if (!empty($filename)) {
+                $uploadedImagePath = public_path('/outStandingImages/' . $filename);
+                if (File::exists($uploadedImagePath)) {
+                    File::delete($uploadedImagePath);
+                }
             }
-            return redirect()->back()->with('info', 'Opp error serve.');
+
+            return redirect()->back()->with('info', 'Opps, server error: ' . $th->getMessage());
+        }
+    }
+    public function deleteOutstanding($id)
+    {
+        try {
+            // Tìm đối tượng outstanding cần xóa
+            $outstanding = Outstanding::findOrFail($id);
+
+            // Lấy đường dẫn ảnh
+            $imagePath = public_path($outstanding->image);
+
+            // Xóa ảnh nếu tồn tại
+            if (File::exists($imagePath)) {
+                File::delete($imagePath);
+            }
+
+            // Xóa bản ghi trong cơ sở dữ liệu
+            $outstanding->delete();
+
+            return redirect()->back()->with('info', 'Deleted outstanding successfully.');
+
+        } catch (\Throwable $th) {
+            return redirect()->back()->with('info', 'Failed to delete: ' . $th->getMessage());
         }
     }
     //feedback
@@ -524,8 +556,8 @@ class AdminController extends Controller
         Session::put('feedback', $feedback);
         return redirect()->back();
     }
-  
-    
+
+
     public function updateFeedback(Request $request, Feedback $feedback)
     {
         $request->validate([
@@ -533,26 +565,26 @@ class AdminController extends Controller
             'name' => 'required',
             'description' => 'required',
         ]);
-    
+
         DB::beginTransaction();
         try {
             $filename = "";
             $image = $feedback->image; // Giữ nguyên ảnh cũ nếu không có ảnh mới
             $status = $request->status ? true : false;
-    
+
             if ($request->hasFile('image')) {
                 // Xóa ảnh cũ nếu có
                 $existingImagePath = public_path($feedback->image);
                 if (File::exists($existingImagePath)) {
                     File::delete($existingImagePath);
                 }
-    
+
                 // Lưu ảnh mới
                 $filename = uniqid() . '.' . $request->image->getClientOriginalExtension();
                 $request->image->move(public_path("feedbackImages"), $filename);
                 $image = '/feedbackImages/' . $filename;
             }
-    
+
             // Cập nhật thông tin feedback
             $feedback->update([
                 'status' => $status,
@@ -560,13 +592,13 @@ class AdminController extends Controller
                 'name' => $request->name,
                 'description' => $request->description
             ]);
-    
+
             DB::commit();
             Session::put('feedback', null);
             return redirect()->back()->with('info', 'Updated feedback successfully');
         } catch (\Exception $ex) {
             DB::rollBack();
-            
+
             // Xóa ảnh mới nếu đã tải lên
             if (!empty($filename)) {
                 $existingImagePath = public_path('/feedbackImages/' . $filename);
@@ -574,11 +606,11 @@ class AdminController extends Controller
                     File::delete($existingImagePath);
                 }
             }
-    
+
             return redirect()->back()->with('info', 'Opps, server error: ' . $ex->getMessage());
         }
     }
-    
+
     public function deleteFeedback($id)
     {
         $feedback = Feedback::findOrFail($id);
@@ -609,11 +641,11 @@ class AdminController extends Controller
         return redirect()->route("admin.quote.index")->with('success', 'quote created successfully.');
     }
     public function editQuote($id)
-    { 
-    $quote = Quote::find($id);
-    return view("admin.quote.edit",compact("quote"));
+    {
+        $quote = Quote::find($id);
+        return view("admin.quote.edit", compact("quote"));
     }
-    public function updateQuote(Request $request,Quote $quote)
+    public function updateQuote(Request $request, Quote $quote)
     {
         $request->validate([
             'type' => 'required',
@@ -624,16 +656,16 @@ class AdminController extends Controller
         return redirect()->route("admin.quote.index")->with('success', 'quote updated successfully.');
     }
     public function deleteQuote($id)
-    { 
-    $quote = Quote::find($id);
-    $quote->delete();
-    return redirect()->route("admin.quote.index")->with('success', 'quote deleted successfully.');
+    {
+        $quote = Quote::find($id);
+        $quote->delete();
+        return redirect()->route("admin.quote.index")->with('success', 'quote deleted successfully.');
     }
 
     public function editIntroCompanmy()
     {
         $introCompany = IntroCompany::first();
-        return view("admin.company.index",compact("introCompany"));
+        return view("admin.company.index", compact("introCompany"));
 
     }
     public function updateIntroCompanmy(Request $request, IntroCompany $introCompany)
@@ -647,7 +679,7 @@ class AdminController extends Controller
             // Kiểm tra xem checkbox có được chọn hay không
             $imagePath = "";
             if ($request->hasFile('image')) {
-                $existingImagePath = public_path( $request->imageExisting);
+                $existingImagePath = public_path($request->imageExisting);
                 if (File::exists($existingImagePath)) {
                     File::delete($existingImagePath);
                 }
